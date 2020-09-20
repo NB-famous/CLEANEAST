@@ -1,0 +1,47 @@
+
+.button-list {
+  &__item {
+    height: 40rem;
+    padding-left: 10%;
+    padding-right: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    button.btn-users{
+      height: 150px;
+      cursor: pointer;
+      border-radius: 10px;
+      outline: none;
+      font-size: 2rem;
+      background-image: url("../docs/userlogo.png");
+      background-size: 375px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #44B244;
+      border-style: none;
+      width: 400px
+    }
+ 
+    button.btn-cleaner{
+      height: 130px;
+      cursor: pointer;
+      border-radius: 10px;
+      outline: none;
+      font-size: 2rem;
+      background-image: url("../docs/cleanrlogo.png");
+      background-size: 375px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #44B244;
+      border-style: none;
+      width: 400px
+    }
+
+    div.spacer-gap{
+      height: 2%;
+    }
+
+  }
+
+}
