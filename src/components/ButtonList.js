@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 
 export default function ButtonList(props) {
-
-
     
     return (
         <li className="button-list__item">

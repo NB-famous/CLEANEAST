@@ -7,11 +7,14 @@ import LoginUser from "./UserPage/LoginUser"
 import RegisterUser from "./UserPage/RegisterUser"
 import LoginCleaner from "./CleanerPage/LoginCleaner"
 import RegisterCleaner from "./CleanerPage/RegisterCleaner"
-import {Switch, Route, Link} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 
 
 
-export default function Content(){
+export default function Content(props){
+
+    const {loggedIn, setLoggedIn} = props; // This is to be used later to set the state of if logged in or not 
+
 
     return(
         
@@ -35,23 +38,14 @@ export default function Content(){
                     <RegisterUser/>
                 </Route>
                 <Route path="/users/login" exact>
-                <h1 className="text--regular" style={{textAlign: "center"}}>Welcome User</h1>
-                    <LoginUser/>
-                    <div style={{marginTop: "5%"}}>
-                    <h2>If you are not yet a user please click <strong> <Link to={'/users/register'}> here </Link> </strong></h2>
-                    </div>
+                    <LoginUser loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
                 </Route>
-
                 <Route path="/cleaners/register" exact>
                 <h1 className="text--regular" style={{textAlign: "center"}}>CleanPreneur Registration Page</h1>
                     <RegisterCleaner/>
                 </Route>
                 <Route path="/cleaners/login" exact>
-                <h1 className="text--regular" style={{textAlign: "center"}}>Welcome CleanPreneur</h1>
-                    <LoginCleaner/>
-                    <div style={{marginTop: "5%"}}>
-                    <h2>If you are not yet a cleaner please click <strong> <Link to={'/cleaners/register'}> here </Link> </strong></h2>
-                    </div>
+                    <LoginCleaner loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
                 </Route>
                     
                 </section>

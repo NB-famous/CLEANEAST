@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, Form } from 'react-bootstrap';
 //import {ILogin, ITarget, login } from './helperUser/interfaces'
 import axios from 'axios'
-
+import {Link} from 'react-router-dom'
 
 
 
@@ -37,7 +37,8 @@ async function handleSubmit(event){
 
   return (
 
-    
+    <>
+    <h1 className="text--regular" style={{textAlign: "center"}}>Welcome CleanPreneur</h1>
 
     <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
@@ -53,9 +54,15 @@ async function handleSubmit(event){
             <Form.Control type="password" placeholder="Password" onChange={event => setPassword(event.target.value)}/>
         </Form.Group>
         <Button variant="primary" type="submit">
-            Login
+            Login CleanPreneur
         </Button>
     </Form>
+
+    <div style={{marginTop: "5%"}}>
+        <h2>If you are not yet a cleaner please click <strong> <Link to={'/cleaners/register'}> here </Link> </strong></h2>
+    </div>
+
+    </>
   )
 
 }

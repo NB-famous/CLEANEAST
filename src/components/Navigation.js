@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../styles/Navigation.scss";
 import "../styles/ButtonList.scss"
 import ButtonList from "./ButtonList"
@@ -9,6 +9,10 @@ import {BrowserRouter, Link} from 'react-router-dom'
 
 
 export default function Navigation() {
+
+    const [loggedIn, setLoggedIn] = useState(
+        Boolean(localStorage.getItem("appToken"))
+    )
 
     return (
         <BrowserRouter>
@@ -31,7 +35,7 @@ export default function Navigation() {
             </section>
         </>
             <section className="content-body" >
-            <Content />
+            <Content  loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
             </section>
         </main>
         </BrowserRouter>

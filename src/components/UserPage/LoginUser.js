@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from 'react-bootstrap';
 //import {ILogin, ITarget, login } from './helperUser/interfaces'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -55,7 +56,7 @@ async function handleSubmit(event){
             console.log("this is response", response)
             localStorage.setItem("appToken", response.data.token) // Then object is from response we made through url attach to MongoDB
             localStorage.setItem("appEmail", response.data.user.email)
-            /* props.setLoggedIn(true) */
+            props.setLoggedIn(true)
 
         } else {
             console.log("incorrect something")
@@ -70,7 +71,8 @@ async function handleSubmit(event){
 
   return (
 
-    
+    <>
+    <h1 className="text--regular" style={{textAlign: "center"}}>Welcome User</h1>
 
     <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
@@ -86,9 +88,15 @@ async function handleSubmit(event){
             <Form.Control type="password" placeholder="Password" onChange={event => setPassword(event.target.value)}/>
         </Form.Group>
         <Button variant="primary" type="submit">
-            Login
+            Login User
         </Button>
     </Form>
+
+    <div style={{marginTop: "5%"}}>
+      <h2>If you are not yet a user please click <strong> <Link to={'/users/register'}> here </Link> </strong></h2>
+    </div>
+
+    </>
   )
 
 }
