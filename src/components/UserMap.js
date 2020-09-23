@@ -1,12 +1,13 @@
 //Using leaflet maps by functional build
 
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import "../styles/MapSource.scss"
 import {Icon} from 'leaflet'
-import userData from "../data/mock-users.json";
+//import userData from "../data/mock-users.json";
+import axios from 'axios'
 
 
 /* const DEFAULT_LATITUDE = 45.476770;
@@ -20,7 +21,25 @@ const cleaner = new Icon({
 export default function UserMap(){
 
     const [activeUser, setActiveUser] = useState(null);
+    const [isloading, setLoading] = useState(true)
+    const [registeredUser, setRegisteredUser] = useState([])
 
+
+    useEffect(()=>{
+       axios({
+           method: 'GET',
+           url:'http://localhost:5000/cleaners'})
+        .then(res => {
+            setRegisteredUser(res.data)
+            setLoading(false)
+            console.log("this is response", res)
+        })
+        .catch(err => console.log(err))
+    }, [])
+
+    if (isloading) {
+        return <div>Loading...</div>;
+      }
     
         const position = [45.501690, -73.567253]
         //const position = [latitude, longitude]
@@ -31,24 +50,31 @@ export default function UserMap(){
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                 />
-                {userData.map(user => (
+                {registeredUser.map(user => (
                     <Marker
                     key={user.username}
                     position={[
-                        Number(user.location.split(', ')[0]),
-                        Number(user.location.split(', ')[1])
+                        user.latitude,
+                        user.longitude
+                        // Number(user.location.split(', ')[0]),
+                        // Number(user.location.split(', ')[1])
                     ]}
                     onClick={() => {
                         setActiveUser(user);
                     }}
+
                     icon={cleaner}
                     />
                 ))}
+                {console.log("this is registered user",registeredUser)}
                 {activeUser && (
                     <Popup
+                    key={activeUser.username}
                     position={[
-                        Number(activeUser.location.split(', ')[0]),
-                        Number(activeUser.location.split(', ')[1])
+                        activeUser.latitude,
+                        activeUser.longitude
+                        // Number(activeUser.location.split(', ')[0]),
+                        // Number(activeUser.location.split(', ')[1])
                     ]}
                     onClose={() => {
                         setActiveUser(null);
