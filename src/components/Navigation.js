@@ -14,6 +14,9 @@ export default function Navigation() {
         Boolean(localStorage.getItem("appToken"))
     )
 
+
+    if(loggedIn) {
+
     return (
         <BrowserRouter>
         <main className="layout">
@@ -29,7 +32,6 @@ export default function Navigation() {
                 <hr className="sidebar__separator sidebar--centered" />
                 <nav className="sidebar__menu">
                     <ul>
-                        <ButtonList />
                     </ul>
                 </nav>
             </section>
@@ -40,4 +42,35 @@ export default function Navigation() {
         </main>
         </BrowserRouter>
     );
+
+    } else {
+
+        return (
+            <BrowserRouter>
+            <main className="layout">
+            <>
+                <section className="sidebar">
+                    <Link to={'/'}>
+                    <img
+                        className="sidebar--centered"
+                        src={logo}
+                        alt="cleaneast"
+                    />
+                    </Link>
+                    <hr className="sidebar__separator sidebar--centered" />
+                    <nav className="sidebar__menu">
+                        <ul>
+                            <ButtonList />
+                        </ul>
+                    </nav>
+                </section>
+            </>
+                <section className="content-body" >
+                <Content  loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+                </section>
+            </main>
+            </BrowserRouter>
+        );
+
+    }
 }

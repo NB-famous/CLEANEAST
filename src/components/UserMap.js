@@ -1,13 +1,13 @@
 //Using leaflet maps by functional build
 
 
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import "../styles/MapSource.scss"
 import {Icon} from 'leaflet'
 //import userData from "../data/mock-users.json";
-import axios from 'axios'
+//import axios from 'axios'
 
 
 /* const DEFAULT_LATITUDE = 45.476770;
@@ -18,9 +18,16 @@ const cleaner = new Icon({
     iconSize: [25, 25]
 });
 
-export default function UserMap(){
+export default function UserMap(props){
 
-    const [activeUser, setActiveUser] = useState(null);
+    const {
+        activeUser,
+        setActiveUser,
+        isloading,
+        registeredUser,
+      } = props
+
+    /* const [activeUser, setActiveUser] = useState(null);
     const [isloading, setLoading] = useState(true)
     const [registeredUser, setRegisteredUser] = useState([])
 
@@ -39,7 +46,13 @@ export default function UserMap(){
 
     if (isloading) {
         return <div>Loading...</div>;
+      } */
+
+      if (isloading) {
+        return <div>Loading...</div>;
       }
+
+
     
         const position = [45.501690, -73.567253]
         //const position = [latitude, longitude]

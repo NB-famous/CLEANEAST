@@ -22,8 +22,9 @@ async function handleSubmit(event){
             password
         });
         if(response.data) {
-            console.log("this is response", response)
+            //console.log("this is response", response)
             localStorage.setItem("appToken", response.data.token) // Then object is from response we made through url attach to MongoDB
+            localStorage.setItem("appUser", response.data.user.username)
             props.setLoggedIn(true)
 
         } else {
@@ -33,6 +34,8 @@ async function handleSubmit(event){
     catch(err){
         console.log("ERROR")
     }
+
+
 }
 
   return (
