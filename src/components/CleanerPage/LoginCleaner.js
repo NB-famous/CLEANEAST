@@ -14,6 +14,7 @@ const [password, setPassword] = useState();
 
 
 async function handleSubmit(event){
+
     event.preventDefault()
 
     try{
@@ -24,7 +25,8 @@ async function handleSubmit(event){
         if(response.data) {
             //console.log("this is response", response)
             localStorage.setItem("appToken", response.data.token) // Then object is from response we made through url attach to MongoDB
-            localStorage.setItem("appUser", response.data.user.username)
+            localStorage.setItem("appEmail", response.data.cleaner.email)
+            localStorage.setItem("appUser", response.data.cleaner.username)
             props.setLoggedIn(true)
 
         } else {
@@ -32,10 +34,8 @@ async function handleSubmit(event){
         }
     }
     catch(err){
-        console.log("ERROR")
+        console.log("ERROR", err)
     }
-
-
 }
 
   return (

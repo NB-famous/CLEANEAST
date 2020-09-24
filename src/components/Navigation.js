@@ -13,14 +13,19 @@ export default function Navigation() {
     const [loggedIn, setLoggedIn] = useState(
         Boolean(localStorage.getItem("appToken"))
     )
+    
 
+    const handleLogout = () => {
+        return setLoggedIn(false)
+    }
 
     if(loggedIn) {
 
     return (
         <BrowserRouter>
-        <main className="layout">
         <>
+        <main className="layout">
+        
             <section className="sidebar">
                 <Link to={'/'}>
                 <img
@@ -32,14 +37,16 @@ export default function Navigation() {
                 <hr className="sidebar__separator sidebar--centered" />
                 <nav className="sidebar__menu">
                     <ul>
+                    <button className="list-group-item list-group-item-action" onClick={handleLogout}><h1><strong>Logout</strong></h1></button>
                     </ul>
                 </nav>
             </section>
-        </>
+        
             <section className="content-body" >
             <Content  loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
             </section>
         </main>
+        </>
         </BrowserRouter>
     );
 
@@ -66,7 +73,7 @@ export default function Navigation() {
                 </section>
             </>
                 <section className="content-body" >
-                <Content  loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+                <Content loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
                 </section>
             </main>
             </BrowserRouter>
