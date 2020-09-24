@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
 
+
 export default class RegisterCleaner extends Component{
 
     constructor(props) {
@@ -67,6 +68,9 @@ export default class RegisterCleaner extends Component{
           password: ''
 
         })
+
+        this.props.history.push('/')
+
     }
 
 
@@ -92,8 +96,7 @@ export default class RegisterCleaner extends Component{
         const { latitude, longitude } = this.state
 
         return (
-
-            <Form onSubmit={this.onSubmit}>
+            <Form onSubmit={this.onSubmit} >
 
                 <Form.Group controlId="formBasicUsername">
                     <Form.Label>Username</Form.Label>
@@ -120,7 +123,7 @@ export default class RegisterCleaner extends Component{
                     <Form.Control type="hidden" value={longitude} />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                    Register
+                            Register 
                 </Button>
             </Form>
         )
