@@ -53,7 +53,7 @@ export default function Content(props){
                 <section className="appointment__card-left">
                     <section className="content-container">
                     <Route path="/" exact>
-                    <h1 className="text--regular" style={{textAlign: "center"}}>Welcome {localStorage.getItem("appUser")} !!!</h1>
+                    <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
                     <div style={{marginTop: "5%"}}></div>
                     <div className="row">
                         <CleanerProfileTabs 
@@ -119,7 +119,7 @@ export default function Content(props){
                 </Route>
                 <Route path="/cleaners/register" exact>
                 <h1 className="text--regular" style={{textAlign: "center"}}>CleanPreneur Registration Page</h1>
-                    <RegisterCleaner/>
+                    <RegisterCleaner history={history}/>
                 </Route>
                 <Route path="/cleaners/login" exact>
                     <LoginCleaner loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
