@@ -88,12 +88,12 @@ $appointment-height: 11rem;
     }
 
     &--show {
-      color: rgba($booked-color, $active-opacity);
+      color: rgba($main-color, $active-opacity);
       background-image: url("../docs/carwash1.jpg");
       background-size: cover;
 
       &:hover {
-        color: darken($white, 5%);
+        color: darken(black, 5%);
         background-image: url("../docs/carwash2.jpg");
         background-size: cover;
       }

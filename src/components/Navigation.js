@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../styles/Navigation.scss";
 import "../styles/ButtonList.scss"
 import ButtonList from "./ButtonList"
@@ -10,10 +10,22 @@ import {BrowserRouter, Link} from 'react-router-dom'
 
 export default function Navigation() {
 
+    const [loggedIn, setLoggedIn] = useState(
+        Boolean(localStorage.getItem("appToken"))
+    )
+    
+
+    const handleLogout = () => {
+        return setLoggedIn(false)
+    }
+
+    if(loggedIn) {
+
     return (
         <BrowserRouter>
-        <main className="layout">
         <>
+        <main className="layout">
+        
             <section className="sidebar">
                 <Link to={'/'}>
                 <img
@@ -25,15 +37,47 @@ export default function Navigation() {
                 <hr className="sidebar__separator sidebar--centered" />
                 <nav className="sidebar__menu">
                     <ul>
-                        <ButtonList />
+                    <button className="list-group-item list-group-item-action" onClick={handleLogout}><h1><strong>Logout</strong></h1></button>
                     </ul>
                 </nav>
             </section>
-        </>
+        
             <section className="content-body" >
-            <Content />
+            <Content  loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
             </section>
         </main>
+        </>
         </BrowserRouter>
     );
+
+    } else {
+
+        return (
+            <BrowserRouter>
+            <main className="layout">
+            <>
+                <section className="sidebar">
+                    <Link to={'/'}>
+                    <img
+                        className="sidebar--centered"
+                        src={logo}
+                        alt="cleaneast"
+                    />
+                    </Link>
+                    <hr className="sidebar__separator sidebar--centered" />
+                    <nav className="sidebar__menu">
+                        <ul>
+                            <ButtonList />
+                        </ul>
+                    </nav>
+                </section>
+            </>
+                <section className="content-body" >
+                <Content loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+                </section>
+            </main>
+            </BrowserRouter>
+        );
+
+    }
 }

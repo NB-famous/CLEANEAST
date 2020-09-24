@@ -31,6 +31,13 @@
   }
 }
 
+.list-group-item{
+  display:flex;
+  justify-content: center;
+  border-top: solid black;
+  border-bottom: solid black;
+}
+
 .content-body {
   display: flex;
   /* flex-direction: column;
