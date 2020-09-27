@@ -10,36 +10,6 @@ import axios from 'axios'
 const LoginUser = (props) => { 
 
 
-/* const LoginUser = ({
-  isAuthenticated,
-  error,
-  login,
-  clearErrors
-  }: ILogin) => {
-    const [modal, setModal] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [msg, setMsg] = useState(null);
-  
-    const handleToggle = useCallback(() => {
-      // Clear errors
-      clearErrors();
-      setModal(!modal);
-    }, [clearErrors, modal]);
-  
-    const handleChangeEmail = (e: ITarget) => setEmail(e.target.value);
-    const handleChangePassword = (e: ITarget) => setPassword(e.target.value);
-  
-    const handleOnSubmit = (e: any) => {
-      e.preventDefault();
-  
-      const user = { email, password };
-  
-      // Attempt to login
-      login(user);
-    };
- */
-    
 const [email, setEmail] = useState();
 const [password, setPassword] = useState();
 

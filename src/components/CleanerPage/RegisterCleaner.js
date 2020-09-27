@@ -69,7 +69,7 @@ export default class RegisterCleaner extends Component{
 
         })
 
-        this.props.history.push('/')
+        this.props.history.push('/cleaners/login')
 
     }
 
