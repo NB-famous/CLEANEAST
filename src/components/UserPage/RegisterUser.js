@@ -1,21 +1,27 @@
 import React, {Component} from "react"
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
+import { Redirect } from "react-router-dom";
+
 
 export default class RegisterUser extends Component{
 
     constructor(props) {
         super(props);
-    
+        console.log("this is the props inside constructor",props.loggedIn)
+        this.loggedIn = props.loggedIn;
+        this.setLoggedIn = props.setLoggedIn;
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-    
+        
+
         this.state = {
           username: '',
           email:'',
-          password:''
+          password:'',
+          isRegistered: false
         }
     }
 
@@ -37,6 +43,7 @@ export default class RegisterUser extends Component{
         })
     }
 
+
     onSubmit(e) {
         e.preventDefault();
     
@@ -50,22 +57,24 @@ export default class RegisterUser extends Component{
     
         axios.post('http://localhost:5000/users/register', user)
           .then(res => console.log(res.data));
-    
         this.setState({
           username: '',
           email: '',
-          password: ''
-
+          password: '',
+          isRegistered:true,
         })
     }
 
-
-
+    
     render(){
+        const isRegistered = this.state.isRegistered;
+        if(isRegistered === true) {
+            this.setLoggedIn(true)
+            return <Redirect to="/"/>
+        }
+
         return (
-
-            <Form onSubmit={this.onSubmit}>
-
+            <Form onSubmit={this.onSubmit} >
                 <Form.Group controlId="formBasicUsername">
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="text" placeholder="Enter username" value={this.state.username} onChange={this.onChangeUsername} />

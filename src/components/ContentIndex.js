@@ -1,24 +1,26 @@
+
+
+/// THIS IS A COPY AND REFACTORED VERSION OF CONTENT WHEN BOTH CLEANER AND USER ARE LOGGED OFF 
+
+
+
 import React, {useState, useEffect} from 'react';
 import "../styles/Content.scss";
 /* import MapSource from './MapSource' */
-import UserMap from './UserMap'
-import CleanerProfileTabs from './UserPage/CleanerProfileTabs'
 import LoginUser from "./UserPage/LoginUser"
 import RegisterUser from "./UserPage/RegisterUser"
 import LoginCleaner from "./CleanerPage/LoginCleaner"
 import RegisterCleaner from "./CleanerPage/RegisterCleaner"
-import {Switch, Route, useHistory} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import axios from 'axios'
 
 
 
-export default function Content(props){
+export default function ContentIndex(props){
 
-    const {loggedIn, setLoggedIn} = props; // This is to be used later to set the state of if logged in or not 
+    const {loggedIn, setLoggedIn, cleanerLogin, setCleanerLogin} = props; // This is to be used later to set the state of if logged in or not 
 
-    let history = useHistory()
 
-    const [activeUser, setActiveUser] = useState(null);
     const [isloading, setLoading] = useState(true)
     const [registeredUser, setRegisteredUser] = useState([])
 
@@ -41,57 +43,12 @@ export default function Content(props){
         return <div>Loading...</div>;
     }
 
-    if(loggedIn){
-
-        history.push('/'); // this will redirect to home page if user is logged in
-
-        return(
-        
-            <main className="appointment__card appointment__card--show">
-            <Switch>
-            <>
-                <section className="appointment__card-left">
-                    <section className="content-container">
-                    <Route path="/" exact>
-                    <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
-                    <div style={{marginTop: "5%"}}></div>
-                    <div className="row">
-                        <CleanerProfileTabs 
-                            registeredUser={registeredUser} 
-                        />
-                    </div>
-                    </Route>
-                    </section>
-                </section>
-
-                <section className="appointment__card-right">
-                    {/* <MapSource /> */}
-                    <UserMap 
-                        activeUser={activeUser}
-                        setActiveUser={setActiveUser}
-                        isloading={isloading}
-                        setLoading={setLoading}
-                        registeredUser={registeredUser}
-                        setRegisteredUser={setRegisteredUser}
-                    />
-                </section>
-            
-                </>    
-            </Switch>
-            </main>
-        )
-
-    } else {
-
     return(
-        
         <main className="appointment__card appointment__card--show">
-        <Switch>
         <>
             <section className="appointment__card-left">
                 <section className="content-container">
-
-                <Route path="/" exact>
+                <Route path="/"  registeredUser={registeredUser} exact>
                 <h1 className="text--regular" style={{textAlign: "center"}}>Welcome To The Home Page</h1>
                 <div style={{marginTop: "5%"}}></div>
                 <p> 
@@ -109,29 +66,23 @@ export default function Content(props){
                     commodi cupiditate recusandae minus asperiores quis, reprehenderit unde facere quam! Temporibus consequatur repudiandae libero labore aspernatur.
                 </p>
                 </Route>
-
                 <Route path="/users/register" exact>
                 <h1 className="text--regular" style={{textAlign: "center"}}>User Registration Page</h1>
-                    <RegisterUser/>
+                    <RegisterUser loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+                </Route>
+                <Route path="/cleaners/register" exact>
+                <h1 className="text--regular" style={{textAlign: "center"}}>CleanPreneur Registration Page</h1>
+                    <RegisterCleaner cleanerLogin={cleanerLogin} setCleanerLogin={setCleanerLogin}/>
                 </Route>
                 <Route path="/users/login" exact>
                     <LoginUser loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
                 </Route>
-                <Route path="/cleaners/register" exact>
-                <h1 className="text--regular" style={{textAlign: "center"}}>CleanPreneur Registration Page</h1>
-                    <RegisterCleaner history={history}/>
-                </Route>
                 <Route path="/cleaners/login" exact>
-                    <LoginCleaner loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
-                </Route>
-                    
+                    <LoginCleaner cleanerLogin={cleanerLogin} setCleanerLogin={setCleanerLogin}/>
+                </Route>   
                 </section>
             </section>
-            
-        </>    
-        </Switch>
-       
+        </>
         </main>
     )
-    }
 } 
