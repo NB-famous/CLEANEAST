@@ -1,13 +1,15 @@
 import React, {Component} from "react"
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
+import { Redirect } from "react-router-dom";
 
 
 export default class RegisterCleaner extends Component{
 
     constructor(props) {
         super(props);
-    
+        this.cleanerLogin = props.cleanerLogin;
+        this.setCleanerLogin = props.setCleanerLogin;
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
@@ -18,7 +20,8 @@ export default class RegisterCleaner extends Component{
           email:'',
           password:'',
           latitude: '',
-          longitude: ''
+          longitude: '',
+          isRegistered: false,
         }
 
         this.getMyLocation = this.getMyLocation.bind(this)
@@ -65,11 +68,12 @@ export default class RegisterCleaner extends Component{
         this.setState({
           username: '',
           email: '',
-          password: ''
+          password: '',
+          isRegistered:true,
 
         })
 
-        this.props.history.push('/cleaners/login')
+        //this.props.history.push('/cleaners/login')
 
     }
 
@@ -94,6 +98,12 @@ export default class RegisterCleaner extends Component{
     render(){
 
         const { latitude, longitude } = this.state
+        const isRegistered = this.state.isRegistered;
+    
+        if(isRegistered === true) {
+            this.setCleanerLogin(true)
+            return <Redirect to="/"/>
+        }
 
         return (
             <Form onSubmit={this.onSubmit} >

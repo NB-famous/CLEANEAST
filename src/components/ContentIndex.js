@@ -11,7 +11,7 @@ import LoginUser from "./UserPage/LoginUser"
 import RegisterUser from "./UserPage/RegisterUser"
 import LoginCleaner from "./CleanerPage/LoginCleaner"
 import RegisterCleaner from "./CleanerPage/RegisterCleaner"
-import {Route, useHistory} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -20,7 +20,6 @@ export default function ContentIndex(props){
 
     const {loggedIn, setLoggedIn, cleanerLogin, setCleanerLogin} = props; // This is to be used later to set the state of if logged in or not 
 
-    let history = useHistory()
 
     const [isloading, setLoading] = useState(true)
     const [registeredUser, setRegisteredUser] = useState([])
@@ -69,14 +68,14 @@ export default function ContentIndex(props){
                 </Route>
                 <Route path="/users/register" exact>
                 <h1 className="text--regular" style={{textAlign: "center"}}>User Registration Page</h1>
-                    <RegisterUser/>
-                </Route>
-                <Route path="/users/login" exact>
-                    <LoginUser loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+                    <RegisterUser loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
                 </Route>
                 <Route path="/cleaners/register" exact>
                 <h1 className="text--regular" style={{textAlign: "center"}}>CleanPreneur Registration Page</h1>
-                    <RegisterCleaner history={history}/>
+                    <RegisterCleaner cleanerLogin={cleanerLogin} setCleanerLogin={setCleanerLogin}/>
+                </Route>
+                <Route path="/users/login" exact>
+                    <LoginUser loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
                 </Route>
                 <Route path="/cleaners/login" exact>
                     <LoginCleaner cleanerLogin={cleanerLogin} setCleanerLogin={setCleanerLogin}/>
