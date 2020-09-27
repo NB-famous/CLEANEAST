@@ -1,5 +1,5 @@
 import React from "react"
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import logo from "../docs/navlogo.png"
 import ButtonList from "./ButtonList"
 
@@ -7,12 +7,14 @@ import ButtonList from "./ButtonList"
 const NavBar = (props) => {
 
     const {loggedIn, setLoggedIn, cleanerLogin, setCleanerLogin} = props;
+    let history = useHistory()
 
     const handleLogout = () => {
         setLoggedIn(false)
         localStorage.removeItem("appToken");
         localStorage.removeItem("appUser");
         localStorage.removeItem("appEmail");
+        history.push('/');
     }
 
     const handleCleanerLogout = () => {
@@ -20,6 +22,7 @@ const NavBar = (props) => {
         localStorage.removeItem("cleanerToken");
         localStorage.removeItem("cleanerUser");
         localStorage.removeItem("cleanerEmail");
+        history.push('/');
     }
 
 

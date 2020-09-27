@@ -29,6 +29,7 @@ export default function Application(props) {
     return (
         <BrowserRouter>
         <Switch>
+        <>
         <main className="layout">
             <NavBar 
             loggedIn={loggedIn}
@@ -51,6 +52,7 @@ export default function Application(props) {
             }
             </section>
         </main>
+        </>
         </Switch>
         </BrowserRouter>
     );
