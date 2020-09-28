@@ -1,12 +1,14 @@
 import React from "react"
+import { useParams } from "react-router-dom";
 
 const CleanerProfile = (props) => {
-
+  const { id } = useParams();
+  
+  console.log('props', id)
+  console.log("cleaners", props) /// Passing this will search the specifi 
 
   return (
     <>
-
-        
         <div className="row gutters-sm">
         <div className="col-md-4 mb-3">
             <div className="card">
@@ -15,8 +17,8 @@ const CleanerProfile = (props) => {
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
                 <div className="mt-3">
                     <h4>{localStorage.getItem("cleanerUser")}</h4>
-                    <p className="text-secondary mb-1">Full Stack Developer</p>
-                    <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                    <p className="text-secondary mb-1">{props.selectedUser.username}</p>
+                    <p className="text-muted font-size-sm">{props.selectedUser.address}</p>
                     <button className="btn btn-primary">Hire</button>
                     <button className="btn btn-outline-primary">Message</button>
                 </div>
@@ -58,7 +60,7 @@ const CleanerProfile = (props) => {
                       <h6 className="mb-0">Full Name</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      {localStorage.getItem("cleanerUser")}
+                    {props.selectedUser.username}
                     </div>
                   </div>
                   <hr />
@@ -67,7 +69,7 @@ const CleanerProfile = (props) => {
                       <h6 className="mb-0">Email</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                    {localStorage.getItem("cleanerEmail")}
+                      {props.selectedUser.email}
                     </div>
                   </div>
                   <hr />
@@ -76,7 +78,7 @@ const CleanerProfile = (props) => {
                       <h6 className="mb-0">Phone</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      (239) 816-9029
+                    {props.selectedUser.phone}
                     </div>
                   </div>
                   <hr />
@@ -85,7 +87,7 @@ const CleanerProfile = (props) => {
                       <h6 className="mb-0">Mobile</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      (320) 380-4539
+                    {props.selectedUser.phone}
                     </div>
                   </div>
                   <hr />
@@ -94,7 +96,7 @@ const CleanerProfile = (props) => {
                       <h6 className="mb-0">Address</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
+                      {props.selectedUser.address}
                     </div>
                   </div>
                 </div>
@@ -105,21 +107,9 @@ const CleanerProfile = (props) => {
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Description</i></h6>
                       <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, qui aspernatur quas soluta voluptates ea reprehenderit laudantium voluptate, ab molestiae quisquam, architecto deleniti. Deleniti quia aliquid aut, illo incidunt veritatis?
-                        Quibusdam sit ipsa et voluptatem facere laudantium quaerat nesciunt tenetur! Ut sunt ad reprehenderit assumenda culpa iusto? Sed, nulla animi! Quia itaque voluptatibus sit. Odit alias rerum omnis explicabo error.
-                        Vitae et rerum praesentium labore dolores veritatis a delectus repellat sed quas. Quos, praesentium omnis aliquid explicabo, non accusantium eveniet repellat eos consequatur dolore rerum veritatis ea deserunt minus expedita!
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi veniam adipisci et quod in aperiam perferendis accusamus harum magni. Sapiente odit numquam molestias quidem deleniti excepturi accusamus delectus nihil dicta.
-                        Dicta unde soluta nam natus, fuga modi dolorem tempora sed cumque quisquam officia commodi tempore animi numquam obcaecati odio voluptatem reiciendis est minima rerum ab nesciunt in dolore ea. Cupiditate?
-                        Labore temporibus dignissimos tempore recusandae! Officia est recusandae delectus omnis, eius necessitatibus laboriosam harum iusto unde animi deleniti error accusantium laborum quo odio amet facilis a voluptatum autem saepe? Facere!
+                      {props.selectedUser.description}
                       </p>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, qui aspernatur quas soluta voluptates ea reprehenderit laudantium voluptate, ab molestiae quisquam, architecto deleniti. Deleniti quia aliquid aut, illo incidunt veritatis?
-                        Quibusdam sit ipsa et voluptatem facere laudantium quaerat nesciunt tenetur! Ut sunt ad reprehenderit assumenda culpa iusto? Sed, nulla animi! Quia itaque voluptatibus sit. Odit alias rerum omnis explicabo error.
-                        Vitae et rerum praesentium labore dolores veritatis a delectus repellat sed quas. Quos, praesentium omnis aliquid explicabo, non accusantium eveniet repellat eos consequatur dolore rerum veritatis ea deserunt minus expedita!
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi veniam adipisci et quod in aperiam perferendis accusamus harum magni. Sapiente odit numquam molestias quidem deleniti excepturi accusamus delectus nihil dicta.
-                        Dicta unde soluta nam natus, fuga modi dolorem tempora sed cumque quisquam officia commodi tempore animi numquam obcaecati odio voluptatem reiciendis est minima rerum ab nesciunt in dolore ea. Cupiditate?
-                        Labore temporibus dignissimos tempore recusandae! Officia est recusandae delectus omnis, eius necessitatibus laboriosam harum iusto unde animi deleniti error accusantium laborum quo odio amet facilis a voluptatum autem saepe? Facere!
-                      </p>
+                      
                     </div>
                   </div>
                 </div>

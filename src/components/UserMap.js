@@ -23,12 +23,12 @@ export default function UserMap(props){
     const {
         activeUser,
         setActiveUser,
-        isloading,
+        isLoading,
         registeredUser,
       } = props
 
     /* const [activeUser, setActiveUser] = useState(null);
-    const [isloading, setLoading] = useState(true)
+    const [isLoading, setLoading] = useState(true)
     const [registeredUser, setRegisteredUser] = useState([])
 
 
@@ -44,11 +44,11 @@ export default function UserMap(props){
         .catch(err => console.log(err))
     }, [])
 
-    if (isloading) {
+    if (isLoading) {
         return <div>Loading...</div>;
       } */
 
-      if (isloading) {
+      if (isLoading) {
         return <div>Loading...</div>;
       }
 
@@ -72,9 +72,7 @@ export default function UserMap(props){
                         // Number(user.location.split(', ')[0]),
                         // Number(user.location.split(', ')[1])
                     ]}
-                    onClick={() => {
-                        setActiveUser(user);
-                    }}
+                    onClick={() => setActiveUser(user)}
 
                     icon={cleaner}
                     />

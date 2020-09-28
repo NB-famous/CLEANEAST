@@ -3,7 +3,7 @@
 
 
 
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import "../styles/Content.scss";
 /* import MapSource from './MapSource' */
 import UserMap from './UserMap'
@@ -17,16 +17,18 @@ import CleanerProfile from './CleanerPage/CleanerProfile'
 
 export default function ContentUser(props){
 
-    //const {loggedIn, setLoggedIn, cleanerLogin, setCleanerLogin} = props; // This is to be used later to set the state of if logged in or not 
+    const {isLoading, setLoading, registeredUser, setRegisteredUser} = props; // This is to be used later to set the state of if logged in or not 
+
+
+    const [activeUser, setActiveUser] = useState(null);
+    //const [isloading, setLoading] = useState(true)
+    //const [registeredUser, setRegisteredUser] = useState([])
+    const [chosenProfile, setChosenProfile] = useState({})
 
     let history = useHistory()
 
-    const [activeUser, setActiveUser] = useState(null);
-    const [isloading, setLoading] = useState(true)
-    const [registeredUser, setRegisteredUser] = useState([])
-
     /////// This is where get user is coming from and pass down to maps
-    useEffect(()=>{
+    /* useEffect(()=>{
        axios({
            method: 'GET',
            url:'http://localhost:5000/cleaners'})
@@ -35,18 +37,19 @@ export default function ContentUser(props){
             setLoading(false)
         })
         .catch(err => console.log(err))
-    }, [])
+    }, []) */
 
 
 
-    if (isloading) {
+    if (isLoading) {
         history.push('/');
         return <div>Loading...</div>;
     }
     //history.push('/'); // this will redirect to home page if user is logged in
 
-        return(
-            <main className="appointment__card appointment__card--show">
+
+    return(
+        <main className="appointment__card appointment__card--show">
             <Route path="/" exact>
                 <section className="appointment__card-left">
                     <section className="content-container">
@@ -54,7 +57,7 @@ export default function ContentUser(props){
                     <div style={{marginTop: "5%"}}></div>
                     <div className="row">
                         <CleanerProfileTabs 
-                            registeredUser={registeredUser} 
+                            registeredUser={registeredUser} setCurrentUser={setChosenProfile}
                         />
                     </div>
                     </section>
@@ -65,7 +68,7 @@ export default function ContentUser(props){
                     <UserMap 
                         activeUser={activeUser}
                         setActiveUser={setActiveUser}
-                        isloading={isloading}
+                        isLoading={isLoading}
                         setLoading={setLoading}
                         registeredUser={registeredUser}
                         setRegisteredUser={setRegisteredUser}
@@ -73,21 +76,21 @@ export default function ContentUser(props){
                 </section>
             </Route>
             <Switch>
-            <Route path="/users/cleanerProfile" exact>
-                <section className="appointment__card-left">
-                    <section className="content-container">
-                    <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
-                    <div style={{marginTop: "5%"}}></div>
-                    <div className="row">
-                        <CleanerProfile
-                    
-                        />
-                    </div>
+                <Route path={`/users/cleanerProfile/:id`} exact>
+                    <section className="appointment__card-left">
+                        <section className="content-container">
+                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
+                        <div style={{marginTop: "5%"}}></div>
+                        <div className="row">
+                            <CleanerProfile 
+                                selectedUser={chosenProfile} 
+                            />
+                        </div>
+                        </section>
                     </section>
-                </section>
-            </Route>
+                </Route>
             </Switch>
-            </main>
-    )
+        </main>
+)
 
 } 
