@@ -79,7 +79,6 @@ export default function UserMap(props){
                     icon={cleaner}
                     />
                 ))}
-                {console.log("this is registered user",registeredUser)}
                 {activeUser && (
                     <Popup
                     key={activeUser.username}
