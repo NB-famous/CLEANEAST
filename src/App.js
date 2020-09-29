@@ -18,10 +18,7 @@ function App() {
         cleanerLogin={cleanerLogin}
         setCleanerLogin={setCleanerLogin}
       /> */}
-
-      <Application
-      />
-      
+      <Application/>  
     </div>
   );
 }

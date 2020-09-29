@@ -11,6 +11,7 @@ import CleanerProfileTabs from './UserPage/CleanerProfileTabs'
 import {Route, useHistory, Switch} from 'react-router-dom'
 import CleanerProfile from './CleanerPage/CleanerProfile'
 import axios from 'axios';
+import Chat from '../ChatComponents/messagecomponents/Chat'
 
 
 
@@ -84,6 +85,17 @@ export default function ContentUser(props){
                             <CleanerProfile 
                                 selectedUser={chosenProfile} 
                             />
+                        </div>
+                        </section>
+                    </section>
+                </Route>
+                <Route path={'/cleaners/chatroom'} exact>
+                    <section className="appointment__card-left">
+                        <section className="content-container">
+                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
+                        <div style={{marginTop: "5%"}}></div>
+                        <div className="row">
+                            <Chat />
                         </div>
                         </section>
                     </section>

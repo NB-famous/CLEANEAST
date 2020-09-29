@@ -6,9 +6,10 @@
 import React, {useState, useEffect} from 'react';
 import "../styles/Content.scss";
 /* import MapSource from './MapSource' */
-import {Route, useHistory} from 'react-router-dom'
+import {Route, useHistory, Switch} from 'react-router-dom'
 import CleanerProfileForm from './CleanerPage/CleanerProfileForm'
 import axios from 'axios'
+import Chat from '../ChatComponents/messagecomponents/Chat'
 
 
 export default function ContentSeller(props){
@@ -58,6 +59,19 @@ export default function ContentSeller(props){
                 </section>
             </section>
         </Route>
+        <Switch>
+        <Route path={'/cleaners/chatroom'} exact>
+                    <section className="appointment__card-left">
+                        <section className="content-container">
+                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
+                        <div style={{marginTop: "5%"}}></div>
+                        <div className="row">
+                            <Chat />
+                        </div>
+                        </section>
+                    </section>
+                </Route>
+        </Switch>
         </main>
     )
 } 

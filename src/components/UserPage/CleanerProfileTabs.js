@@ -27,7 +27,9 @@ const CleanerProfileTabs = (props) => {
                   <button type="button" className="btn btn-sm btn-outline-secondary">Profile</button>
                 </Link>
                   <button type="button" className="btn btn-sm btn-outline-secondary">Hire</button>
+                <Link to={'/cleaners/chatroom'}>
                   <button type="button" className="btn btn-sm btn-outline-secondary">Message</button>
+                </Link>
                 </div>
                 <small className="text-muted">9 mins</small>
               </div>
