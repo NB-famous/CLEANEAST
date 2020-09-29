@@ -11,7 +11,7 @@ import LoginUser from "./UserPage/LoginUser"
 import RegisterUser from "./UserPage/RegisterUser"
 import LoginCleaner from "./CleanerPage/LoginCleaner"
 import RegisterCleaner from "./CleanerPage/RegisterCleaner"
-import {Route} from 'react-router-dom'
+import {Route, useHistory} from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -24,11 +24,13 @@ export default function ContentIndex(props){
     const [isloading, setLoading] = useState(true)
     const [registeredUser, setRegisteredUser] = useState([])
 
+    let history = useHistory();
+
     /////// This is where get user is coming from and pass down to maps
     useEffect(()=>{
        axios({
            method: 'GET',
-           url:'http://localhost:5000/cleaners'})
+           url:'http://localhost:5000/cleaners/services'})
         .then(res => {
             setRegisteredUser(res.data)
             setLoading(false)
@@ -38,8 +40,8 @@ export default function ContentIndex(props){
     }, [])
 
 
-
     if (isloading) {
+        history.push('/')
         return <div>Loading...</div>;
     }
 

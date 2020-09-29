@@ -9,27 +9,28 @@ import "../styles/Content.scss";
 import UserMap from './UserMap'
 import CleanerProfileTabs from './UserPage/CleanerProfileTabs'
 import {Route, useHistory, Switch} from 'react-router-dom'
-import axios from 'axios'
 import CleanerProfile from './CleanerPage/CleanerProfile'
+import axios from 'axios';
 
 
 
 
 export default function ContentUser(props){
 
-    //const {loggedIn, setLoggedIn, cleanerLogin, setCleanerLogin} = props; // This is to be used later to set the state of if logged in or not 
-
-    let history = useHistory()
+    //const {isLoading, setLoading, registeredUser, setRegisteredUser} = props; // This is to be used later to set the state of if logged in or not 
 
     const [activeUser, setActiveUser] = useState(null);
-    const [isloading, setLoading] = useState(true)
+    const [chosenProfile, setChosenProfile] = useState({})
+    const [isLoading, setLoading] = useState(true)
     const [registeredUser, setRegisteredUser] = useState([])
+
+    let history = useHistory()
 
     /////// This is where get user is coming from and pass down to maps
     useEffect(()=>{
        axios({
            method: 'GET',
-           url:'http://localhost:5000/cleaners'})
+           url:'http://localhost:5000/cleaners/services'})
         .then(res => {
             setRegisteredUser(res.data)
             setLoading(false)
@@ -39,14 +40,14 @@ export default function ContentUser(props){
 
 
 
-    if (isloading) {
+    if (isLoading) {
         history.push('/');
         return <div>Loading...</div>;
     }
     //history.push('/'); // this will redirect to home page if user is logged in
 
-        return(
-            <main className="appointment__card appointment__card--show">
+    return(
+        <main className="appointment__card appointment__card--show">
             <Route path="/" exact>
                 <section className="appointment__card-left">
                     <section className="content-container">
@@ -55,6 +56,7 @@ export default function ContentUser(props){
                     <div className="row">
                         <CleanerProfileTabs 
                             registeredUser={registeredUser} 
+                            setCurrentUser={setChosenProfile}
                         />
                     </div>
                     </section>
@@ -65,7 +67,7 @@ export default function ContentUser(props){
                     <UserMap 
                         activeUser={activeUser}
                         setActiveUser={setActiveUser}
-                        isloading={isloading}
+                        isLoading={isLoading}
                         setLoading={setLoading}
                         registeredUser={registeredUser}
                         setRegisteredUser={setRegisteredUser}
@@ -73,21 +75,21 @@ export default function ContentUser(props){
                 </section>
             </Route>
             <Switch>
-            <Route path="/users/cleanerProfile" exact>
-                <section className="appointment__card-left">
-                    <section className="content-container">
-                    <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
-                    <div style={{marginTop: "5%"}}></div>
-                    <div className="row">
-                        <CleanerProfile
-                    
-                        />
-                    </div>
+                <Route path={`/users/cleanerProfile/:id`} exact>
+                    <section className="appointment__card-left">
+                        <section className="content-container">
+                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
+                        <div style={{marginTop: "5%"}}></div>
+                        <div className="row">
+                            <CleanerProfile 
+                                selectedUser={chosenProfile} 
+                            />
+                        </div>
+                        </section>
                     </section>
-                </section>
-            </Route>
+                </Route>
             </Switch>
-            </main>
-    )
+        </main>
+)
 
 } 
