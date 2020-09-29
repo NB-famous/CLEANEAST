@@ -17,7 +17,7 @@ const CleanerProfile = (props) => {
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
                 <div className="mt-3">
                     <h4>{localStorage.getItem("cleanerUser")}</h4>
-                    <p className="text-secondary mb-1">{props.selectedUser.username}</p>
+                    <p className="text-secondary mb-1">{props.selectedUser.cleanerName}</p>
                     <p className="text-muted font-size-sm">{props.selectedUser.address}</p>
                     <button className="btn btn-primary">Hire</button>
                     <button className="btn btn-outline-primary">Message</button>
@@ -60,7 +60,7 @@ const CleanerProfile = (props) => {
                       <h6 className="mb-0">Full Name</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                    {props.selectedUser.username}
+                    {props.selectedUser.cleanerName}
                     </div>
                   </div>
                   <hr />
