@@ -6,6 +6,8 @@ const CleanerProfile = (props) => {
   
   console.log('props', id)
   console.log("cleaners", props) /// Passing this will search the specifi 
+  const {selectedUser} = props
+
 
   return (
     <>
@@ -17,8 +19,8 @@ const CleanerProfile = (props) => {
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
                 <div className="mt-3">
                     <h4>{localStorage.getItem("cleanerUser")}</h4>
-                    <p className="text-secondary mb-1">{props.selectedUser.cleanerName}</p>
-                    <p className="text-muted font-size-sm">{props.selectedUser.address}</p>
+                    <p className="text-secondary mb-1">{selectedUser.username}</p>
+                    <p className="text-muted font-size-sm">{selectedUser.address}</p>
                     <button className="btn btn-primary">Hire</button>
                     <button className="btn btn-outline-primary">Message</button>
                 </div>
@@ -60,7 +62,7 @@ const CleanerProfile = (props) => {
                       <h6 className="mb-0">Full Name</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                    {props.selectedUser.cleanerName}
+                    {selectedUser.username}
                     </div>
                   </div>
                   <hr />
@@ -69,7 +71,7 @@ const CleanerProfile = (props) => {
                       <h6 className="mb-0">Email</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      {props.selectedUser.email}
+                      {selectedUser.email}
                     </div>
                   </div>
                   <hr />
@@ -87,7 +89,7 @@ const CleanerProfile = (props) => {
                       <h6 className="mb-0">Mobile</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                    {props.selectedUser.phone}
+                    {selectedUser.phone}
                     </div>
                   </div>
                   <hr />
@@ -96,7 +98,7 @@ const CleanerProfile = (props) => {
                       <h6 className="mb-0">Address</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      {props.selectedUser.address}
+                      {selectedUser.address}
                     </div>
                   </div>
                 </div>
@@ -107,7 +109,7 @@ const CleanerProfile = (props) => {
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Description</i></h6>
                       <p>
-                      {props.selectedUser.description}
+                      {selectedUser.description}
                       </p>
                       
                     </div>
