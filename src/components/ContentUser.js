@@ -30,7 +30,7 @@ export default function ContentUser(props){
     useEffect(()=>{
        axios({
            method: 'GET',
-           url:'http://localhost:5000/cleaners'})
+           url:'http://localhost:5000/cleaners/services'})
         .then(res => {
             setRegisteredUser(res.data)
             setLoading(false)

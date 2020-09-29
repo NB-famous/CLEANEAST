@@ -65,7 +65,7 @@ export default function UserMap(props){
                 />
                 {registeredUser.map(user => (
                     <Marker
-                    key={user.username}
+                    key={user.cleanerName}
                     position={[
                         user.latitude,
                         user.longitude

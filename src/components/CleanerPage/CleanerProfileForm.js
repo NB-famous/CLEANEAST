@@ -1,7 +1,7 @@
 import React from "react"
 import { useParams } from "react-router-dom";
 
-const CleanerProfile = (props) => {
+const CleanerProfileForm = (props) => {
   const { id } = useParams();
   
   console.log('props', id)
@@ -145,9 +145,9 @@ const CleanerProfile = (props) => {
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Services</i></h6>
-                      {selectedUser.service.map(val => {
+                      {/* {selectedUser.service.map(val => {
                                   return(
-                                    <ul key={val.service}>
+                                    <ul>
                                     <hr/>
                                       <li>
                                         Service:{val.service}
@@ -163,7 +163,7 @@ const CleanerProfile = (props) => {
                                       </li>
                                       <hr/>
                                     </ul>
-                                  )})} 
+                                  )})}  */}
                     </div>
                   </div>
                 </div>
@@ -178,4 +178,4 @@ const CleanerProfile = (props) => {
   )
 }
 
-export default CleanerProfile
+export default CleanerProfileForm
