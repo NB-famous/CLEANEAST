@@ -8,17 +8,19 @@ export default class RegisterRating extends Component{
 
     constructor(props) {
         super(props);
-        console.log("this is the props inside constructor",props.loggedIn)
+        console.log("this is the props inside constructor",props)
         this.loggedIn = props.loggedIn;
         this.setLoggedIn = props.setLoggedIn;
         this.onChangeRating = this.onChangeRating.bind(this);
         this.onChangeComment = this.onChangeComment.bind(this);
+        this.onChangeService = this.onChangeService.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         
 
         this.state = {
           rating: '',
           comment:'',
+          service:'',
           //password:'',
           isRegistered: false
         }
@@ -36,12 +38,18 @@ export default class RegisterRating extends Component{
         })
     }
 
+    onChangeService(e) {
+        this.setState({
+            service: e.target.value
+        })
+    }
+
     // onChangePassword(e) {
     //     this.setState({
     //         password: e.target.value
     //     })
     // }
-
+  
 
     onSubmit(e) {
         e.preventDefault();
@@ -49,6 +57,7 @@ export default class RegisterRating extends Component{
         const comment = {
           comment: this.state.comment,
           rating: this.state.rating,
+          service: this.state.service,
         //   password: this.state.password
         }
     
@@ -57,7 +66,7 @@ export default class RegisterRating extends Component{
         axios.post('http://localhost:5000/users/rating', comment, {
             headers: {
                 'Content-Type': 'application/json',
-                'cleanerttoken': localStorage.getItem('userToken')
+                'userttoken': localStorage.getItem('userToken')
             }
         })
             .then(res => {
@@ -66,6 +75,7 @@ export default class RegisterRating extends Component{
                 this.setState({
                     comment: '',
                     rating: '',
+                    service: '',
                     isRegistered: true,
                 })
             })
@@ -80,10 +90,10 @@ export default class RegisterRating extends Component{
     render(){
         const isRegistered = this.state.isRegistered;
         if(isRegistered === true) {
-            this.setLoggedIn(true)
+            //this.setLoggedIn(true)
             return <Redirect to="/users/ratings"/>
         }
-
+       // console.log("Selected user:", props.selectedUser);
         return (
             <Form onSubmit={this.onSubmit} >
                 <Form.Group controlId="formBasicComment">
@@ -92,14 +102,24 @@ export default class RegisterRating extends Component{
                     <Form.Text className="text-muted">
                     </Form.Text>
                 </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Service select</Form.Label>
+                    <Form.Control as="select" value={this.state.service} onChange={this.onChangeService}>
+                        <option >{this.props.registeredUser.cleanerName}</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </Form.Control>
+                </Form.Group>
                 <Form.Group controlId="formBasicRating">
-                    <Form.Label>Rating</Form.Label>
+                    <Form.Label>{this.props.registeredUser.cleanerName}</Form.Label>
                     <Form.Control type="number" min="0" max="5" placeholder="rating" value={this.state.rating} onChange={this.onChangeRating}/>
                     <Form.Text className="text-muted">
                     </Form.Text>
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                    Register
+                    {this.registeredUser.cleanerName}
                 </Button>
             </Form>
         )

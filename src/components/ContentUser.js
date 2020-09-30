@@ -108,7 +108,7 @@ export default function ContentUser(props){
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
                             <RegisterRating
-                                selectedUser={chosenProfile}  
+                                registeredUser={registeredUser}
                             />
                             </div>
                         </section>
