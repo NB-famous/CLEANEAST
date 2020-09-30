@@ -60,13 +60,20 @@ export default class RegisterUser extends Component{
             localStorage.setItem("userToken", res.data.token) // Then object is from response we made through url attach to MongoDB
             localStorage.setItem("userEmail", res.data.user.email)
             localStorage.setItem("userUser", res.data.user.username)
-            console.log(res.data)});
-        this.setState({
-          username: '',
-          email: '',
-          password: '',
-          isRegistered:true,
+            console.log("This is the responese from then", res.data)
+            
+            this.setState({
+                username: '',
+                email: '',
+                password: '',
+                isRegistered:true,
+            })
         })
+        .catch(err => {
+            console.log("This is the responese from catch", err);
+        });
+
+     
     }
 
     

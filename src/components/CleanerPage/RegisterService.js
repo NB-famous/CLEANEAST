@@ -10,134 +10,122 @@ export default class RegisterService extends Component{
         super(props);
         this.cleanerLogin = props.cleanerLogin;
         this.setCleanerLogin = props.setCleanerLogin;
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangeDescription = this.onChangeDescription.bind(this);
-        this.onChangeAddress = this.onChangeAddress.bind(this);
-        this.onChangePictureUrl = this.onChangePictureUrl.bind(this);
-        this.onChangePhone = this.onChangePhone.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangePrice = this.onChangePrice.bind(this);
+        this.onChangeTypeOfService = this.onChangeTypeOfService.bind(this);
+        this.onChangeDeposit = this.onChangeDeposit.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     
         this.state = {
-          username: '',
-          email:'',
-          password:'',
-          description:'',
-          address:'',
-          latitude: '',
-          longitude: '',
-          pictureUrl:'',
-          phone:'',
+          name: '',
+          price:'',
+          typeofservice:'',
+          deposit:'',
           isRegistered: false,
         }
 
-        this.getMyLocation = this.getMyLocation.bind(this)
     }
 
-    componentDidMount() {
-        this.getMyLocation()
-    }
-
-    onChangeUsername(e) {
+    onChangeName(e) {
         this.setState({
-            username: e.target.value
+            name: e.target.value
         })
     }
 
-    onChangeEmail(e) {
+    onChangePrice(e) {
         this.setState({
-            email: e.target.value
+            price: e.target.value
         })
     }
 
-    onChangePassword(e) {
+    onChangeTypeOfService(e) {
         this.setState({
-            password: e.target.value
+            typeofservice: e.target.value
         })
     }
 
-    onChangeDescription(e) {
+    onChangeDeposit(e) {
         this.setState({
-            description: e.target.value
+            deposit: e.target.value
         })
     }
-
-    onChangeAddress(e) {
-        this.setState({
-            address: e.target.value
-        })
-    }
-
-    onChangePictureUrl(e) {
-        this.setState({
-            pictureUrl: e.target.value
-        })
-    }
-
-    onChangePhone(e) {
-        this.setState({
-            phone: e.target.value
-        })
-    }
-
+//original
     onSubmit(e) {
         e.preventDefault();
     
-        const user = {
-          username: this.state.username,
-          email: this.state.email,
-          password: this.state.password,
-          description: this.state.description,
-          address: this.state.address,
-          latitude: this.state.latitude,
-          longitude: this.state.longitude,
-          pictureUrl: this.state.pictureUrl,
-          phone: this.state.phone
+        const service = {
+          name: this.state.name,
+          price: this.state.price,
+          typeofservice: this.state.typeofservice,
+          deposit: this.state.deposit,
         }
     
-        console.log(user);
+
+    // onSubmit(e) {
+    //     e.preventDefault();
+
+    //     const service = {
+    //         data: {
+    //             name: this.state.name,
+    //             price: this.state.price,
+    //             typeofservice: this.state.typeofservice,
+    //             deposit: this.state.deposit,
+    //         },
+    //         options: {
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'cleanerttoken': JSON.parse(localStorage.getItem("cleanerToken:"))
+    //             }
+    //         }
+    //     }
     
-        axios.post('http://localhost:5000/cleaners/register', user)
+    
+        //console.log("service from register service",service);
+        //console.log("token from local storage", JSON.parse(localStorage.getItem("cleanerttoken:")));
+
+
+        // const options = {
+        //     headers: {
+        //       'Content-Type': 'application/json', 
+        //       'cleanerttoken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImlhdCI6MTYwMTQzMTU0NH0.9Ryqm3U63a_-NHSVagHkgrey6SqSSDM8erVK4v2VUqI'
+        //     }
+        // };
+
+        // const accessTokenObj = JSON.parse(localStorage.getItem("cleanerttoken:"));
+
+        // const options = {
+        //     headers: {
+        //       'Content-Type': 'application/json', 
+        //       'cleanerttoken': JSON.parse(localStorage.getItem("cleanerToken:"))
+        //     }
+        // };
+    
+          
+
+        //axios(config)
+        axios.post('http://localhost:5000/cleaners/service', service, {
+            headers: {
+              'Content-Type': 'application/json', 
+              'cleanerttoken': localStorage.getItem('cleanerToken')
+            }
+        })
             .then(res => {
-                localStorage.setItem("cleanerToken", res.data.token) // Then object is from response we made through url attach to MongoDB
-                localStorage.setItem("cleanerEmail", res.data.cleaner.email)
-                localStorage.setItem("cleanerUser", res.data.cleaner.username)
                 console.log(res.data)});
     
         this.setState({
-          username: '',
-          email: '',
-          password: '',
-          isRegistered:true,
-
+            name: '',
+            price:'',
+            typeofservice:'',
+            deposit:'',
+            isRegistered: false,
         })
 
         //this.props.history.push('/cleaners/login')
 
     }
 
-
-    getMyLocation() {
-        const location = window.navigator && window.navigator.geolocation
-        
-        if (location) {
-          location.getCurrentPosition((position) => {
-            this.setState({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-            })
-          }, (error) => {
-            this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
-          })
-        }
-    
-      }
-
-    
     render(){
 
-        const { latitude, longitude } = this.state
         const isRegistered = this.state.isRegistered;
     
         if(isRegistered === true) {
@@ -148,52 +136,30 @@ export default class RegisterService extends Component{
         return (
             <Form onSubmit={this.onSubmit} >
 
-                <Form.Group controlId="formBasicUsername">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" placeholder="Enter username" value={this.state.username} onChange={this.onChangeUsername} />
+                <Form.Group controlId="formBasicName">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control type="text" placeholder="Enter service name" value={this.state.name} onChange={this.onChangeName} />
                 </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={this.onChangeEmail}/>
+
+                <Form.Group controlId="formBasicPrice">
+                    <Form.Label>Price</Form.Label>
+                    <Form.Control type="number" min="0" placeholder="Enter price" value={this.state.price} onChange={this.onChangePrice}/>
                     <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
+                <Form.Group controlId="formBasicTypeOfService">
+                    <Form.Label>TypeOfService</Form.Label>
+                    <Form.Control type="text" placeholder="Type of service" value={this.state.typeofservice} onChange={this.onChangeTypeOfService}/>
                 </Form.Group>
 
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" rows="3" placeholder="Description" value={this.state.description} onChange={this.onChangeDescription} />
+                <Form.Group controlId="formBasicDeposit">
+                    <Form.Label>Deposit in percentage</Form.Label>
+                    <Form.Control type="number" min="0" max="100" placeholder="Deposit" value={this.state.deposit} onChange={this.onChangeDeposit}/>
                 </Form.Group>
 
-                <Form.Group controlId="formBasicAddress">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control type="text" placeholder="Address" value={this.state.address} onChange={this.onChangeAddress}/>
-                </Form.Group>
-
-                <Form.Group controlId="formBasicPicture">
-                    <Form.Label>Picture url</Form.Label>
-                    <Form.Control type="text" placeholder="Picture_url" value={this.state.pictureUrl} onChange={this.onChangePictureUrl}/>
-                </Form.Group>
-
-                <Form.Group controlId="formBasicPhone">
-                    <Form.Label>Phone</Form.Label>
-                    <Form.Control type="text" placeholder="Phone" value={this.state.phone} onChange={this.onChangePhone}/>
-                </Form.Group>
-
-                <Form.Group controlId="formLatitude">
-                    <Form.Control type="hidden" value={latitude} />
-                </Form.Group>
-
-                <Form.Group controlId="formLongitude">
-                    <Form.Control type="hidden" value={longitude} />
-                </Form.Group>
                 <Button variant="primary" type="submit">
-                            Register 
+                            Add 
                 </Button>
             </Form>
         )

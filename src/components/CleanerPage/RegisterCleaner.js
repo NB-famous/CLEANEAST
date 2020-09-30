@@ -103,16 +103,21 @@ export default class RegisterCleaner extends Component{
                 localStorage.setItem("cleanerToken", res.data.token) // Then object is from response we made through url attach to MongoDB
                 localStorage.setItem("cleanerEmail", res.data.cleaner.email)
                 localStorage.setItem("cleanerUser", res.data.cleaner.username)
-                console.log(res.data)});
+                console.log("This is the responese from then", res.data)
+            
+                this.setState({
+                    username: '',
+                    email: '',
+                    password: '',
+                    isRegistered:true,
+          
+                })
+            })
+           .catch(err => {
+                console.log("This is the responese from catch", err);
+            });
     
-        this.setState({
-          username: '',
-          email: '',
-          password: '',
-          isRegistered:true,
-
-        })
-
+       
         //this.props.history.push('/cleaners/login')
 
     }

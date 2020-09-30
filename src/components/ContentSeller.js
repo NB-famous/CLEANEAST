@@ -8,7 +8,8 @@ import "../styles/Content.scss";
 /* import MapSource from './MapSource' */
 import {Route, useHistory, Switch} from 'react-router-dom'
 import CleanerProfileForm from './CleanerPage/CleanerProfileForm'
-import CleanerServiceForm from './CleanerPage/CleanerServiceForm'
+
+import RegisterService from './CleanerPage/RegisterService'
 import axios from 'axios'
 import Chat from '../ChatComponents/messagecomponents/Chat'
 
@@ -78,7 +79,7 @@ export default function ContentSeller(props){
                             <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add here your service {localStorage.getItem("appUser")} !!!</strong></h1>
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
-                            <CleanerServiceForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} />
+                            <RegisterService/>
                             </div>
                         </section>
                     </section>
