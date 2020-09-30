@@ -13,7 +13,7 @@ import NavBar from "./NavBar";
 export default function Application(props) {
 
     const [loggedIn, setLoggedIn] = useState(
-        Boolean(localStorage.getItem("appToken"))
+        Boolean(localStorage.getItem("userToken"))
       )
     const [cleanerLogin, setCleanerLogin] = useState(
         Boolean(localStorage.getItem("cleanerToken"))

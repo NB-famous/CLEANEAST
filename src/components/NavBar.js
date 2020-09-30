@@ -11,9 +11,10 @@ const NavBar = (props) => {
 
     const handleLogout = () => {
         setLoggedIn(false)
-        localStorage.removeItem("appToken");
-        localStorage.removeItem("appUser");
-        localStorage.removeItem("appEmail");
+        localStorage.removeItem("userToken");
+        localStorage.removeItem("userUser");
+        localStorage.removeItem("userEmail");
+        localStorage.clear();
         history.push('/');
     }
 
@@ -22,6 +23,7 @@ const NavBar = (props) => {
         localStorage.removeItem("cleanerToken");
         localStorage.removeItem("cleanerUser");
         localStorage.removeItem("cleanerEmail");
+        localStorage.clear();
         history.push('/');
     }
 

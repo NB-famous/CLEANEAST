@@ -13,14 +13,22 @@ export default class RegisterCleaner extends Component{
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeAddress = this.onChangeAddress.bind(this);
+        this.onChangePictureUrl = this.onChangePictureUrl.bind(this);
+        this.onChangePhone = this.onChangePhone.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     
         this.state = {
           username: '',
           email:'',
           password:'',
+          description:'',
+          address:'',
           latitude: '',
           longitude: '',
+          pictureUrl:'',
+          phone:'',
           isRegistered: false,
         }
 
@@ -49,6 +57,30 @@ export default class RegisterCleaner extends Component{
         })
     }
 
+    onChangeDescription(e) {
+        this.setState({
+            description: e.target.value
+        })
+    }
+
+    onChangeAddress(e) {
+        this.setState({
+            address: e.target.value
+        })
+    }
+
+    onChangePictureUrl(e) {
+        this.setState({
+            pictureUrl: e.target.value
+        })
+    }
+
+    onChangePhone(e) {
+        this.setState({
+            phone: e.target.value
+        })
+    }
+
     onSubmit(e) {
         e.preventDefault();
     
@@ -56,23 +88,36 @@ export default class RegisterCleaner extends Component{
           username: this.state.username,
           email: this.state.email,
           password: this.state.password,
+          description: this.state.description,
+          address: this.state.address,
           latitude: this.state.latitude,
-          longitude: this.state.longitude
+          longitude: this.state.longitude,
+          pictureUrl: this.state.pictureUrl,
+          phone: this.state.phone
         }
     
         console.log(user);
     
         axios.post('http://localhost:5000/cleaners/register', user)
-          .then(res => console.log(res.data));
+            .then(res => {
+                localStorage.setItem("cleanerToken", res.data.token) // Then object is from response we made through url attach to MongoDB
+                localStorage.setItem("cleanerEmail", res.data.cleaner.email)
+                localStorage.setItem("cleanerUser", res.data.cleaner.username)
+                console.log("This is the responese from then", res.data)
+            
+                this.setState({
+                    username: '',
+                    email: '',
+                    password: '',
+                    isRegistered:true,
+          
+                })
+            })
+           .catch(err => {
+                console.log("This is the responese from catch", err);
+            });
     
-        this.setState({
-          username: '',
-          email: '',
-          password: '',
-          isRegistered:true,
-
-        })
-
+       
         //this.props.history.push('/cleaners/login')
 
     }
@@ -123,6 +168,26 @@ export default class RegisterCleaner extends Component{
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
+                </Form.Group>
+
+                <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control as="textarea" rows="3" placeholder="Description" value={this.state.description} onChange={this.onChangeDescription} />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicAddress">
+                    <Form.Label>Address</Form.Label>
+                    <Form.Control type="text" placeholder="Address" value={this.state.address} onChange={this.onChangeAddress}/>
+                </Form.Group>
+
+                <Form.Group controlId="formBasicPicture">
+                    <Form.Label>Picture url</Form.Label>
+                    <Form.Control type="text" placeholder="Picture_url" value={this.state.pictureUrl} onChange={this.onChangePictureUrl}/>
+                </Form.Group>
+
+                <Form.Group controlId="formBasicPhone">
+                    <Form.Label>Phone</Form.Label>
+                    <Form.Control type="text" placeholder="Phone" value={this.state.phone} onChange={this.onChangePhone}/>
                 </Form.Group>
 
                 <Form.Group controlId="formLatitude">
