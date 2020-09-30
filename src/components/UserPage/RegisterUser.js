@@ -57,9 +57,9 @@ export default class RegisterUser extends Component{
     
         axios.post('http://localhost:5000/users/register', user)
           .then(res => {
-            localStorage.setItem("appToken", res.data.token) // Then object is from response we made through url attach to MongoDB
-            localStorage.setItem("appEmail", res.data.user.email)
-            localStorage.setItem("appUser", res.data.user.username)
+            localStorage.setItem("userToken", res.data.token) // Then object is from response we made through url attach to MongoDB
+            localStorage.setItem("userEmail", res.data.user.email)
+            localStorage.setItem("userUser", res.data.user.username)
             console.log(res.data)});
         this.setState({
           username: '',

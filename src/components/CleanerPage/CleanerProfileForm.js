@@ -1,5 +1,5 @@
 import React from "react"
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const CleanerProfileForm = (props) => {
   const { id } = useParams();
@@ -23,6 +23,9 @@ const CleanerProfileForm = (props) => {
                     <p className="text-muted font-size-sm">{selectedUser.address}</p>
                     <button className="btn btn-primary">Hire</button>
                     <button className="btn btn-outline-primary">Message</button>
+                    <Link to={'/cleaners/services'}>
+                      <button className="btn btn-outline-primary">Add service</button>
+                    </Link>
                 </div>
                 </div>
             </div>

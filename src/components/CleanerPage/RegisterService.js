@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 
-export default class RegisterCleaner extends Component{
+export default class RegisterService extends Component{
 
     constructor(props) {
         super(props);

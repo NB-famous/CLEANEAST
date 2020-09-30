@@ -8,6 +8,7 @@ import "../styles/Content.scss";
 /* import MapSource from './MapSource' */
 import {Route, useHistory, Switch} from 'react-router-dom'
 import CleanerProfileForm from './CleanerPage/CleanerProfileForm'
+import CleanerServiceForm from './CleanerPage/CleanerServiceForm'
 import axios from 'axios'
 import Chat from '../ChatComponents/messagecomponents/Chat'
 
@@ -47,31 +48,42 @@ export default function ContentSeller(props){
     //history.push('/'); // this will redirect to home page if user is logged in
     return(
         <main className="appointment__card appointment__card--show">
-        <Route path="/" exact>
-            <section className="appointment__card-left">
-                <section className="content-container">
-                <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("cleanerUser")} !!!</strong></h1>
-                <div style={{marginTop: "5%"}}></div>
-                <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser}/>   
-                <div className="row">
-                    <h1> I am cleaner Dashboard profile </h1>
-                </div>
+            <Route path="/" exact>
+                <section className="appointment__card-left">
+                    <section className="content-container">
+                        <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Welcome {localStorage.getItem("cleanerUser")} !!!</strong></h1>
+                        <div style={{ marginTop: "5%" }}></div>
+                        <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} />
+                        <div className="row">
+                            <h1> I am cleaner Dashboard profile </h1>
+                        </div>
+                    </section>
                 </section>
-            </section>
-        </Route>
-        <Switch>
-        <Route path={'/cleaners/chatroom'} exact>
+            </Route>
+            <Switch>
+                <Route path={'/cleaners/chatroom'} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
-                        <div style={{marginTop: "5%"}}></div>
-                        <div className="row">
-                            <Chat />
-                        </div>
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
+                            <div style={{ marginTop: "5%" }}></div>
+                            <div className="row">
+                                <Chat />
+                            </div>
                         </section>
                     </section>
                 </Route>
-        </Switch>
+                <Route path={'/cleaners/services'} exact>
+                    <section className="appointment__card-left">
+                        <section className="content-container">
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add here your service {localStorage.getItem("appUser")} !!!</strong></h1>
+                            <div style={{ marginTop: "5%" }}></div>
+                            <div className="row">
+                            <CleanerServiceForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} />
+                            </div>
+                        </section>
+                    </section>
+                </Route>
+            </Switch>
         </main>
     )
 } 
