@@ -25,6 +25,9 @@ const CleanerProfile = (props) => {
                     <Link to={'/cleaners/chatroom'}>
                       <button className="btn btn-outline-primary">Message</button>
                     </Link>
+                    <Link to={'/users/ratings'}>
+                      <button className="btn btn-outline-primary">Add comment</button>
+                    </Link>
                 </div>
                 </div>
             </div>

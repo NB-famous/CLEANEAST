@@ -14,7 +14,7 @@ const NavBar = (props) => {
         localStorage.removeItem("userToken");
         localStorage.removeItem("userUser");
         localStorage.removeItem("userEmail");
-        localStorage.clear();
+        //localStorage.clear();
         history.push('/');
     }
 
@@ -23,7 +23,7 @@ const NavBar = (props) => {
         localStorage.removeItem("cleanerToken");
         localStorage.removeItem("cleanerUser");
         localStorage.removeItem("cleanerEmail");
-        localStorage.clear();
+        //localStorage.clear();
         history.push('/');
     }
 

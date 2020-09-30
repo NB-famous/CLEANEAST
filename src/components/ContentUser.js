@@ -10,6 +10,7 @@ import UserMap from './UserMap'
 import CleanerProfileTabs from './UserPage/CleanerProfileTabs'
 import {Route, useHistory, Switch} from 'react-router-dom'
 import CleanerProfile from './CleanerPage/CleanerProfile'
+import RegisterRating from './UserPage/RegisterRating'
 import axios from 'axios';
 import Chat from '../ChatComponents/messagecomponents/Chat'
 
@@ -97,6 +98,19 @@ export default function ContentUser(props){
                         <div className="row">
                             <Chat />
                         </div>
+                        </section>
+                    </section>
+                </Route>
+                <Route path={'/users/ratings'} exact>
+                    <section className="appointment__card-left">
+                        <section className="content-container">
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add here your comment {localStorage.getItem("appUser")} !!!</strong></h1>
+                            <div style={{ marginTop: "5%" }}></div>
+                            <div className="row">
+                            <RegisterRating
+                                selectedUser={chosenProfile}  
+                            />
+                            </div>
                         </section>
                     </section>
                 </Route>
