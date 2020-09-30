@@ -52,7 +52,7 @@ export default function ContentUser(props){
             <Route path="/" exact>
                 <section className="appointment__card-left">
                     <section className="content-container">
-                    <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
+                    <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("userUser")} !!!</strong></h1>
                     <div style={{marginTop: "5%"}}></div>
                     <div className="row">
                         <CleanerProfileTabs 

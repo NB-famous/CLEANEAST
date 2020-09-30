@@ -22,7 +22,7 @@ const CleanerProfileForm = (props) => {
                     <p className="text-secondary mb-1">{selectedUser.cleanerName}</p>
                     <p className="text-muted font-size-sm">{selectedUser.address}</p>
                     <button className="btn btn-primary">Hire</button>
-                    <button className="btn btn-outline-primary">Message</button>
+                    {/* <button className="btn btn-outline-primary">Message</button> */}
                     <Link to={'/cleaners/services'}>
                       <button className="btn btn-outline-primary">Add service</button>
                     </Link>
