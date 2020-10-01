@@ -15,12 +15,21 @@ export default class RegisterRating extends Component{
         this.onChangeComment = this.onChangeComment.bind(this);
         this.onChangeService = this.onChangeService.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+
+        //if the service array is empty set service initial state as empty string
+        //if there are already services set the state with the element zero
+        let initialService;
+        if (this.props.selectedUser.service.length >= 1){
+            initialService = this.props.selectedUser.service[0].service
+        } else {
+            initialService = ''
+        }
         
 
         this.state = {
           rating: '',
           comment:'',
-          service:'',
+          service:initialService,
           cleanerId:'',
           isRegistered: false
         }
@@ -100,9 +109,11 @@ export default class RegisterRating extends Component{
         const isRegistered = this.state.isRegistered;
         if(isRegistered === true) {
             //this.setLoggedIn(true)
-            return <Redirect to="/users/ratings"/>
+            //this.setCleanerLogin(true)
+            return <Redirect to="/"/>
         }
-       console.log("selected user:", this.props.selectedUser);
+       //console.log("selected user:", this.props.selectedUser);
+       
         return (
             <Form onSubmit={this.onSubmit} >
                 <Form.Group controlId="formBasicComment">
@@ -116,7 +127,7 @@ export default class RegisterRating extends Component{
                     <Form.Control as="select" value={this.state.service} onChange={this.onChangeService}>
                         {this.props.selectedUser.service.map(item => {
                             return (
-                                <option >{item.service}</option> 
+                                <option >{item.service}</option>
                             )
                         })}
                     </Form.Control>
