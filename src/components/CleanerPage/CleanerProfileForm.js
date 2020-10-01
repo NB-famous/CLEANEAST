@@ -27,7 +27,6 @@ const CleanerProfileForm = (props) => {
           currentCleaner = {...cleaner}
           
         }
-
         return currentCleaner
       })
       return currentCleaner;
