@@ -13,6 +13,7 @@
   float: left;
   font-size: 1.1em;
   word-wrap: break-word;
+  margin: 0;
 }
 
 .messageText img {
@@ -23,7 +24,7 @@
   display: flex;
   justify-content: flex-end;
   padding: 0 5%;
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
 .sentText {
@@ -32,6 +33,7 @@
   font-family: Helvetica;
   color: #828282;
   letter-spacing: 0.3px;
+  margin: 0;
 }
 
 .pl-10 {

@@ -7,7 +7,9 @@ $appointment-height: 11rem;
 .content-container{
   min-width: 50%;
 }
-
+.content-container-max{
+  min-width: 100%;
+}
 .appointment {
   &__add {
     min-height: $appointment-height;
@@ -56,7 +58,7 @@ $appointment-height: 11rem;
       max-width: 50%;
       max-height: 1200px;
       background-color: grey;
-      opacity: 50%;
+      opacity: 70%;
       border: solid black;
       border-radius: 5%;
       padding: 2rem;

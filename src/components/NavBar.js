@@ -55,9 +55,11 @@ const NavBar = (props) => {
             </button>
             </li>
             <li>
+            <Link to={'/cleaners/chatroom'}>
             <button className="list-group-item list-group-item-action" >
             <h1><strong>Inbox</strong></h1>
             </button>
+            </Link>
             </li>
             <li>
             <button className="list-group-item list-group-item-action" onClick={handleCleanerLogout }>

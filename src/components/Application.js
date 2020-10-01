@@ -6,9 +6,8 @@ import "../styles/ButtonList.scss"
 import ContentUser from "./ContentUser"
 import ContentSeller from "./ContentSeller"
 import ContentIndex from "./ContentIndex"
-import {BrowserRouter, Switch} from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import NavBar from "./NavBar";
-
 
 export default function Application(props) {
 
@@ -38,17 +37,17 @@ export default function Application(props) {
     return (
         <BrowserRouter>
         <Switch>
-        <main className="layout">
-            <NavBar 
-            loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn} 
-            cleanerLogin={cleanerLogin} 
-            setCleanerLogin={setCleanerLogin}
-            />
-            <section className="content-body" >
-            {renderContext()}
-            </section>
-        </main>
+            <main className="layout">
+                <NavBar 
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn} 
+                cleanerLogin={cleanerLogin} 
+                setCleanerLogin={setCleanerLogin}
+                />
+                <section className="content-body" >
+                {renderContext()}
+                </section>
+            </main>
         </Switch>
         </BrowserRouter>
     );

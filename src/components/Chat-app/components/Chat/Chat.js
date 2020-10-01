@@ -7,7 +7,7 @@ import './Chat.css';
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
 import Messages from '../Messages/Messages';
-import TextContainer from '../TextContainer/TextContainer';
+
 
 let socket;
 
@@ -17,7 +17,7 @@ const Chat = ({ location }) => {
   const [message, setMessage] = useState(''); 
   const [messages, setMessages] = useState([]); 
   const [users, setUsers] = useState('');
-  const ENDPOINT = 'localhost:5000';
+  const ENDPOINT = 'localhost:8080';
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -46,7 +46,7 @@ const Chat = ({ location }) => {
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });
-  }, [messages, users]);
+  }, [messages]);
 
   const sendMessage = (event) => {
     event.preventDefault();
@@ -60,7 +60,6 @@ const Chat = ({ location }) => {
 
   return (
     <div className="outerContainer">
-    <TextContainer users={users}/>
       <div className="container">
         <InfoBar room={room} />
         <Messages messages={messages} name={name} />

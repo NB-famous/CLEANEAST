@@ -6,10 +6,12 @@
 import React, {useState, useEffect} from 'react';
 import "../styles/Content.scss";
 /* import MapSource from './MapSource' */
-import {Route, useHistory} from 'react-router-dom'
+import {Route, useHistory, Switch} from 'react-router-dom'
 import CleanerProfileForm from './CleanerPage/CleanerProfileForm'
 import axios from 'axios'
 
+import Join from './Chat-app/components/Join/Join'
+import Chat from './Chat-app/components/Chat/Chat'
 
 export default function ContentSeller(props){
 
@@ -58,6 +60,15 @@ export default function ContentSeller(props){
                 </section>
             </section>
         </Route>
+        <Switch>
+            <section className="appointment__card-left">
+                <section className="content-container-max">        
+                    <Route path="/cleaners/chatroom/" exact component={Join} />
+                    <Route path={'/cleaners/chatroom/chat'} exact component={Chat} />
+                </section>     
+            </section>    
+        </Switch>
+
         </main>
     )
 } 
