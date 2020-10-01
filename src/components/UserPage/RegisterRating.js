@@ -118,12 +118,12 @@ export default class RegisterRating extends Component{
             <Form onSubmit={this.onSubmit} >
                 <Form.Group controlId="formBasicComment">
                     <Form.Label>Comment</Form.Label>
-                    <Form.Control as="textarea" rows="3"  placeholder="Enter comment" value={this.state.comment} onChange={this.onChangeComment} />
+                    <Form.Control as="textarea" rows="3"  placeholder="Enter your comment" value={this.state.comment} onChange={this.onChangeComment} />
                     <Form.Text className="text-muted">
                     </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>{this.props.selectedUser.cleanerName}</Form.Label>
+                    <Form.Label>Service</Form.Label>
                     <Form.Control as="select" value={this.state.service} onChange={this.onChangeService}>
                         {this.props.selectedUser.service.map(item => {
                             return (
@@ -133,8 +133,8 @@ export default class RegisterRating extends Component{
                     </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="formBasicRating">
-                    <Form.Label>{this.props.registeredUser.cleanerName}</Form.Label>
-                    <Form.Control type="number" min="0" max="5" placeholder="rating" value={this.state.rating} onChange={this.onChangeRating}/>
+                    <Form.Label>Rating</Form.Label>
+                    <Form.Control type="number" min="0" max="5" placeholder="Rating" value={this.state.rating} onChange={this.onChangeRating}/>
                     <Form.Text className="text-muted">
                     </Form.Text>
                 </Form.Group>
