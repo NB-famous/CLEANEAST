@@ -65,7 +65,7 @@ const NavBar = (props) => {
             <li>
             <Link to={'/cleaners/chatroom'}>
             <button className="list-group-item list-group-item-action" >
-            <h1><strong>Public Chat Room</strong></h1>
+            <h1><strong>Chat Room</strong></h1>
             </button>
             </Link>
             </li>

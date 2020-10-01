@@ -58,7 +58,7 @@ export default function NewConversationModal({ closeModal }) {
 
   return (
     <>
-      <Modal.Header closeButton>Create Conversation</Modal.Header>
+      <Modal.Header closeButton>Start Conversation with {localStorage.getItem("cleanerData")}</Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           {contacts.map(contact => (
@@ -71,7 +71,7 @@ export default function NewConversationModal({ closeModal }) {
               />
             </Form.Group>
           ))}
-          <Button type="submit">Create</Button>
+          <Button type="submit">Connect With The Cleanpreneur</Button>
         </Form>
       </Modal.Body>
     </>

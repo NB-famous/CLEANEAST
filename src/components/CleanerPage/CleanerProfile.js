@@ -22,7 +22,7 @@ const CleanerProfile = (props) => {
                     <p className="text-muted font-size-sm">{selectedUser.address}</p>
                     <button className="btn btn-primary">Hire</button>
                     <Link to={'/cleaners/chatroom'}>
-                      <button className="btn btn-outline-primary">Message</button>
+                      <button className="btn btn-outline-primary" onClick={() => localStorage.setItem("cleanerData",selectedUser.cleanerName)}>Message</button>
                     </Link>
                 </div>
                 </div>
