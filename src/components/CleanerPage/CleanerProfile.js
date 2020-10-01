@@ -18,12 +18,14 @@ const CleanerProfile = (props) => {
                 <div className="d-flex flex-column align-items-center text-center">
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
                 <div className="mt-3">
-                    <h4>{localStorage.getItem("cleanerUser")}</h4>
-                    <p className="text-secondary mb-1">{selectedUser.cleanerName}</p>
+                    <h4>{selectedUser.cleanerName}</h4>
                     <p className="text-muted font-size-sm">{selectedUser.address}</p>
                     <button className="btn btn-primary">Hire</button>
                     <Link to={'/cleaners/chatroom'}>
-                      <button className="btn btn-outline-primary">Message</button>
+                      <button className="btn btn-outline-primary" onClick={() => localStorage.setItem("cleanerData",selectedUser.cleanerName)}>Message</button>
+                    </Link>
+                    <Link to={'/users/ratings'}>
+                      <button className="btn btn-outline-primary">Add comment</button>
                     </Link>
                 </div>
                 </div>
@@ -82,7 +84,7 @@ const CleanerProfile = (props) => {
                       <h6 className="mb-0">Phone</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                    {props.selectedUser.phone}
+                    {selectedUser.phone}
                     </div>
                   </div>
                   <hr />

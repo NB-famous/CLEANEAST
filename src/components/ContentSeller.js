@@ -65,7 +65,7 @@ export default function ContentSeller(props){
                 <Route path={'/cleaners/chatroom'} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Welcome {localStorage.getItem("cleanerUser")} !!!</strong></h1>
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
                                 <Chat />

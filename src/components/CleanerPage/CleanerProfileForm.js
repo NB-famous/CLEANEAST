@@ -6,10 +6,36 @@ const CleanerProfileForm = (props) => {
   
   console.log('props', id)
   console.log("cleaners", props) /// Passing this will search the specifi 
-  const {selectedUser} = props
+  const {selectedUser, registeredUser} = props
 
-  //console.log(selectedUser.services.map())
+  console.log("THIS IS registeredUser", registeredUser)
+
+  console.log("THIS IS SELECTED",registeredUser.map(cleaners => 
+
+      cleaners.email === localStorage.getItem("cleanerEmail"))
+
+  )
+  
+  const getCurrentCleaner = (theCurrentCleaner) => {
+
+      let currentCleaner = {};
+
+      theCurrentCleaner.map(cleaner => {
+
+        if(cleaner.email === localStorage.getItem("cleanerEmail")){
+
+          currentCleaner = {...cleaner}
+          
+        }
+        return currentCleaner
+      })
+      return currentCleaner;
+  }
+
+  //console.log("THIS IS THE CURRENT USER", getCurrentCleaner(registeredUser).cleanerName)
+
   return (
+    
     <>
         <div className="row gutters-sm">
         <div className="col-md-4 mb-3">
@@ -19,10 +45,10 @@ const CleanerProfileForm = (props) => {
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
                 <div className="mt-3">
                     <h4>{localStorage.getItem("cleanerUser")}</h4>
-                    <p className="text-secondary mb-1">{selectedUser.cleanerName}</p>
+                    <p className="text-secondary mb-1">{getCurrentCleaner(registeredUser).cleanerName}</p>
                     <p className="text-muted font-size-sm">{selectedUser.address}</p>
                     <button className="btn btn-primary">Hire</button>
-                    <button className="btn btn-outline-primary">Message</button>
+                    {/* <button className="btn btn-outline-primary">Message</button> */}
                     <Link to={'/cleaners/services'}>
                       <button className="btn btn-outline-primary">Add service</button>
                     </Link>
@@ -65,7 +91,7 @@ const CleanerProfileForm = (props) => {
                       <h6 className="mb-0">Full Name</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                    {selectedUser.cleanerName}
+                    {getCurrentCleaner(registeredUser).cleanerName}
                     </div>
                   </div>
                   <hr />
@@ -74,7 +100,7 @@ const CleanerProfileForm = (props) => {
                       <h6 className="mb-0">Email</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      {selectedUser.email}
+                    {getCurrentCleaner(registeredUser).email}
                     </div>
                   </div>
                   <hr />
@@ -83,7 +109,7 @@ const CleanerProfileForm = (props) => {
                       <h6 className="mb-0">Phone</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                    {props.selectedUser.phone}
+                    {getCurrentCleaner(registeredUser).phone}
                     </div>
                   </div>
                   <hr />
@@ -92,7 +118,7 @@ const CleanerProfileForm = (props) => {
                       <h6 className="mb-0">Mobile</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                    {selectedUser.phone}
+                    {getCurrentCleaner(registeredUser).phone}
                     </div>
                   </div>
                   <hr />
@@ -111,7 +137,7 @@ const CleanerProfileForm = (props) => {
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Description</i></h6>
-                      {selectedUser.description}
+                      {getCurrentCleaner(registeredUser).description}
                     </div>
                   </div>
                 </div>
@@ -148,7 +174,7 @@ const CleanerProfileForm = (props) => {
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Services</i></h6>
-                      {/* {selectedUser.service.map(val => {
+                      {getCurrentCleaner(registeredUser).service.map(val => {
                                   return(
                                     <ul>
                                     <hr/>
@@ -166,7 +192,7 @@ const CleanerProfileForm = (props) => {
                                       </li>
                                       <hr/>
                                     </ul>
-                                  )})}  */}
+                                  )})} 
                     </div>
                   </div>
                 </div>

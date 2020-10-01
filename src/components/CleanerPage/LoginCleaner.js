@@ -25,6 +25,7 @@ const LoginCleaner = (props) => {
                 localStorage.setItem("cleanerToken", response.data.token) // Then object is from response we made through url attach to MongoDB
                 localStorage.setItem("cleanerEmail", response.data.cleaner.email)
                 localStorage.setItem("cleanerUser", response.data.cleaner.username)
+                
                 props.setCleanerLogin(true)
             } else {
                 console.log("incorrect something")
@@ -54,7 +55,7 @@ const LoginCleaner = (props) => {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" onChange={event => setPassword(event.target.value)}/>
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" >
             Login CleanPreneur
         </Button>
     </Form>
