@@ -86,6 +86,8 @@ export default class RegisterRating extends Component{
      
     }
 
+
+
     
     render(){
         const isRegistered = this.state.isRegistered;
@@ -93,7 +95,7 @@ export default class RegisterRating extends Component{
             //this.setLoggedIn(true)
             return <Redirect to="/users/ratings"/>
         }
-       // console.log("Selected user:", props.selectedUser);
+       console.log("selected user:", this.props.selectedUser);
         return (
             <Form onSubmit={this.onSubmit} >
                 <Form.Group controlId="formBasicComment">
@@ -103,13 +105,13 @@ export default class RegisterRating extends Component{
                     </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Service select</Form.Label>
+                    <Form.Label>{this.props.selectedUser.cleanerName}</Form.Label>
                     <Form.Control as="select" value={this.state.service} onChange={this.onChangeService}>
-                        <option >{this.props.registeredUser.cleanerName}</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                        {this.props.selectedUser.service.map(item => {
+                            return (
+                                <option >{item.service}</option> 
+                            )
+                        })}
                     </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="formBasicRating">
@@ -118,8 +120,11 @@ export default class RegisterRating extends Component{
                     <Form.Text className="text-muted">
                     </Form.Text>
                 </Form.Group>
+                <Form.Group controlId="formCleanerId">
+                    <Form.Control type="hidden" value={this.props.selectedUser.cleanerId} />
+                </Form.Group>
                 <Button variant="primary" type="submit">
-                    {this.registeredUser.cleanerName}
+                    Rate Me
                 </Button>
             </Form>
         )

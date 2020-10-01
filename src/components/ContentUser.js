@@ -109,6 +109,7 @@ export default function ContentUser(props){
                             <div className="row">
                             <RegisterRating
                                 registeredUser={registeredUser}
+                                selectedUser={chosenProfile} 
                             />
                             </div>
                         </section>
