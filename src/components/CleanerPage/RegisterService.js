@@ -20,7 +20,7 @@ export default class RegisterService extends Component{
         this.state = {
           name: '',
           price:'',
-          typeofservice:'',
+          typeofservice: this.listOfServices[0],
           deposit:'',
           isRegistered: false,
         }

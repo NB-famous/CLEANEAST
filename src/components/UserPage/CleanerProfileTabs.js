@@ -14,7 +14,7 @@ const CleanerProfileTabs = (props) => {
     {registeredUser.map(user => (
         <div className="col-md-4" key={user.cleanerName}>
           <div className="card mb-4 shadow-sm">
-            <svg className="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <img className="bd-placeholder-img card-img-top" width="100%" height="225" src={user.picture_url} alt="building" preserveAspectRatio="xMidYMid slice" focusable="false" aria-label="Placeholder: Thumbnail"></img>
             <div className="card-body" style={{height: "200px", maxHeight: 200, overflow:"auto"}}>
               <p className="card-text"><strong>Username:{user.cleanerName}</strong></p>
               <p className="card-text"><strong>Email:{user.email}</strong></p>
