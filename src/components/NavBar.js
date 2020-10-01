@@ -1,5 +1,5 @@
 import React from "react"
-import {Link, useHistory} from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import logo from "../docs/navlogo.png"
 import ButtonList from "./ButtonList"
 
