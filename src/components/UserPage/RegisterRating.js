@@ -21,7 +21,7 @@ export default class RegisterRating extends Component{
           rating: '',
           comment:'',
           service:'',
-          //password:'',
+          cleanerId:'',
           isRegistered: false
         }
     }
@@ -44,6 +44,12 @@ export default class RegisterRating extends Component{
         })
     }
 
+    onChangeCleanerId(e) {
+        this.setState({
+            cleanerId: e.target.value
+        })
+    }
+
     // onChangePassword(e) {
     //     this.setState({
     //         password: e.target.value
@@ -54,16 +60,16 @@ export default class RegisterRating extends Component{
     onSubmit(e) {
         e.preventDefault();
     
-        const comment = {
+        const rating = {
           comment: this.state.comment,
           rating: this.state.rating,
           service: this.state.service,
-        //   password: this.state.password
+          cleanerId: this.props.selectedUser.cleanerId
         }
     
-        console.log(comment);
+        console.log(rating);
     
-        axios.post('http://localhost:5000/users/rating', comment, {
+        axios.post('http://localhost:5000/users/rating', rating, {
             headers: {
                 'Content-Type': 'application/json',
                 'userttoken': localStorage.getItem('userToken')
@@ -76,6 +82,7 @@ export default class RegisterRating extends Component{
                     comment: '',
                     rating: '',
                     service: '',
+                    cleanerId: '',
                     isRegistered: true,
                 })
             })
