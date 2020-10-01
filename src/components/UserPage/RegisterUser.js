@@ -21,8 +21,16 @@ export default class RegisterUser extends Component{
           username: '',
           email:'',
           password:'',
+          latitude: '',
+          longitude: '',
           isRegistered: false
         }
+
+        this.getMyLocation = this.getMyLocation.bind(this)
+    }
+
+    componentDidMount() {
+        this.getMyLocation()
     }
 
     onChangeUsername(e) {
@@ -50,7 +58,9 @@ export default class RegisterUser extends Component{
         const user = {
           username: this.state.username,
           email: this.state.email,
-          password: this.state.password
+          password: this.state.password,
+          latitude: this.state.latitude,
+          longitude: this.state.longitude
         }
     
         console.log(user);
@@ -73,12 +83,32 @@ export default class RegisterUser extends Component{
             console.log("This is the responese from catch", err);
         });
 
-     
+
     }
+
+    getMyLocation() {
+        const location = window.navigator && window.navigator.geolocation
+        
+        if (location) {
+          location.getCurrentPosition((position) => {
+            this.setState({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            })
+          }, (error) => {
+            this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
+          })
+        }
+    
+      }
 
     
     render(){
+
+
+        const { latitude, longitude } = this.state
         const isRegistered = this.state.isRegistered;
+
         if(isRegistered === true) {
             this.setLoggedIn(true)
             return <Redirect to="/"/>
@@ -100,10 +130,15 @@ export default class RegisterUser extends Component{
                     We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
-
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
+                </Form.Group>
+                <Form.Group controlId="formLatitude">
+                    <Form.Control type="hidden" value={latitude} />
+                </Form.Group>
+                <Form.Group controlId="formLongitude">
+                    <Form.Control type="hidden" value={longitude} />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Register

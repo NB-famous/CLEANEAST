@@ -14,6 +14,9 @@ const NavBar = (props) => {
         localStorage.removeItem("userToken");
         localStorage.removeItem("userUser");
         localStorage.removeItem("userEmail");
+        localStorage.removeItem("message-id");
+        localStorage.removeItem("message-conversations");
+
         //localStorage.clear();
         history.push('/');
     }
@@ -23,6 +26,8 @@ const NavBar = (props) => {
         localStorage.removeItem("cleanerToken");
         localStorage.removeItem("cleanerUser");
         localStorage.removeItem("cleanerEmail");
+        localStorage.removeItem("message-id");
+        localStorage.removeItem("message-conversations");
         //localStorage.clear();
         history.push('/');
     }
@@ -52,14 +57,16 @@ const NavBar = (props) => {
             <nav className="sidebar__cleaner">
             <ul>
             <li>
+            <Link to={'/'}>
             <button className="list-group-item list-group-item-action" >
             <h1><strong>Profile</strong></h1>
             </button>
+            </Link>
             </li>
             <li>
             <Link to={'/cleaners/chatroom'}>
             <button className="list-group-item list-group-item-action" >
-            <h1><strong>Messenger</strong></h1>
+            <h1><strong>Chat Room</strong></h1>
             </button>
             </Link>
             </li>
