@@ -28,7 +28,7 @@ const CleanerProfileTabs = (props) => {
                 </Link>
                   <button type="button" className="btn btn-sm btn-outline-secondary">Hire</button>
                 <Link to={'/cleaners/chatroom'}>
-                  <button type="button" className="btn btn-sm btn-outline-secondary">Message</button>
+                  <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => localStorage.setItem("cleanerData",user.cleanerName)}>Message</button>
                 </Link>
                 </div>
                 <small className="text-muted">9 mins</small>
