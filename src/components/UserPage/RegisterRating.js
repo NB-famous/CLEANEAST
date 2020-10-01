@@ -59,12 +59,6 @@ export default class RegisterRating extends Component {
         })
     }
 
-    // onChangePassword(e) {
-    //     this.setState({
-    //         password: e.target.value
-    //     })
-    // }
-
 
     onSubmit(e) {
         e.preventDefault();
