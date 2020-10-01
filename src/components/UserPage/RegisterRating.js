@@ -1,14 +1,14 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 
-export default class RegisterRating extends Component{
+export default class RegisterRating extends Component {
 
     constructor(props) {
         super(props);
-        console.log("this is the props inside constructor",props)
+        console.log("this is the props inside constructor", props)
         this.loggedIn = props.loggedIn;
         this.setLoggedIn = props.setLoggedIn;
         this.onChangeRating = this.onChangeRating.bind(this);
@@ -19,19 +19,19 @@ export default class RegisterRating extends Component{
         //if the service array is empty set service initial state as empty string
         //if there are already services set the state with the element zero
         let initialService;
-        if (this.props.selectedUser.service.length >= 1){
+        if (this.props.selectedUser.service.length >= 1) {
             initialService = this.props.selectedUser.service[0].service
         } else {
             initialService = ''
         }
-        
+
 
         this.state = {
-          rating: '',
-          comment:'',
-          service:initialService,
-          cleanerId:'',
-          isRegistered: false
+            rating: '',
+            comment: '',
+            service: initialService,
+            cleanerId: '',
+            isRegistered: false
         }
     }
 
@@ -64,20 +64,20 @@ export default class RegisterRating extends Component{
     //         password: e.target.value
     //     })
     // }
-  
+
 
     onSubmit(e) {
         e.preventDefault();
-    
+
         const rating = {
-          comment: this.state.comment,
-          rating: this.state.rating,
-          service: this.state.service,
-          cleanerId: this.props.selectedUser.cleanerId
+            comment: this.state.comment,
+            rating: this.state.rating,
+            service: this.state.service,
+            cleanerId: this.props.selectedUser.cleanerId
         }
-    
+
         console.log(rating);
-    
+
         axios.post('http://localhost:5000/users/rating', rating, {
             headers: {
                 'Content-Type': 'application/json',
@@ -99,26 +99,24 @@ export default class RegisterRating extends Component{
                 console.log("This is the responese from catch", err);
             });
 
-     
+
     }
 
 
-
-    
-    render(){
+    render() {
         const isRegistered = this.state.isRegistered;
-        if(isRegistered === true) {
+        if (isRegistered === true) {
             //this.setLoggedIn(true)
             //this.setCleanerLogin(true)
-            return <Redirect to="/"/>
+            return <Redirect to="/" />
         }
-       //console.log("selected user:", this.props.selectedUser);
-       
+        //console.log("selected user:", this.props.selectedUser);
+
         return (
             <Form onSubmit={this.onSubmit} >
                 <Form.Group controlId="formBasicComment">
                     <Form.Label>Comment</Form.Label>
-                    <Form.Control as="textarea" rows="3"  placeholder="Enter your comment" value={this.state.comment} onChange={this.onChangeComment} />
+                    <Form.Control as="textarea" rows="3" placeholder="Enter your comment" value={this.state.comment} onChange={this.onChangeComment} />
                     <Form.Text className="text-muted">
                     </Form.Text>
                 </Form.Group>
@@ -134,7 +132,7 @@ export default class RegisterRating extends Component{
                 </Form.Group>
                 <Form.Group controlId="formBasicRating">
                     <Form.Label>Rating</Form.Label>
-                    <Form.Control type="number" min="0" max="5" placeholder="Rating" value={this.state.rating} onChange={this.onChangeRating}/>
+                    <Form.Control type="number" min="0" max="5" placeholder="Rating" value={this.state.rating} onChange={this.onChangeRating} />
                     <Form.Text className="text-muted">
                     </Form.Text>
                 </Form.Group>
