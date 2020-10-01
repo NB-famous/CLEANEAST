@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
+import StarRating from './StarRating'
 
 
 export default class RegisterRating extends Component {
@@ -34,12 +35,20 @@ export default class RegisterRating extends Component {
             isRegistered: false
         }
     }
-
-    onChangeRating(e) {
+    //original
+    onChangeRating(rating) {
+        console.log("rating", rating)
         this.setState({
-            rating: e.target.value
+            rating: rating
         })
     }
+
+    // onChangeRating(e) {
+    //     console.log("e", e)
+    //     this.setState({
+    //         rating: e
+    //     })
+    // }
 
     onChangeComment(e) {
         this.setState({
@@ -124,11 +133,15 @@ export default class RegisterRating extends Component {
                         })}
                     </Form.Control>
                 </Form.Group>
-                <Form.Group controlId="formBasicRating">
+                {/* <Form.Group controlId="formBasicRating">
                     <Form.Label>Rating</Form.Label>
                     <Form.Control type="number" min="0" max="5" placeholder="Rating" value={this.state.rating} onChange={this.onChangeRating} />
                     <Form.Text className="text-muted">
                     </Form.Text>
+                </Form.Group> */}
+                <Form.Group controlId="formBasicRating">
+                <Form.Label>Rating</Form.Label>
+                <StarRating setRating={this.onChangeRating} stateRating={this.state.rating}></StarRating>
                 </Form.Group>
                 <Form.Group controlId="formCleanerId">
                     <Form.Control type="hidden" value={this.props.selectedUser.cleanerId} />
@@ -137,6 +150,7 @@ export default class RegisterRating extends Component {
                     Rate Me
                 </Button>
             </Form>
+
         )
     }
 
