@@ -24,6 +24,9 @@ const CleanerProfile = (props) => {
                     <Link to={'/cleaners/chatroom'}>
                       <button className="btn btn-outline-primary" onClick={() => localStorage.setItem("cleanerData",selectedUser.cleanerName)}>Message</button>
                     </Link>
+                    <Link to={'/users/ratings'}>
+                      <button className="btn btn-outline-primary">Add comment</button>
+                    </Link>
                 </div>
                 </div>
             </div>

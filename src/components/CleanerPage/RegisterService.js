@@ -15,6 +15,7 @@ export default class RegisterService extends Component{
         this.onChangeTypeOfService = this.onChangeTypeOfService.bind(this);
         this.onChangeDeposit = this.onChangeDeposit.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry", "Window cleaning", "Interior vacuum", "Mats cleaning" ]
     
         this.state = {
           name: '',
@@ -25,6 +26,8 @@ export default class RegisterService extends Component{
         }
 
     }
+
+    
 
     onChangeName(e) {
         this.setState({
@@ -61,47 +64,6 @@ export default class RegisterService extends Component{
         }
     
 
-    // onSubmit(e) {
-    //     e.preventDefault();
-
-    //     const service = {
-    //         data: {
-    //             name: this.state.name,
-    //             price: this.state.price,
-    //             typeofservice: this.state.typeofservice,
-    //             deposit: this.state.deposit,
-    //         },
-    //         options: {
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'cleanerttoken': JSON.parse(localStorage.getItem("cleanerToken:"))
-    //             }
-    //         }
-    //     }
-    
-    
-        //console.log("service from register service",service);
-        //console.log("token from local storage", JSON.parse(localStorage.getItem("cleanerttoken:")));
-
-
-        // const options = {
-        //     headers: {
-        //       'Content-Type': 'application/json', 
-        //       'cleanerttoken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImlhdCI6MTYwMTQzMTU0NH0.9Ryqm3U63a_-NHSVagHkgrey6SqSSDM8erVK4v2VUqI'
-        //     }
-        // };
-
-        // const accessTokenObj = JSON.parse(localStorage.getItem("cleanerttoken:"));
-
-        // const options = {
-        //     headers: {
-        //       'Content-Type': 'application/json', 
-        //       'cleanerttoken': JSON.parse(localStorage.getItem("cleanerToken:"))
-        //     }
-        // };
-    
-          
-
         //axios(config)
         axios.post('http://localhost:5000/cleaners/service', service, {
             headers: {
@@ -127,6 +89,9 @@ export default class RegisterService extends Component{
     render(){
 
         const isRegistered = this.state.isRegistered;
+
+        
+        //const listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry"]
     
         if(isRegistered === true) {
             this.setCleanerLogin(true)
@@ -148,9 +113,20 @@ export default class RegisterService extends Component{
                     </Form.Text>
                 </Form.Group>
 
-                <Form.Group controlId="formBasicTypeOfService">
-                    <Form.Label>TypeOfService</Form.Label>
+                {/* <Form.Group controlId="formBasicTypeOfService">
+                    <Form.Label>Type Of Service</Form.Label>
                     <Form.Control type="text" placeholder="Type of service" value={this.state.typeofservice} onChange={this.onChangeTypeOfService}/>
+                </Form.Group> */}
+
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Type of Service</Form.Label>
+                    <Form.Control as="select" value={this.state.typeofservice} onChange={this.onChangeTypeOfService}>
+                        { this.listOfServices.map(item => {
+                            return (
+                                <option >{item}</option>
+                            )
+                        })}
+                    </Form.Control>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicDeposit">
