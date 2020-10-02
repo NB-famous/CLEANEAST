@@ -61,7 +61,33 @@ export default function ContentSeller(props){
                 'cleanerttoken': localStorage.getItem('cleanerToken')
             }
         })
-            .then(res => { console.log(res.data) })
+            .then(res => { 
+                //console.log(res.data)
+                let services = {}
+                //get the index of the deleted service in the array of services
+                let indexServiceId = (registeredUser[cleanerId-1].service.map(function(e) { return e.service_id; }).indexOf(serviceId))
+                console.log(" indexServiceId",  indexServiceId)
+                //I get all object in the array service
+                //services = {...registeredUser[cleanerId-1].service[indexServiceId], indexServiceId: {...service} }
+                //console.log("Services", services)
+                //make copy of the array service
+                let arrayServices = [...registeredUser[cleanerId-1].service]
+                console.log("arrayServices", arrayServices)
+                //update the array service by removing the deleted service
+                arrayServices.splice(indexServiceId, 1)
+                console.log("NEWarrayServices", arrayServices)
+                //apend the new array to the user
+                const updateUser = {...registeredUser[cleanerId-1], service: {...arrayServices} }
+                console.log("updateUser", updateUser)
+                //append the use to the users
+                registeredUser.splice(cleanerId-1, 1, updateUser)
+                const updateRegisterUser = registeredUser
+                console.log("updateRegisterUser", registeredUser)
+                setRegisteredUser(updateRegisterUser)
+                
+            
+            
+            })
             .catch(err => { console.log(err) })
     }
 

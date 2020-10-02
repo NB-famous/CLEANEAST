@@ -4,54 +4,56 @@ import { Button, Form } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 
-export default class RegisterService extends Component{
+export default class DeleteService extends Component{
 
     constructor(props) {
         super(props);
-        this.cleanerLogin = props.cleanerLogin;
-        this.setCleanerLogin = props.setCleanerLogin;
-        this.onChangeName = this.onChangeName.bind(this);
-        this.onChangePrice = this.onChangePrice.bind(this);
-        this.onChangeTypeOfService = this.onChangeTypeOfService.bind(this);
-        this.onChangeDeposit = this.onChangeDeposit.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-        this.listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry", "Window cleaning", "Interior vacuum", "Mats cleaning" ]
+        this.selectedUserIndex = props.selectedUserIndex
+        this.selectedServiceid = props.selectedServiceid
+        // this.cleanerLogin = props.cleanerLogin;
+        // this.setCleanerLogin = props.setCleanerLogin;
+        // this.onChangeName = this.onChangeName.bind(this);
+        // this.onChangePrice = this.onChangePrice.bind(this);
+        // this.onChangeTypeOfService = this.onChangeTypeOfService.bind(this);
+        // this.onChangeDeposit = this.onChangeDeposit.bind(this);
+        // this.onSubmit = this.onSubmit.bind(this);
+        // this.listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry", "Window cleaning", "Interior vacuum", "Mats cleaning" ]
     
-        this.state = {
-          name: '',
-          price:'',
-          typeofservice: this.listOfServices[0],
-          deposit:'',
-          isRegistered: false,
-        }
+        // this.state = {
+        //   name: '',
+        //   price:'',
+        //   typeofservice: this.listOfServices[0],
+        //   deposit:'',
+        //   isRegistered: false,
+        // }
 
     }
 
     
 
-    onChangeName(e) {
-        this.setState({
-            name: e.target.value
-        })
-    }
+    // onChangeName(e) {
+    //     this.setState({
+    //         name: e.target.value
+    //     })
+    // }
 
-    onChangePrice(e) {
-        this.setState({
-            price: e.target.value
-        })
-    }
+    // onChangePrice(e) {
+    //     this.setState({
+    //         price: e.target.value
+    //     })
+    // }
 
-    onChangeTypeOfService(e) {
-        this.setState({
-            typeofservice: e.target.value
-        })
-    }
+    // onChangeTypeOfService(e) {
+    //     this.setState({
+    //         typeofservice: e.target.value
+    //     })
+    // }
 
-    onChangeDeposit(e) {
-        this.setState({
-            deposit: e.target.value
-        })
-    }
+    // onChangeDeposit(e) {
+    //     this.setState({
+    //         deposit: e.target.value
+    //     })
+    // }
 //original
     onSubmit(e) {
         e.preventDefault();
