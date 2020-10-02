@@ -37,7 +37,7 @@ const CleanerProfileTabs = (props) => {
                 </Link>
                 <Link to={'/twilio/send-text'}>
                   <button type="button" className="btn btn-sm btn-outline-secondary" onClick={()=> {
-              
+                    localStorage.setItem("hiredCleaner",user.cleanerName)
                     sendText(user.phone)}}>
                     Hire
                     </button>

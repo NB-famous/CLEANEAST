@@ -30,7 +30,7 @@ const CleanerProfile = (props) => {
                     <p className="text-muted font-size-sm">{selectedUser.address}</p>
                     <Link to={'/twilio/send-text'}>
                     <button className="btn btn-primary" onClick={()=> {
-                    
+                    localStorage.setItem("hiredCleaner",selectedUser.cleanerName)
                     sendText(selectedUser.phone)}}>
                     Hire</button>
                     </Link>
