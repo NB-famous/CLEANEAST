@@ -61,10 +61,11 @@ export default function ContentSeller(props){
             }
         })
             .then(res => { 
-                let services = {}
+                //let services = {}
                 //get the index of the deleted service in the array of services
-                let indexServiceId = (registeredUser[cleanerId-1].service.map(function(e) { return e.service_id; }).indexOf(serviceId))
-                console.log(" indexServiceId",  indexServiceId)
+                //let indexServiceId = (registeredUser[cleanerId-1].service.map(function(e) { return e.service_id; }).indexOf(serviceId))
+                //console.log(" indexServiceId",  indexServiceId)
+                
                 //make copy of the array service
                 const tempUsers = [...registeredUser]
                 const index = tempUsers.map(user => user.cleanerId).indexOf(cleanerId)

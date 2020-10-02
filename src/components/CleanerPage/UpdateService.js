@@ -94,15 +94,11 @@ export default class UpdateService extends Component{
 
                 const tempUsers = [...this.props.registeredUser]
                 const index = tempUsers.map(user => user.cleanerId).indexOf(this.props.targetValue.cleanerId)
-                console.log("Index", index) //return the index of the cleaner eg. 19
-                //const serviceIndex = tempUsers[index].service.map(s => s.service_id === this.props.targetValue.serviceId) //original
-                const serviceIndex = tempUsers[index].service.map((s, i) => {
-                    console.log("S",s)
-                    if (s.service_id === this.props.targetValue.serviceId){
-                        console.log("index of S", i)
-                        return i
-                     }})
-                console.log("serviceIndex", serviceIndex)
+                //console.log("Index", index) //return the index of the cleaner eg. 19
+                //const serviceIndex = tempUsers[index].service.map(s => s.service_id === this.props.targetValue.serviceId) //original from Vasily
+                const serviceIndex = tempUsers[index].service.map(s => s.service_id).indexOf(this.props.targetValue.serviceId)
+
+                console.log("Service Index", serviceIndex)
                 tempUsers[index].service[serviceIndex] = {
                     ...tempUsers[index].service[serviceIndex], 
                         service: this.state.name,
@@ -113,9 +109,7 @@ export default class UpdateService extends Component{
                 }
                 this.props.setRegisteredUser(tempUsers)
             });
-
     }
-
     render(){
 
         const isRegistered = this.state.isRegistered;
@@ -129,7 +123,7 @@ export default class UpdateService extends Component{
     
         if(isRegistered === true) {
             //this.setCleanerLogin(true)
-            return <Redirect to="/"/>
+            return <Redirect to = "/"/>
         }
 
         return (

@@ -1,7 +1,6 @@
 import React from "react"
 import { useParams, Link } from "react-router-dom";
-import axios from 'axios';
-import DeleteServiceDirectly from './DeleteServiceDirectly'
+
 
 const CleanerProfileForm = (props) => {
   const { id } = useParams();
