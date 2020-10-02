@@ -13,6 +13,7 @@ import CleanerProfile from './CleanerPage/CleanerProfile'
 import RegisterRating from './UserPage/RegisterRating'
 import axios from 'axios';
 import Chat from '../ChatComponents/messagecomponents/Chat'
+import TextSent from './TextSent'
 
 
 
@@ -104,13 +105,24 @@ export default function ContentUser(props){
                 <Route path={'/users/ratings'} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add here your comment {localStorage.getItem("appUser")} !!!</strong></h1>
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add your comments here {localStorage.getItem("appUser")} !!!</strong></h1>
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
                             <RegisterRating
                                 registeredUser={registeredUser}
                                 selectedUser={chosenProfile} 
                             />
+                            </div>
+                        </section>
+                    </section>
+                </Route>
+                <Route path={'/twilio/send-text'} exact>
+                    <section className="appointment__card-left">
+                        <section className="content-container">
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Thank you for Hiring A CleanPreneur!!!</strong></h1>
+                            <div style={{ marginTop: "5%" }}></div>
+                            <div className="row">
+                            <TextSent/>
                             </div>
                         </section>
                     </section>

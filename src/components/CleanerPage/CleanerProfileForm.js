@@ -8,13 +8,13 @@ const CleanerProfileForm = (props) => {
   console.log("cleaners", props) /// Passing this will search the specifi 
   const {selectedUser, registeredUser} = props
 
-  console.log("THIS IS registeredUser", registeredUser)
+  // console.log("THIS IS registeredUser", registeredUser)
 
-  console.log("THIS IS SELECTED",registeredUser.map(cleaners => 
+  // console.log("THIS IS SELECTED",registeredUser.map(cleaners => 
 
-      cleaners.email === localStorage.getItem("cleanerEmail"))
+  //     cleaners.email === localStorage.getItem("cleanerEmail"))
 
-  )
+  // )
   
   const getCurrentCleaner = (theCurrentCleaner) => {
 
