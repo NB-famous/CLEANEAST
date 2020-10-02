@@ -19,7 +19,7 @@ export default class UpdateService extends Component{
         this.onChangePrice = this.onChangePrice.bind(this);
         this.onChangeTypeOfService = this.onChangeTypeOfService.bind(this);
         this.onChangeDeposit = this.onChangeDeposit.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        //this.onSubmit = this.onSubmit.bind(this);
         this.listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry", "Window cleaning", "Interior vacuum", "Mats cleaning" ]
         
         //get the index of the deleted service in the array of services
@@ -63,7 +63,7 @@ export default class UpdateService extends Component{
         })
     }
 //original
-    onSubmit(e) {
+    onSubmit = (e) => {
         e.preventDefault();
     
         const service = {
@@ -84,26 +84,36 @@ export default class UpdateService extends Component{
         })
             .then(res => {
                 console.log(res.data)
-            
-                // this.setState({
-                //     name: res.data.name,
-                //     price:res.data.price,
-                //     typeofservice: res.data.typeofservice,
-                //     deposit:res.data. deposit,
-                //     isRegistered: false,
-                // })
-            });
 
-            this.setState({
-                name: '',
-                price:'',
-                typeofservice:'',
-                deposit:'',
-                isRegistered: false,
-            })
-    
-    
-        //this.props.history.push('/cleaners/login')
+                this.setState({
+                    name: this.state.name,
+                    price: this.state.price,
+                    typeofservice: this.state.typeofservice,
+                    deposit: this.state.deposit,
+                    isRegistered: true,
+                })
+
+                const tempUsers = [...this.props.registeredUser]
+                const index = tempUsers.map(user => user.cleanerId).indexOf(this.props.targetValue.cleanerId)
+                console.log("Index", index) //return the index of the cleaner eg. 19
+                //const serviceIndex = tempUsers[index].service.map(s => s.service_id === this.props.targetValue.serviceId) //original
+                const serviceIndex = tempUsers[index].service.map((s, i) => {
+                    console.log("S",s)
+                    if (s.service_id === this.props.targetValue.serviceId){
+                        console.log("index of S", i)
+                        return i
+                     }})
+                console.log("serviceIndex", serviceIndex)
+                tempUsers[index].service[serviceIndex] = {
+                    ...tempUsers[index].service[serviceIndex], 
+                        service: this.state.name,
+                        price: this.state.price*100,
+                        typeofservice: this.state.typeofservice,
+                        deposit: this.state.deposit,
+                        service_id: this.serviceId
+                }
+                this.props.setRegisteredUser(tempUsers)
+            });
 
     }
 
@@ -119,7 +129,7 @@ export default class UpdateService extends Component{
         //const listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry"]
     
         if(isRegistered === true) {
-            this.setCleanerLogin(true)
+            //this.setCleanerLogin(true)
             return <Redirect to="/"/>
         }
 

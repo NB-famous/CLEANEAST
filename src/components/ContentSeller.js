@@ -72,19 +72,23 @@ export default function ContentSeller(props){
                 //services = {...registeredUser[cleanerId-1].service[indexServiceId], indexServiceId: {...service} }
                 //console.log("Services", services)
                 //make copy of the array service
-                let arrayServices = [...registeredUser[cleanerId-1].service]
-                console.log("arrayServices", arrayServices)
-                //update the array service by removing the deleted service
-                arrayServices.splice(indexServiceId, 1)
-                console.log("NEWarrayServices", arrayServices)
-                //apend the new array to the user
-                const updateUser = {...registeredUser[cleanerId-1], service: {...arrayServices} }
-                console.log("updateUser", updateUser)
-                //append the use to the users
-                registeredUser.splice(cleanerId-1, 1, updateUser)
-                const updateRegisterUser = registeredUser
-                console.log("updateRegisterUser", registeredUser)
-                setRegisteredUser(updateRegisterUser)
+                const tempUsers = [...registeredUser]
+                const index = tempUsers.map(user => user.cleanerId).indexOf(cleanerId)
+                tempUsers[index].service = tempUsers[index].service.filter(s => s.service_id === serviceId ? false : true)
+                setRegisteredUser(tempUsers)
+                // let arrayServices = [...registeredUser[cleanerId-1].service]
+                // console.log("arrayServices", arrayServices)
+                // //update the array service by removing the deleted service
+                // arrayServices.splice(indexServiceId, 1)
+                // console.log("NEWarrayServices", arrayServices)
+                // //apend the new array to the user
+                // const updateUser = {...registeredUser[cleanerId-1], service: {...arrayServices} }
+                // console.log("updateUser", updateUser)
+                // //append the use to the users
+                // registeredUser.splice(cleanerId-1, 1, updateUser)
+                // const updateRegisterUser = registeredUser
+                // console.log("updateRegisterUser", updateRegisterUser)
+                // setRegisteredUser(updateRegisterUser)
                 
             
             
@@ -150,7 +154,7 @@ export default function ContentSeller(props){
                             <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Update here your service {localStorage.getItem("appUser")} !!!</strong></h1>
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
-                            <UpdateService selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} targetValue={targetValue}/>
+                            <UpdateService selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} targetValue={targetValue} setRegisteredUser={setRegisteredUser}/>
                             </div>
                         </section>
                     </section>
