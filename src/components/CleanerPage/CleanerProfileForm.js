@@ -4,35 +4,33 @@ import { useParams, Link } from "react-router-dom";
 const CleanerProfileForm = (props) => {
   const { id } = useParams();
   
-  console.log('props', id)
-  console.log("cleaners", props) /// Passing this will search the specifi 
+  console.log('id --> ', id)
+  console.log('props ---> ', props) /// Passing this will search the specifi 
+  
   const {selectedUser, registeredUser} = props
 
-  console.log("THIS IS registeredUser", registeredUser)
-
-  console.log("THIS IS SELECTED",registeredUser.map(cleaners => 
-
-      cleaners.email === localStorage.getItem("cleanerEmail"))
-
-  )
+  console.log("registeredUser --> ", registeredUser);
+  console.log("selectedUser --> ", selectedUser);
   
   const getCurrentCleaner = (theCurrentCleaner) => {
-
-      let currentCleaner = {};
-
-      theCurrentCleaner.map(cleaner => {
-
-        if(cleaner.email === localStorage.getItem("cleanerEmail")){
-
-          currentCleaner = {...cleaner}
-          
-        }
-        return currentCleaner
-      })
-      return currentCleaner;
+    
+    let currentCleaner = {};
+    
+    theCurrentCleaner.map((cleaner) => {
+      
+      if(cleaner.email === localStorage.getItem("cleanerEmail")) {
+        
+        currentCleaner = {...cleaner}
+        
+      }
+      return currentCleaner
+    })
+    return currentCleaner;
   }
+  
+  console.log('getCurrentCleaner(registeredUser) ---> ', getCurrentCleaner(registeredUser));
+  console.log('getCurrentCleaner(registeredUser).service ---> ', getCurrentCleaner(registeredUser).service);
 
-  //console.log("THIS IS THE CURRENT USER", getCurrentCleaner(registeredUser).cleanerName)
 
   return (
     
@@ -174,25 +172,25 @@ const CleanerProfileForm = (props) => {
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Services</i></h6>
-                      {getCurrentCleaner(registeredUser).service.map(val => {
+                      {/* {getCurrentCleaner(registeredUser).service.map(val => {
                                   return(
                                     <ul>
-                                    <hr/>
-                                      <li>
-                                        Service:{val.service}
-                                      </li>
-                                      <li>
-                                      Price:{val.price/100}$
-                                      </li>
-                                      <li>
-                                      Type Of Service:{val.typeofservice}
-                                      </li>
-                                      <li>
-                                      Deposit: {val.deposit}%
-                                      </li>
+                                      <hr/>
+                                        <li>
+                                          Service:{val.service}
+                                        </li>
+                                        <li>
+                                          Price:{val.price/100}$
+                                        </li>
+                                        <li>
+                                          Type Of Service:{val.typeofservice}
+                                        </li>
+                                        <li>
+                                          Deposit: {val.deposit}%
+                                        </li>
                                       <hr/>
                                     </ul>
-                                  )})} 
+                                  )})}  */}
                     </div>
                   </div>
                 </div>
