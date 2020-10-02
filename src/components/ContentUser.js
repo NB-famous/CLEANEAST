@@ -26,8 +26,26 @@ export default function ContentUser(props){
     const [chosenProfile, setChosenProfile] = useState({})
     const [isLoading, setLoading] = useState(true)
     const [registeredUser, setRegisteredUser] = useState([])
+    const [theLoggedInUser, setTheLoggedInUser] = useState([])
 
     let history = useHistory()
+
+    ////// Get the current user ////////
+    const theCurrentLoggedInUser= (theCurrentUser) => {
+
+        let currentUser = {};
+  
+        theCurrentUser.map(user => {
+  
+          if(user.username === localStorage.getItem("userUser")){
+  
+            currentUser= {...user}
+            
+          }
+          return currentUser
+        })
+        return currentUser;
+    }
 
     /////// This is where get user is coming from and pass down to maps
     useEffect(()=>{
@@ -35,8 +53,21 @@ export default function ContentUser(props){
            method: 'GET',
            url:'http://localhost:5000/cleaners/services'})
         .then(res => {
+            console.log("THIS IS THE FIRST AXIOS GET REQUEST", res.data)
             setRegisteredUser(res.data)
+            return axios({
+                method: 'GET',
+                url:'http://localhost:5000/users'})
+        })
+        .then(res => {
+
+            localStorage.setItem("userLat", theCurrentLoggedInUser(res.data).latitude)
+            localStorage.setItem("userLong", theCurrentLoggedInUser(res.data).longitude)
+            console.log("THIS IS THE SECOND AXIOS GET REQUEST", theCurrentLoggedInUser(res.data).latitude)
+            console.log("THIS IS RES DATA ", res.data)
             setLoading(false)
+            setTheLoggedInUser(res.data)
+
         })
         .catch(err => console.log(err))
     }, [])
@@ -74,6 +105,7 @@ export default function ContentUser(props){
                         setLoading={setLoading}
                         registeredUser={registeredUser}
                         setRegisteredUser={setRegisteredUser}
+                        theLoggedInUser={theLoggedInUser}
                     />
                 </section>
             </Route>

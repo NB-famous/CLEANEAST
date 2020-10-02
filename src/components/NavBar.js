@@ -17,6 +17,8 @@ const NavBar = (props) => {
         localStorage.removeItem("message-id");
         localStorage.removeItem("message-conversations");
         localStorage.removeItem("hiredCleaner");
+        localStorage.removeItem("userLat");
+        localStorage.removeItem("userLong");
 
         //localStorage.clear();
         history.push('/');
