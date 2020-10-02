@@ -74,7 +74,6 @@ export default class UpdateService extends Component{
           service_id: this.serviceId
         }
     
-        console.log("update service", service)
         //axios(config)
         axios.post('http://localhost:5000/cleaners/service/update', service, {
             headers: {

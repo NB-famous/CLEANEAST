@@ -45,8 +45,6 @@ export default function ContentSeller(props){
         return <div>Loading...</div>;
     }
 
-    //first implementation directly here
-    //works but not possible update state
     const deleteService = (cleanerId, serviceId) => {
         console.log("cleanerId", cleanerId)
         console.log("serviceId", serviceId)
@@ -63,35 +61,15 @@ export default function ContentSeller(props){
             }
         })
             .then(res => { 
-                //console.log(res.data)
                 let services = {}
                 //get the index of the deleted service in the array of services
                 let indexServiceId = (registeredUser[cleanerId-1].service.map(function(e) { return e.service_id; }).indexOf(serviceId))
                 console.log(" indexServiceId",  indexServiceId)
-                //I get all object in the array service
-                //services = {...registeredUser[cleanerId-1].service[indexServiceId], indexServiceId: {...service} }
-                //console.log("Services", services)
                 //make copy of the array service
                 const tempUsers = [...registeredUser]
                 const index = tempUsers.map(user => user.cleanerId).indexOf(cleanerId)
                 tempUsers[index].service = tempUsers[index].service.filter(s => s.service_id === serviceId ? false : true)
                 setRegisteredUser(tempUsers)
-                // let arrayServices = [...registeredUser[cleanerId-1].service]
-                // console.log("arrayServices", arrayServices)
-                // //update the array service by removing the deleted service
-                // arrayServices.splice(indexServiceId, 1)
-                // console.log("NEWarrayServices", arrayServices)
-                // //apend the new array to the user
-                // const updateUser = {...registeredUser[cleanerId-1], service: {...arrayServices} }
-                // console.log("updateUser", updateUser)
-                // //append the use to the users
-                // registeredUser.splice(cleanerId-1, 1, updateUser)
-                // const updateRegisterUser = registeredUser
-                // console.log("updateRegisterUser", updateRegisterUser)
-                // setRegisteredUser(updateRegisterUser)
-                
-            
-            
             })
             .catch(err => { console.log(err) })
     }
@@ -104,11 +82,14 @@ export default function ContentSeller(props){
         targetValue.serviceId = serviceId
         return
     }
-
-    //const targetValue = updateService
     console.log("targetValue", targetValue)
 
-
+    let targetCleaner = {};
+    const createService = (cleanerId) => {
+        console.log("From create service cleanerId", cleanerId)
+        targetCleaner.cleanerId = cleanerId
+        return
+    }
 
     //history.push('/'); // this will redirect to home page if user is logged in
     return(
@@ -118,7 +99,7 @@ export default function ContentSeller(props){
                     <section className="content-container">
                         <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Welcome {localStorage.getItem("cleanerUser")} !!!</strong></h1>
                         <div style={{ marginTop: "5%" }}></div>
-                        <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} deleteService={deleteService} updateService={updateService}/>
+                        <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} deleteService={deleteService} updateService={updateService} createService={createService}/>
                         <div className="row">
                             <h1> I am cleaner Dashboard profile </h1>
                         </div>
@@ -143,7 +124,7 @@ export default function ContentSeller(props){
                             <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add here your service {localStorage.getItem("appUser")} !!!</strong></h1>
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
-                            <RegisterService/>
+                            <RegisterService selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} targetCleaner={targetCleaner} setRegisteredUser={setRegisteredUser}/>
                             </div>
                         </section>
                     </section>

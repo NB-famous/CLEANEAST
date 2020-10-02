@@ -36,28 +36,6 @@ const CleanerProfileForm = (props) => {
 
   //console.log("THIS IS THE CURRENT USER", getCurrentCleaner(registeredUser).cleanerName)
 
-  
-  //first implementation directly here
-  //works but not possible update state
-  // const deleteService = (cleanerId, serviceId) => {
-  //   console.log("cleanerId", cleanerId)
-  //   console.log("serviceId", serviceId)
-
-  //   const service = {
-  //     cleanerId: cleanerId,
-  //     serviceId: serviceId
-  //   }
-
-  //   axios.post('http://localhost:5000/cleaners/service/delete', service, {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'cleanerttoken': localStorage.getItem('cleanerToken')
-  //     }
-  //   })
-  //   .then(res => {console.log(res.data)})
-  //   .catch(err => {console.log(err)})
-  // }
-
   return (
 
     <>
@@ -74,7 +52,7 @@ const CleanerProfileForm = (props) => {
                   <button className="btn btn-primary">Hire</button>
                   {/* <button className="btn btn-outline-primary">Message</button> */}
                   <Link to={'/cleaners/services'}>
-                    <button className="btn btn-outline-primary">Add service</button>
+                    <button className="btn btn-outline-primary" onClick={() => props.createService(getCurrentCleaner(registeredUser).cleanerId)}>Add service</button>
                   </Link>
                 </div>
               </div>
