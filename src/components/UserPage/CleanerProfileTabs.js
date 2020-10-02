@@ -12,7 +12,7 @@ const CleanerProfileTabs = (props) => {
   const sendText = (user) => {
 
     console.log("THIS IS USER", user)
-    fetch(`http://127.0.0.1:5000/twilio/send-text?recipient=${user}&textmessage="Congrats you got hired!" By ${localStorage.getItem("hiredCleaner")}`)
+    fetch(`http://127.0.0.1:5000/twilio/send-text?recipient=${user}&textmessage="Congrats you got hired!" By ${localStorage.getItem("userUser")}`)
     .catch(err => console.error(err))
   }
 
@@ -37,7 +37,7 @@ const CleanerProfileTabs = (props) => {
                 </Link>
                 <Link to={'/twilio/send-text'}>
                   <button type="button" className="btn btn-sm btn-outline-secondary" onClick={()=> {
-                    localStorage.setItem("hiredCleaner",user.cleanerName)
+              
                     sendText(user.phone)}}>
                     Hire
                     </button>
