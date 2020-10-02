@@ -36,24 +36,27 @@ const CleanerProfileForm = (props) => {
 
   //console.log("THIS IS THE CURRENT USER", getCurrentCleaner(registeredUser).cleanerName)
 
-  const deleteService = (cleanerId, serviceId) => {
-    console.log("cleanerId", cleanerId)
-    console.log("serviceId", serviceId)
+  
+  //first implementation directly here
+  //works but not possible update state
+  // const deleteService = (cleanerId, serviceId) => {
+  //   console.log("cleanerId", cleanerId)
+  //   console.log("serviceId", serviceId)
 
-    const service = {
-      cleanerId: cleanerId,
-      serviceId: serviceId
-    }
+  //   const service = {
+  //     cleanerId: cleanerId,
+  //     serviceId: serviceId
+  //   }
 
-    axios.post('http://localhost:5000/cleaners/service/delete', service, {
-      headers: {
-        'Content-Type': 'application/json',
-        'cleanerttoken': localStorage.getItem('cleanerToken')
-      }
-    })
-    .then(res => {console.log(res.data)})
-    .catch(err => {console.log(err)})
-  }
+  //   axios.post('http://localhost:5000/cleaners/service/delete', service, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'cleanerttoken': localStorage.getItem('cleanerToken')
+  //     }
+  //   })
+  //   .then(res => {console.log(res.data)})
+  //   .catch(err => {console.log(err)})
+  // }
 
   return (
 
@@ -216,7 +219,7 @@ const CleanerProfileForm = (props) => {
                             <button className="btn btn-outline-primary">Update service</button>
                           </Link>
                           {/* <DeleteServiceDirectly selectedUserIndex={registeredUser} selectedServiceid={val.service_id}> */}
-                          <button className="btn btn-outline-primary" onClick={() => deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Delete service</button>
+                          <button className="btn btn-outline-primary" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Delete service</button>
                           {/* </DeleteServiceDirectly> */}
                         </li>
                         <hr />

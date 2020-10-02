@@ -44,6 +44,28 @@ export default function ContentSeller(props){
         return <div>Loading...</div>;
     }
 
+    //first implementation directly here
+    //works but not possible update state
+    const deleteService = (cleanerId, serviceId) => {
+        console.log("cleanerId", cleanerId)
+        console.log("serviceId", serviceId)
+
+        const service = {
+            cleanerId: cleanerId,
+            serviceId: serviceId
+        }
+
+        axios.post('http://localhost:5000/cleaners/service/delete', service, {
+            headers: {
+                'Content-Type': 'application/json',
+                'cleanerttoken': localStorage.getItem('cleanerToken')
+            }
+        })
+            .then(res => { console.log(res.data) })
+            .catch(err => { console.log(err) })
+    }
+
+
 
 
     //history.push('/'); // this will redirect to home page if user is logged in
@@ -54,7 +76,7 @@ export default function ContentSeller(props){
                     <section className="content-container">
                         <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Welcome {localStorage.getItem("cleanerUser")} !!!</strong></h1>
                         <div style={{ marginTop: "5%" }}></div>
-                        <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} />
+                        <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} deleteService={deleteService}/>
                         <div className="row">
                             <h1> I am cleaner Dashboard profile </h1>
                         </div>
