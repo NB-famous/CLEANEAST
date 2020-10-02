@@ -10,6 +10,7 @@ import {Route, useHistory, Switch} from 'react-router-dom'
 import CleanerProfileForm from './CleanerPage/CleanerProfileForm'
 
 import RegisterService from './CleanerPage/RegisterService'
+import UpdateService from './CleanerPage/UpdateService'
 import axios from 'axios'
 import Chat from '../ChatComponents/messagecomponents/Chat'
 
@@ -91,6 +92,17 @@ export default function ContentSeller(props){
             .catch(err => { console.log(err) })
     }
 
+    let targetValue = {};
+    const updateService = (cleanerId, serviceId) => {
+        console.log("From update service cleanerId", cleanerId)
+        console.log("From update service serviceId", serviceId)
+        targetValue.cleanerId = cleanerId
+        targetValue.serviceId = serviceId
+        return
+    }
+
+    //const targetValue = updateService
+    console.log("targetValue", targetValue)
 
 
 
@@ -102,7 +114,7 @@ export default function ContentSeller(props){
                     <section className="content-container">
                         <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Welcome {localStorage.getItem("cleanerUser")} !!!</strong></h1>
                         <div style={{ marginTop: "5%" }}></div>
-                        <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} deleteService={deleteService}/>
+                        <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} deleteService={deleteService} updateService={updateService}/>
                         <div className="row">
                             <h1> I am cleaner Dashboard profile </h1>
                         </div>
@@ -128,6 +140,17 @@ export default function ContentSeller(props){
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
                             <RegisterService/>
+                            </div>
+                        </section>
+                    </section>
+                </Route>
+                <Route path={'/cleaners/services/update'} exact>
+                    <section className="appointment__card-left">
+                        <section className="content-container">
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Update here your service {localStorage.getItem("appUser")} !!!</strong></h1>
+                            <div style={{ marginTop: "5%" }}></div>
+                            <div className="row">
+                            <UpdateService selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} targetValue={targetValue}/>
                             </div>
                         </section>
                     </section>

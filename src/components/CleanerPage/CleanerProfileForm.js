@@ -215,8 +215,8 @@ const CleanerProfileForm = (props) => {
                           Deposit: {val.deposit}%
                         </li>
                         <li>
-                          <Link to={'/cleaners/services'}>
-                            <button className="btn btn-outline-primary">Update service</button>
+                          <Link to={'/cleaners/services/update'}>
+                            <button className="btn btn-outline-primary" onClick={() => props.updateService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Update service</button>
                           </Link>
                           {/* <DeleteServiceDirectly selectedUserIndex={registeredUser} selectedServiceid={val.service_id}> */}
                           <button className="btn btn-outline-primary" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Delete service</button>
