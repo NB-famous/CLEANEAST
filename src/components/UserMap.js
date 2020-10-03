@@ -6,6 +6,7 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import "../styles/MapSource.scss"
 import {Icon} from 'leaflet'
+import {Link} from 'react-router-dom'
 //import userData from "../data/mock-users.json";
 //import axios from 'axios'
 
@@ -50,7 +51,7 @@ export default function UserMap(props){
         return (
             <>
             {isLoading && <div>Loading...</div>}
-            {!isLoading && currentUser && <Map className="map" center={position} zoom={10}>
+            {!isLoading && currentUser && <Map className="map" center={position} zoom={15}>
                 <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
@@ -83,9 +84,28 @@ export default function UserMap(props){
                         setActiveUser(null);
                     }}
                     >
-                    <div>
-                        <h2>{activeUser.username}</h2>
+                    {/* <div>
+                        <h2>{activeUser.cleanerName}</h2>
                         <p>{activeUser.email}</p>
+                    </div> */}
+                
+                    <div class="col mb-3">
+                        <div className="card">
+                        <div className="card-body text-center">
+                            <img src={activeUser.picture_url} style={{width:"100px", marginTop:"-65px"}} alt="User" className="img-fluid img-thumbnail rounded-circle border-0 mb-3"/>
+                            <h5 className="card-title">{activeUser.cleanerName}</h5>
+                            <p className="text-secondary mb-1">{activeUser.email}</p>
+                            <p className="text-muted font-size-sm">{activeUser.address}</p>
+                        </div>
+                        <div className="card-footer" style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+                        <Link onClick={() => props.setCurrentUser(activeUser)} to={`/users/cleanerProfile/${activeUser.cleanerId}`} params={ {theUser: {activeUser} }} >
+                            <button className="btn btn-light btn-sm bg-white has-icon btn-block" type="button">View Profile</button>
+                        </Link>
+                        <Link to={'/cleaners/chatroom'}>
+                            <button className="btn btn-light btn-sm bg-white has-icon btn-block" type="button" onClick={() => localStorage.setItem("cleanerData",activeUser.cleanerName)}>Message</button>
+                        </Link>
+                        </div>
+                        </div>
                     </div>
                     </Popup>
                 )}
