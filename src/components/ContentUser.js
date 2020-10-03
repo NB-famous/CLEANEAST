@@ -31,21 +31,21 @@ export default function ContentUser(props){
     let history = useHistory()
 
     ////// Get the current user ////////
-    const theCurrentLoggedInUser= (theCurrentUser) => {
+    // const theCurrentLoggedInUser= (theCurrentUser) => {
 
-        let currentUser = {};
+    //     let currentUser = {};
   
-        theCurrentUser.map(user => {
+    //     theCurrentUser.map(user => {
   
-          if(user.username === localStorage.getItem("userUser")){
+    //       if(user.username === localStorage.getItem("userUser")){
   
-            currentUser= {...user}
+    //         currentUser= {...user}
             
-          }
-          return currentUser
-        })
-        return currentUser;
-    }
+    //       }
+    //       return currentUser
+    //     })
+    //     return currentUser;
+    // }
 
     /////// This is where get user is coming from and pass down to maps
     useEffect(()=>{
@@ -61,10 +61,10 @@ export default function ContentUser(props){
         })
         .then(res => {
 
-            localStorage.setItem("userLat", theCurrentLoggedInUser(res.data).latitude)
-            localStorage.setItem("userLong", theCurrentLoggedInUser(res.data).longitude)
-            console.log("THIS IS THE SECOND AXIOS GET REQUEST", theCurrentLoggedInUser(res.data).latitude)
-            console.log("THIS IS RES DATA ", res.data)
+            // localStorage.setItem("userLat", theCurrentLoggedInUser(res.data).latitude)
+            // localStorage.setItem("userLong", theCurrentLoggedInUser(res.data).longitude)
+            // console.log("THIS IS THE SECOND AXIOS GET REQUEST", theCurrentLoggedInUser(res.data).latitude)
+            // console.log("THIS IS RES DATA ", res.data)
             setLoading(false)
             setTheLoggedInUser(res.data)
 
