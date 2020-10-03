@@ -56,7 +56,7 @@ $appointment-height: 11rem;
       max-width: 50%;
       max-height: 1200px;
       background-color: grey;
-      opacity: 50%;
+      opacity: 90%;
       border: solid black;
       border-radius: 5%;
       padding: 2rem;
@@ -88,7 +88,7 @@ $appointment-height: 11rem;
     }
 
     &--show {
-      color: rgba($main-color, $active-opacity);
+      // color: rgba($main-color, $active-opacity);
       background-image: url("../docs/carwash1.jpg");
       background-size: cover;
 

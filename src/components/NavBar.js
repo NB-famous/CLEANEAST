@@ -48,9 +48,18 @@ const NavBar = (props) => {
             loggedIn ?
             <nav className="sidebar__user"> 
             <ul>
+            <li>
+            <Link to={'/'}>
+            <button className="list-group-item list-group-item-action" >
+            <h1><strong>Home</strong></h1>
+            </button>
+            </Link>
+            </li>
+            <li>
             <button className="list-group-item list-group-item-action" onClick={handleLogout}>
             <h1><strong>Logout</strong></h1>
             </button>
+            </li>
             </ul>
             </nav>
             :
