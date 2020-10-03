@@ -173,8 +173,8 @@ const CleanerProfileForm = (props) => {
                   <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Services</i></h6>
                   {getCurrentCleaner(registeredUser).service.map(val => {
                     return (
-                      <ul>
-                        <hr />
+                      <ul key={val.service_id}>
+                        <hr/>
                         <li>
                           Service:{val.service}
                         </li>
