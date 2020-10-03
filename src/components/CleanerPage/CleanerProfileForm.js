@@ -1,6 +1,9 @@
 import React from "react"
 import { useParams, Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
+import { FiMoreHorizontal } from "react-icons/fi";
 
 import '../CleanerProfileReviews.css'
 import '../CleanerProfileServices.css'
@@ -35,30 +38,33 @@ const CleanerProfileForm = (props) => {
   console.log('getCurrentCleaner(registeredUser).rating ---> ', getCurrentCleaner(registeredUser).rating);
 
   //Creates list of services the currently selected seller offers
-  // const services = getCurrentCleaner(registeredUser).service.map(val => {
-  //   return(
-  //     <ul className="service-container">
-  //         <li className="service-header">
-  //           <div>{val.service}<span className="service-type">{val.typeofservice}</span> 
-  //           </div>
-  //           <div>${val.price/100}</div>  
-  //         </li>
-  //         <li className="service-deposit">Deposit of {val.deposit}%</li>
-  //         <Link to={'/cleaners/services/update'}>
-  //                           <button className="btn btn-outline-primary" onClick={() => props.updateService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Update service</button>
-  //         </Link>
-  //         {/* <DeleteServiceDirectly selectedUserIndex={registeredUser} selectedServiceid={val.service_id}> */}
-  //         <button className="btn btn-outline-primary" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Delete service</button>
-  //         {/* </DeleteServiceDirectly> */}
-  //     </ul>
-  //   )})  
+  const services = getCurrentCleaner(registeredUser).service.map(val => {
+                    return(
+                      <ul key="val.service_id" className="service-container">
+                          <li className="service-header">
+                            <div>{val.service}<span className="service-type">{val.typeofservice}</span> 
+                            </div>
+                            <div>${val.price/100}</div>  
+                          </li>
+                          <li className="service-deposit">Deposit of {val.deposit}%</li>
+                          <li className="service-dropdown">
+                            <div className="dropdown-icon">
+                              <FiMoreHorizontal value={{ className: "edit-icon" }} />
+                            </div>
+                            <div className="service-dropdown-content">
+                                <Link to={'/cleaners/services/update'}><button className="btn btn-outline-primary" onClick={() => props.updateService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Edit <FaEdit value={{ className: "edit-icon" }} /></button></Link>
+                                <button className="btn btn-outline-primary" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Delete <AiFillDelete value={{ className: "edit-icon" }} /></button>
+                            </div>
+                          </li>
+                      </ul>
+                    )})
   
   //Creates list of reviews belonging to the currently selected seller
   const reviews = getCurrentCleaner(registeredUser).rating.map(val => {
     
     const starRating = [...Array(5)].map((star, i) => {
       return (
-        <FaStar className="star" color={i <= val.rating - 1 ? "#ffc107" : "e4e5e9"}  />
+        <FaStar color={i <= val.rating - 1 ? "#ffc107" : "e4e5e9"}  />
       )});
       
     return(
@@ -189,23 +195,7 @@ const CleanerProfileForm = (props) => {
               <div className="card h-100">
                 <div className="card-body">
                   <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Services</i></h6>
-                  {getCurrentCleaner(registeredUser).service.map(val => {
-                    return(
-                      <ul key="val.service_id" className="service-container">
-                          <li className="service-header">
-                            <div>{val.service}<span className="service-type">{val.typeofservice}</span> 
-                            </div>
-                            <div>${val.price/100}</div>  
-                          </li>
-                          <li className="service-deposit">Deposit of {val.deposit}%</li>
-                          <Link to={'/cleaners/services/update'}>
-                                            <button className="btn btn-outline-primary" onClick={() => props.updateService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Update service</button>
-                          </Link>
-                          {/* <DeleteServiceDirectly selectedUserIndex={registeredUser} selectedServiceid={val.service_id}> */}
-                          <button className="btn btn-outline-primary" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Delete service</button>
-                          {/* </DeleteServiceDirectly> */}
-                      </ul>
-                    )})}
+                  {services}
                 </div>
               </div>
             </div>
