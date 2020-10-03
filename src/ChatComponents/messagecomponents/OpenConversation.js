@@ -34,11 +34,11 @@ export default function OpenConversation() {
                 className={`my-1 d-flex flex-column ${message.fromMe ? 'align-self-end align-items-end' : 'align-items-start'}`}
               >
                 <div
-                  className={`rounded px-2 py-1 ${message.fromMe ? 'bg-primary text-white' : 'border'}`}>
-                  {message.text}
+                  className={`rounded px-2 py-1 ${message.fromMe ? 'bg-success text-light' : 'border'}`} style={{backgroundColor: "white", color: "#44B244"}}>
+                  <strong>{message.text}</strong>
                 </div>
                 <div className={`text-muted small ${message.fromMe ? 'text-right' : ''}`}>
-                  {message.fromMe ? 'You' : message.senderName}
+                  <strong>{message.fromMe ? 'You' : message.senderName}</strong>
                 </div>
               </div>
             )
@@ -53,10 +53,10 @@ export default function OpenConversation() {
               required
               value={text}
               onChange={e => setText(e.target.value)}
-              style={{ height: '75px', resize: 'none' }}
+              style={{ height: '75px', resize: 'none',  borderColor: "black" }}
             />
             <InputGroup.Append>
-              <Button type="submit">Send</Button>
+              <Button type="submit" style={{backgroundColor: "#44B244", borderColor: "black"}}>Send</Button>
             </InputGroup.Append>
           </InputGroup>
         </Form.Group>

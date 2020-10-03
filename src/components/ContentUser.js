@@ -13,6 +13,7 @@ import CleanerProfile from './CleanerPage/CleanerProfile'
 import RegisterRating from './UserPage/RegisterRating'
 import axios from 'axios';
 import Chat from '../ChatComponents/messagecomponents/Chat'
+import TextSent from './TextSent'
 
 
 
@@ -25,8 +26,10 @@ export default function ContentUser(props){
     const [chosenProfile, setChosenProfile] = useState({})
     const [isLoading, setLoading] = useState(true)
     const [registeredUser, setRegisteredUser] = useState([])
+    const [theLoggedInUser, setTheLoggedInUser] = useState([])
 
     let history = useHistory()
+
 
     /////// This is where get user is coming from and pass down to maps
     useEffect(()=>{
@@ -34,8 +37,21 @@ export default function ContentUser(props){
            method: 'GET',
            url:'http://localhost:5000/cleaners/services'})
         .then(res => {
+            console.log("THIS IS THE FIRST AXIOS GET REQUEST", res.data)
             setRegisteredUser(res.data)
+            return axios({
+                method: 'GET',
+                url:'http://localhost:5000/users'})
+        })
+        .then(res => {
+
+            // localStorage.setItem("userLat", theCurrentLoggedInUser(res.data).latitude)
+            // localStorage.setItem("userLong", theCurrentLoggedInUser(res.data).longitude)
+            // console.log("THIS IS THE SECOND AXIOS GET REQUEST", theCurrentLoggedInUser(res.data).latitude)
+            // console.log("THIS IS RES DATA ", res.data)
             setLoading(false)
+            setTheLoggedInUser(res.data)
+
         })
         .catch(err => console.log(err))
     }, [])
@@ -73,6 +89,7 @@ export default function ContentUser(props){
                         setLoading={setLoading}
                         registeredUser={registeredUser}
                         setRegisteredUser={setRegisteredUser}
+                        theLoggedInUser={theLoggedInUser}
                     />
                 </section>
             </Route>
@@ -80,7 +97,7 @@ export default function ContentUser(props){
                 <Route path={`/users/cleanerProfile/:id`} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
+                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome To My Profile {localStorage.getItem("userUser")} !!!</strong></h1>
                         <div style={{marginTop: "5%"}}></div>
                         <div className="row">
                             <CleanerProfile 
@@ -93,7 +110,7 @@ export default function ContentUser(props){
                 <Route path={'/cleaners/chatroom'} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
+                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome To The Chat Room {localStorage.getItem("userUser")} !!!</strong></h1>
                         <div style={{marginTop: "5%"}}></div>
                         <div className="row">
                             <Chat />
@@ -104,13 +121,24 @@ export default function ContentUser(props){
                 <Route path={'/users/ratings'} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add here your comment {localStorage.getItem("appUser")} !!!</strong></h1>
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add your comments here {localStorage.getItem("userUser")} !!!</strong></h1>
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
                             <RegisterRating
                                 registeredUser={registeredUser}
                                 selectedUser={chosenProfile} 
                             />
+                            </div>
+                        </section>
+                    </section>
+                </Route>
+                <Route path={'/twilio/send-text'} exact>
+                    <section className="appointment__card-left">
+                        <section className="content-container">
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Thank you for Hiring A CleanPreneur!!!</strong></h1>
+                            <div style={{ marginTop: "5%" }}></div>
+                            <div className="row">
+                            <TextSent/>
                             </div>
                         </section>
                     </section>

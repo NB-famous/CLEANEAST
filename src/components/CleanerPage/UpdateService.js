@@ -4,14 +4,17 @@ import { Button, Form } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 
-export default class RegisterService extends Component {
+export default class UpdateService extends Component {
+
+
 
     constructor(props) {
         super(props);
-        this.targetCleaner = props.targetCleaner;
+        this.targetValue = props.targetValue;
         this.registeredUser = props.registeredUser;
-        // this.cleanerLogin = props.cleanerLogin;
-        // this.setCleanerLogin = props.setCleanerLogin;
+
+        //this.cleanerLogin = props.cleanerLogin;
+        //this.setCleanerLogin = props.setCleanerLogin;
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangePrice = this.onChangePrice.bind(this);
         this.onChangeTypeOfService = this.onChangeTypeOfService.bind(this);
@@ -22,7 +25,10 @@ export default class RegisterService extends Component {
         this.listOfServicesHomeCleaning = ["Brooming", "Vacuuming", "Mopping", "Dusting", "Floor Waxing", "Window cleaning", "Carpet cleaning"]
         this.listOfServicesLandScaping = ["Lawn Mowing ", "Watering", "Planting", "Weeds Removal"]
         this.listOfJobs = ["CarWash", "Home Cleaning", "Land Scaping"]
-
+        //get the index of the deleted service in the array of services
+        this.indexServiceId = (this.registeredUser[this.targetValue.cleanerId - 1].service.map(function (e) { return e.service_id; }).indexOf(this.targetValue.serviceId))
+        console.log(" indexServiceId", this.indexServiceId)
+        this.serviceId = this.targetValue.serviceId
 
         if (this.onChangeName === "CarWash") {
             this.state = {
@@ -50,16 +56,17 @@ export default class RegisterService extends Component {
             }
         }
 
-        //original
         this.state = {
-            name: this.listOfJobs[0],
-            price: '',
-            typeofservice: this.listOfServicesCarWash[0], //this.listOfServices[0],
-            deposit: '',
+            name: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].service,
+            price: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].price / 100,
+            typeofservice: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].typeofservice,
+            deposit: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].deposit,
             isRegistered: false,
         }
 
     }
+
+
 
     onChangeName(e) {
         this.setState({
@@ -93,70 +100,54 @@ export default class RegisterService extends Component {
             price: this.state.price,
             typeofservice: this.state.typeofservice,
             deposit: this.state.deposit,
+            service_id: this.serviceId
         }
 
+        console.log("Service", service)
         //axios(config)
-        axios.post('http://localhost:5000/cleaners/service', service, {
+        axios.post('http://localhost:5000/cleaners/service/update', service, {
             headers: {
                 'Content-Type': 'application/json',
                 'cleanerttoken': localStorage.getItem('cleanerToken')
             }
         })
             .then(res => {
-                console.log("res.data", res.data)
-
-                const tempUsers = [...this.props.registeredUser]
-                const index = tempUsers.map(user => user.cleanerId).indexOf(this.props.targetCleaner.cleanerId)
-                console.log("Index", index) //return the index of the cleaner eg. 19
-                //const serviceIndex = tempUsers[index].service.map(s => s.service_id === this.props.targetValue.serviceId) //original
-                // const serviceIndex = tempUsers[index].service.map((s, i) => {
-                //     console.log("S",s)
-                //     if (s.service_id === this.props.targetValue.serviceId){
-                //         console.log("index of S", i)
-                //         return i
-                //      }})
-                // console.log("serviceIndex", serviceIndex)
-                tempUsers[index].service = [
-                    ...tempUsers[index].service, {
-                        service_id: res.data.service.id,  //update this line to fix bug
-                        service: this.state.name,
-                        price: this.state.price * 100,
-                        typeofservice: this.state.typeofservice,
-                        deposit: this.state.deposit,
-                        
-                    }
-                ]
-                console.log("tempUsers", tempUsers)
-                this.props.setRegisteredUser(tempUsers)
-                console.log("res.data.id", res.data.service.id)
+                console.log(res.data)
 
                 this.setState({
-                    name: '',
-                    price: '',
-                    typeofservice: '',
-                    deposit: '',
+                    name: this.state.name,
+                    price: this.state.price,
+                    typeofservice: this.state.typeofservice,
+                    deposit: this.state.deposit,
                     isRegistered: true,
                 })
 
+                const tempUsers = [...this.props.registeredUser]
+                const index = tempUsers.map(user => user.cleanerId).indexOf(this.props.targetValue.cleanerId)
+                //console.log("Index", index) //return the index of the cleaner eg. 19
+                //const serviceIndex = tempUsers[index].service.map(s => s.service_id === this.props.targetValue.serviceId) //original from Vasily
+                const serviceIndex = tempUsers[index].service.map(s => s.service_id).indexOf(this.props.targetValue.serviceId)
 
-
+                console.log("Service Index", serviceIndex)
+                tempUsers[index].service[serviceIndex] = {
+                    ...tempUsers[index].service[serviceIndex],
+                    service: this.state.name,
+                    price: this.state.price * 100,
+                    typeofservice: this.state.typeofservice,
+                    deposit: this.state.deposit,
+                    service_id: this.serviceId
+                }
+                this.props.setRegisteredUser(tempUsers)
             });
-
-        // this.setState({
-        //     name: '',
-        //     price:'',
-        //     typeofservice:'',
-        //     deposit:'',
-        //     isRegistered: false,
-        // })
-
     }
-
     render() {
 
         const isRegistered = this.state.isRegistered;
 
+        console.log("this.targetValue", this.targetValue)
         console.log("this.registeredUser", this.registeredUser)
+        console.log(" indexServiceId", this.indexServiceId)
+
 
         //const listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry"]
 
@@ -195,7 +186,6 @@ export default class RegisterService extends Component {
                     <Form.Label>Type Of Service</Form.Label>
                     <Form.Control type="text" placeholder="Type of service" value={this.state.typeofservice} onChange={this.onChangeTypeOfService}/>
                 </Form.Group> */}
-
                 {this.state.name === "CarWash" ?
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Type of Service</Form.Label>
@@ -236,7 +226,16 @@ export default class RegisterService extends Component {
                             </Form.Group>
                 }
 
-
+                {/* <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Type of Service</Form.Label>
+                    <Form.Control as="select" value={this.state.typeofservice} onChange={this.onChangeTypeOfService}>
+                        {this.listOfServices.map(item => {
+                            return (
+                                <option key={item}>{item}</option>
+                            )
+                        })}
+                    </Form.Control>
+                </Form.Group> */}
 
                 <Form.Group controlId="formBasicDeposit">
                     <Form.Label>Deposit in percentage</Form.Label>
@@ -244,7 +243,7 @@ export default class RegisterService extends Component {
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                    Add
+                    Update
                 </Button>
             </Form>
         )

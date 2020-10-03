@@ -18,6 +18,11 @@ const cleaner = new Icon({
     iconSize: [25, 25]
 });
 
+const userLocationIcon = new Icon({
+    iconUrl: "/images/greenhome2.png",
+    iconSize: [50, 50]
+});
+
 export default function UserMap(props){
 
     const {
@@ -25,52 +30,41 @@ export default function UserMap(props){
         setActiveUser,
         isLoading,
         registeredUser,
+        theLoggedInUser
       } = props
 
-    /* const [activeUser, setActiveUser] = useState(null);
-    const [isLoading, setLoading] = useState(true)
-    const [registeredUser, setRegisteredUser] = useState([])
 
+      console.log("THIS IS LOGGED IN USER", theLoggedInUser)
 
-    useEffect(()=>{
-       axios({
-           method: 'GET',
-           url:'http://localhost:5000/cleaners'})
-        .then(res => {
-            setRegisteredUser(res.data)
-            setLoading(false)
-            console.log("this is response", res)
-        })
-        .catch(err => console.log(err))
-    }, [])
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-      } */
-
-      if (isLoading) {
-        return <div>Loading...</div>;
+      const getTheCurrentUser = (users) => {
+        const email = localStorage.getItem("userEmail");
+        return users.find(user => user.email === email)
       }
-
-
     
-        const position = [45.501690, -73.567253]
-        //const position = [latitude, longitude]
+      const currentUser = getTheCurrentUser(theLoggedInUser)
+
+        //const position = [45.501690, -73.567253]
+
+        const position = currentUser && [currentUser.latitude, currentUser.longitude]
         
         return (
-            <Map className="map" center={position} zoom={13}>
+            <>
+            {isLoading && <div>Loading...</div>}
+            {!isLoading && currentUser && <Map className="map" center={position} zoom={15}>
                 <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                 />
+                <Marker
+                    position={[currentUser.latitude, currentUser.longitude]}
+                    icon={userLocationIcon}
+                    />
                 {registeredUser.map(user => (
                     <Marker
                     key={user.cleanerName}
                     position={[
                         user.latitude,
                         user.longitude
-                        // Number(user.location.split(', ')[0]),
-                        // Number(user.location.split(', ')[1])
                     ]}
                     onClick={() => setActiveUser(user)}
 
@@ -83,8 +77,7 @@ export default function UserMap(props){
                     position={[
                         activeUser.latitude,
                         activeUser.longitude
-                        // Number(activeUser.location.split(', ')[0]),
-                        // Number(activeUser.location.split(', ')[1])
+                        
                     ]}
                     onClose={() => {
                         setActiveUser(null);
@@ -98,5 +91,7 @@ export default function UserMap(props){
                 )}
 
             </Map>
+            }
+            </>
         )
 }

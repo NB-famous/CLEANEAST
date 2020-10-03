@@ -10,6 +10,7 @@ import {Route, useHistory, Switch} from 'react-router-dom'
 import CleanerProfileForm from './CleanerPage/CleanerProfileForm'
 
 import RegisterService from './CleanerPage/RegisterService'
+import UpdateService from './CleanerPage/UpdateService'
 import axios from 'axios'
 import Chat from '../ChatComponents/messagecomponents/Chat'
 
@@ -44,7 +45,52 @@ export default function ContentSeller(props){
         return <div>Loading...</div>;
     }
 
+    const deleteService = (cleanerId, serviceId) => {
+        console.log("cleanerId", cleanerId)
+        console.log("serviceId", serviceId)
 
+        const service = {
+            cleanerId: cleanerId,
+            serviceId: serviceId
+        }
+
+        axios.post('http://localhost:5000/cleaners/service/delete', service, {
+            headers: {
+                'Content-Type': 'application/json',
+                'cleanerttoken': localStorage.getItem('cleanerToken')
+            }
+        })
+            .then(res => { 
+                //let services = {}
+                //get the index of the deleted service in the array of services
+                //let indexServiceId = (registeredUser[cleanerId-1].service.map(function(e) { return e.service_id; }).indexOf(serviceId))
+                //console.log(" indexServiceId",  indexServiceId)
+                
+                //make copy of the array service
+                const tempUsers = [...registeredUser]
+                const index = tempUsers.map(user => user.cleanerId).indexOf(cleanerId)
+                tempUsers[index].service = tempUsers[index].service.filter(s => s.service_id === serviceId ? false : true)
+                setRegisteredUser(tempUsers)
+            })
+            .catch(err => { console.log(err) })
+    }
+
+    let targetValue = {};
+    const updateService = (cleanerId, serviceId) => {
+        console.log("From update service cleanerId", cleanerId)
+        console.log("From update service serviceId", serviceId)
+        targetValue.cleanerId = cleanerId
+        targetValue.serviceId = serviceId
+        return
+    }
+    console.log("targetValue", targetValue)
+
+    let targetCleaner = {};
+    const createService = (cleanerId) => {
+        console.log("From create service cleanerId", cleanerId)
+        targetCleaner.cleanerId = cleanerId
+        return
+    }
 
     //history.push('/'); // this will redirect to home page if user is logged in
     return(
@@ -54,7 +100,7 @@ export default function ContentSeller(props){
                     <section className="content-container">
                         <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Welcome {localStorage.getItem("cleanerUser")} !!!</strong></h1>
                         <div style={{ marginTop: "5%" }}></div>
-                        <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} />
+                        <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} deleteService={deleteService} updateService={updateService} createService={createService}/>
                         <div className="row">
                             <h1> I am cleaner Dashboard profile </h1>
                         </div>
@@ -79,7 +125,18 @@ export default function ContentSeller(props){
                             <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add here your service {localStorage.getItem("appUser")} !!!</strong></h1>
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
-                            <RegisterService/>
+                            <RegisterService selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} targetCleaner={targetCleaner} setRegisteredUser={setRegisteredUser}/>
+                            </div>
+                        </section>
+                    </section>
+                </Route>
+                <Route path={'/cleaners/services/update'} exact>
+                    <section className="appointment__card-left">
+                        <section className="content-container">
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Update here your service {localStorage.getItem("appUser")} !!!</strong></h1>
+                            <div style={{ marginTop: "5%" }}></div>
+                            <div className="row">
+                            <UpdateService selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} targetValue={targetValue} setRegisteredUser={setRegisteredUser}/>
                             </div>
                         </section>
                     </section>
