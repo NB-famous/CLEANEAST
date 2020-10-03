@@ -10,7 +10,7 @@ export default function Dashboard({ id }) {
     <div className="d-flex" 
     
     style={{ 
-            height: '75vh',
+            height: '60vh',
             border: '3px solid black',
             borderWeight: 'thick',
             borderRadius: '10px',

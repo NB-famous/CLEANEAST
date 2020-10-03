@@ -9,13 +9,7 @@ const CleanerProfileForm = (props) => {
   console.log("cleaners", props) /// Passing this will search the specifi 
   const { selectedUser, registeredUser } = props
 
-  console.log("THIS IS registeredUser", registeredUser)
-
-  console.log("THIS IS SELECTED", registeredUser.map(cleaners =>
-
-    cleaners.email === localStorage.getItem("cleanerEmail"))
-
-  )
+  // console.log("THIS IS registeredUser", registeredUser)
 
   const getCurrentCleaner = (theCurrentCleaner) => {
 
@@ -45,6 +39,7 @@ const CleanerProfileForm = (props) => {
               <div className="d-flex flex-column align-items-center text-center">
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
                 <div className="mt-3">
+
                   <h4>{localStorage.getItem("cleanerUser")}</h4>
                   <p className="text-secondary mb-1">{getCurrentCleaner(registeredUser).cleanerName}</p>
                   <p className="text-muted font-size-sm">{selectedUser.address}</p>
@@ -53,6 +48,7 @@ const CleanerProfileForm = (props) => {
                   <Link to={'/cleaners/services'}>
                     <button className="btn btn-outline-primary" onClick={() => props.createService(getCurrentCleaner(registeredUser).cleanerId)}>Add service</button>
                   </Link>
+
                 </div>
               </div>
             </div>

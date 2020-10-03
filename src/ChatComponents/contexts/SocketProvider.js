@@ -12,7 +12,7 @@ export function SocketProvider({ id, children }) {
 
   useEffect(() => {
     const newSocket = io(
-      'http://localhost:8080',
+      'http://localhost:5001',
       { query: { id } }
     )
     setSocket(newSocket)

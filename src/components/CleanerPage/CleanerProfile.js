@@ -8,6 +8,14 @@ const CleanerProfile = (props) => {
   console.log("cleaners", props) /// Passing this will search the specifi 
   const {selectedUser} = props
 
+
+  const sendText = (user) => {
+
+    console.log("THIS IS USER", user)
+    fetch(`http://127.0.0.1:5000/twilio/send-text?recipient=${user}&textmessage="Congrats you got hired!" By ${localStorage.getItem("userUser")}`)
+    .catch(err => console.error(err))
+  }
+
   //console.log(selectedUser.services.map())
   return (
     <>
@@ -20,7 +28,12 @@ const CleanerProfile = (props) => {
                 <div className="mt-3">
                     <h4>{selectedUser.cleanerName}</h4>
                     <p className="text-muted font-size-sm">{selectedUser.address}</p>
-                    <button className="btn btn-primary">Hire</button>
+                    <Link to={'/twilio/send-text'}>
+                    <button className="btn btn-primary" onClick={()=> {
+                    localStorage.setItem("hiredCleaner",selectedUser.cleanerName)
+                    sendText(selectedUser.phone)}}>
+                    Hire</button>
+                    </Link>
                     <Link to={'/cleaners/chatroom'}>
                       <button className="btn btn-outline-primary" onClick={() => localStorage.setItem("cleanerData",selectedUser.cleanerName)}>Message</button>
                     </Link>

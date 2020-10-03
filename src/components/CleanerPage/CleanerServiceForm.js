@@ -2,16 +2,18 @@ import React from "react"
 import { useParams, Link } from "react-router-dom";
 import RegisterService from './CleanerPage/RegisterService'
 
-const CleanerServiceForm = () => {
+const CleanerServiceForm = (props) => {
+
   const { id } = useParams();
-  
-  console.log('props', id)
-  console.log("cleaners", ) /// Passing this will search the specifi 
-  const {selectedUser}
+  //console.log('props', id)
+  //console.log("cleaners") /// Passing this will search the specifi 
+  const {selectedUser} = props
 
   //console.log(selectedUser.services.map())
+
   return (
-    <>
+    
+    <div>
       <div className="row gutters-sm">
         <div className="col-md-4 mb-3">
           <div className="card">
@@ -28,10 +30,11 @@ const CleanerServiceForm = () => {
         </div>
       </div>
       <div>
-      <RegisterService/>
+      <RegisterService />
       </div>
-    </>
+    </div>
   )
+
 }
 
 export default CleanerServiceForm
