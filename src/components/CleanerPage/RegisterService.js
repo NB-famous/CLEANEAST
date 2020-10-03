@@ -118,15 +118,17 @@ export default class RegisterService extends Component {
                 // console.log("serviceIndex", serviceIndex)
                 tempUsers[index].service = [
                     ...tempUsers[index].service, {
+                        service_id: res.data.service.id,  //update this line to fix bug
                         service: this.state.name,
                         price: this.state.price * 100,
                         typeofservice: this.state.typeofservice,
                         deposit: this.state.deposit,
-                        service_id: res.data.id
+                        
                     }
                 ]
                 console.log("tempUsers", tempUsers)
                 this.props.setRegisteredUser(tempUsers)
+                console.log("res.data.id", res.data.service.id)
 
                 this.setState({
                     name: '',
