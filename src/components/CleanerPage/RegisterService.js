@@ -52,7 +52,7 @@ export default class RegisterService extends Component {
 
         //original
         this.state = {
-            name:  this.listOfJobs[0],
+            name: this.listOfJobs[0],
             price: '',
             typeofservice: this.listOfServicesCarWash[0], //this.listOfServices[0],
             deposit: '',
@@ -193,7 +193,7 @@ export default class RegisterService extends Component {
                     <Form.Label>Type Of Service</Form.Label>
                     <Form.Control type="text" placeholder="Type of service" value={this.state.typeofservice} onChange={this.onChangeTypeOfService}/>
                 </Form.Group> */}
-                
+
                 {this.state.name === "CarWash" ?
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Type of Service</Form.Label>
