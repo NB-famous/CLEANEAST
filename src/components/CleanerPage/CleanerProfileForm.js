@@ -171,8 +171,9 @@ const CleanerProfileForm = (props) => {
               <div className="card h-100">
                 <div className="card-body">
                   <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Services</i></h6>
-                  {getCurrentCleaner(registeredUser).service.map(val => {
+                  {getCurrentCleaner(registeredUser).service.map((val, index) => {
                     return (
+
                       <ul key={val.service_id}>
                         <hr/>
                         <li>
@@ -180,7 +181,7 @@ const CleanerProfileForm = (props) => {
                         </li>
                         <li>
                           Price:{val.price / 100}$
-                                      </li>
+                        </li>
                         <li>
                           Type Of Service:{val.typeofservice}
                         </li>

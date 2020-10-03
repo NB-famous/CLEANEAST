@@ -231,7 +231,7 @@ export default class UpdateService extends Component {
                     <Form.Control as="select" value={this.state.typeofservice} onChange={this.onChangeTypeOfService}>
                         {this.listOfServices.map(item => {
                             return (
-                                <option >{item}</option>
+                                <option key={item}>{item}</option>
                             )
                         })}
                     </Form.Control>
