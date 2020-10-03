@@ -90,6 +90,7 @@ export default function ContentUser(props){
                         registeredUser={registeredUser}
                         setRegisteredUser={setRegisteredUser}
                         theLoggedInUser={theLoggedInUser}
+                        setCurrentUser={setChosenProfile}
                     />
                 </section>
             </Route>

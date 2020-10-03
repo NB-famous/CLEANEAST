@@ -1,5 +1,5 @@
 import React from "react"
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
 import '../CleanerProfileReviews.css'
@@ -7,7 +7,7 @@ import '../CleanerProfileServices.css'
 
 
 const CleanerProfileForm = (props) => {
-  const { id } = useParams();
+  //const { id } = useParams();
 
   
   const { selectedUser, registeredUser } = props
@@ -191,7 +191,7 @@ const CleanerProfileForm = (props) => {
                   <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Services</i></h6>
                   {getCurrentCleaner(registeredUser).service.map(val => {
                     return(
-                      <ul key="val.service_id" className="service-container">
+                      <ul key={val.service_id} className="service-container">
                           <li className="service-header">
                             <div>{val.service}<span className="service-type">{val.typeofservice}</span> 
                             </div>
