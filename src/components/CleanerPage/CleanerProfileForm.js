@@ -42,10 +42,10 @@ const CleanerProfileForm = (props) => {
     return(
       <ul className="service-container">
           <li className="service-header">
-            <div>{val.service}</div> 
+            <div>{val.service}<span className="service-type">{val.typeofservice}</span> 
+            </div>
             <div>${val.price/100}</div>  
           </li>
-          <li className="service-type">{val.typeofservice}</li>
           <li className="service-deposit">Deposit of {val.deposit}%</li>
       </ul>
     )})  
