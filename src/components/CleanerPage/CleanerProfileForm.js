@@ -43,7 +43,7 @@ const CleanerProfileForm = (props) => {
                   <h4>{localStorage.getItem("cleanerUser")}</h4>
                   <p className="text-secondary mb-1">{getCurrentCleaner(registeredUser).cleanerName}</p>
                   <p className="text-muted font-size-sm">{selectedUser.address}</p>
-                  <button className="btn btn-primary">Hire</button>
+                  {/* <button className="btn btn-primary">Hire</button> */}
                   {/* <button className="btn btn-outline-primary">Message</button> */}
                   <Link to={'/cleaners/services'}>
                     <button className="btn btn-outline-primary" onClick={() => props.createService(getCurrentCleaner(registeredUser).cleanerId)}>Add service</button>
@@ -124,7 +124,7 @@ const CleanerProfileForm = (props) => {
                   <h6 className="mb-0">Address</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {selectedUser.address}
+                  {getCurrentCleaner(registeredUser).address}
                 </div>
               </div>
             </div>

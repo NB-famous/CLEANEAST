@@ -50,7 +50,7 @@ export default function UserMap(props){
         return (
             <>
             {isLoading && <div>Loading...</div>}
-            {!isLoading && currentUser && <Map className="map" center={position} zoom={10}>
+            {!isLoading && currentUser && <Map className="map" center={position} zoom={15}>
                 <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

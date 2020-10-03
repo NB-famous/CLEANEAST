@@ -30,22 +30,6 @@ export default function ContentUser(props){
 
     let history = useHistory()
 
-    ////// Get the current user ////////
-    // const theCurrentLoggedInUser= (theCurrentUser) => {
-
-    //     let currentUser = {};
-  
-    //     theCurrentUser.map(user => {
-  
-    //       if(user.username === localStorage.getItem("userUser")){
-  
-    //         currentUser= {...user}
-            
-    //       }
-    //       return currentUser
-    //     })
-    //     return currentUser;
-    // }
 
     /////// This is where get user is coming from and pass down to maps
     useEffect(()=>{
@@ -113,7 +97,7 @@ export default function ContentUser(props){
                 <Route path={`/users/cleanerProfile/:id`} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
+                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome To My Profile {localStorage.getItem("userUser")} !!!</strong></h1>
                         <div style={{marginTop: "5%"}}></div>
                         <div className="row">
                             <CleanerProfile 
@@ -126,7 +110,7 @@ export default function ContentUser(props){
                 <Route path={'/cleaners/chatroom'} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("appUser")} !!!</strong></h1>
+                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome To The Chat Room {localStorage.getItem("userUser")} !!!</strong></h1>
                         <div style={{marginTop: "5%"}}></div>
                         <div className="row">
                             <Chat />
@@ -137,7 +121,7 @@ export default function ContentUser(props){
                 <Route path={'/users/ratings'} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add your comments here {localStorage.getItem("appUser")} !!!</strong></h1>
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add your comments here {localStorage.getItem("userUser")} !!!</strong></h1>
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
                             <RegisterRating
