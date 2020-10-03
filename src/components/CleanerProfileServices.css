@@ -1,0 +1,26 @@
+.service-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 4px 12px 2px 12px;
+  border-radius: 2px 2px 0 0;
+}
+
+.service-type {
+  font-size: 15px;
+  font-weight: 100;
+  padding-left: 10px;
+}
+
+.service-deposit {
+  font-size: 12px;
+  padding: 2px 12px 4px 12px;
+}
+
+.service-container {
+  background-color: #C4E7D4;
+  padding: 0;
+  border-radius: 2px;
+  border: 1px solid #1F1F1F;
+} 

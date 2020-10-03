@@ -1,0 +1,32 @@
+.star {
+  color: #ffc107;
+  size: 10;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #C4E7D4;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 4px 8px 4px 8px;
+  border-radius: 5px 5px 0 0;
+}
+
+.review-servicename {
+  font-weight: 500;
+  font-size: 15px;
+  padding: 4px 10px 4px 8px;
+}
+
+.review-comment {
+  font-size: 12px;
+  padding: 4px 12px 10px 12px;
+}
+
+.review-container {
+  background-color: #DAE3E7;
+  padding: 0;
+  border-radius: 5px;
+  border: 1px solid #1F1F1F;
+}

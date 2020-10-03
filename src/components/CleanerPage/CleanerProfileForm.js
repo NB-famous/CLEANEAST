@@ -1,33 +1,74 @@
 import React from "react"
 import { useParams, Link } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
+
+import '../CleanerProfileReviews.css'
+import '../CleanerProfileServices.css'
 
 
 const CleanerProfileForm = (props) => {
   const { id } = useParams();
 
-  console.log('props', id)
-  console.log("cleaners", props) /// Passing this will search the specifi 
+  
   const { selectedUser, registeredUser } = props
 
   // console.log("THIS IS registeredUser", registeredUser)
 
   const getCurrentCleaner = (theCurrentCleaner) => {
-
+    
     let currentCleaner = {};
-
-    theCurrentCleaner.map(cleaner => {
-
-      if (cleaner.email === localStorage.getItem("cleanerEmail")) {
-
-        currentCleaner = { ...cleaner }
-
+    
+    theCurrentCleaner.map((cleaner) => {
+      
+      if(cleaner.email === localStorage.getItem("cleanerEmail")) {
+        
+        currentCleaner = {...cleaner}
+        
       }
       return currentCleaner
     })
     return currentCleaner;
   }
+  
+  console.log('getCurrentCleaner(registeredUser) ---> ', getCurrentCleaner(registeredUser));
+  console.log('getCurrentCleaner(registeredUser).service ---> ', getCurrentCleaner(registeredUser).service);
+  console.log('getCurrentCleaner(registeredUser).rating ---> ', getCurrentCleaner(registeredUser).rating);
 
-  //console.log("THIS IS THE CURRENT USER", getCurrentCleaner(registeredUser).cleanerName)
+  //Creates list of services the currently selected seller offers
+  const services = getCurrentCleaner(registeredUser).service.map(val => {
+    return(
+      <ul className="service-container">
+          <li className="service-header">
+            <div>{val.service}<span className="service-type">{val.typeofservice}</span> 
+            </div>
+            <div>${val.price/100}</div>  
+          </li>
+          <li className="service-deposit">Deposit of {val.deposit}%</li>
+      </ul>
+    )})  
+  
+  //Creates list of reviews belonging to the currently selected seller
+  const reviews = getCurrentCleaner(registeredUser).rating.map(val => {
+    
+    const starRating = [...Array(5)].map((star, i) => {
+      return (
+        <FaStar className="star" color={i <= val.rating - 1 ? "#ffc107" : "e4e5e9"}  />
+      )
+      
+      return(
+      <ul className="review-container">
+          <li className="review-header">
+            <div>{val.username}</div> 
+            <div>{starRating}</div>  
+          </li>
+          <li className="review-servicename">{val.service}</li>
+          <li className="review-comment">{val.comment}</li>   
+       
+      </ul>)})
+    })
+
+
+  //const { description, email, phone, cleanerName, address } = getCurrentCleaner(registeredUser);
 
   return (
 
@@ -39,7 +80,6 @@ const CleanerProfileForm = (props) => {
               <div className="d-flex flex-column align-items-center text-center">
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
                 <div className="mt-3">
-
                   <h4>{localStorage.getItem("cleanerUser")}</h4>
                   <p className="text-secondary mb-1">{getCurrentCleaner(registeredUser).cleanerName}</p>
                   <p className="text-muted font-size-sm">{selectedUser.address}</p>
@@ -48,7 +88,6 @@ const CleanerProfileForm = (props) => {
                   <Link to={'/cleaners/services'}>
                     <button className="btn btn-outline-primary" onClick={() => props.createService(getCurrentCleaner(registeredUser).cleanerId)}>Add service</button>
                   </Link>
-
                 </div>
               </div>
             </div>
@@ -133,6 +172,7 @@ const CleanerProfileForm = (props) => {
             <div className="col-sm-6 mb-3" style={{ minWidth: "100%" }}>
               <div className="card h-100">
                 <div className="card-body">
+
                   <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Description</i></h6>
                   {getCurrentCleaner(registeredUser).description}
                 </div>
@@ -203,13 +243,12 @@ const CleanerProfileForm = (props) => {
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
 
     </>
+
 
   )
 }
