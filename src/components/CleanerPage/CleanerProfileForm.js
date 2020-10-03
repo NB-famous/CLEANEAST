@@ -8,13 +8,13 @@ const CleanerProfileForm = (props) => {
   console.log("cleaners", props) /// Passing this will search the specifi 
   const {selectedUser, registeredUser} = props
 
-  console.log("THIS IS registeredUser", registeredUser)
+  // console.log("THIS IS registeredUser", registeredUser)
 
-  console.log("THIS IS SELECTED",registeredUser.map(cleaners => 
+  // console.log("THIS IS SELECTED",registeredUser.map(cleaners => 
 
-      cleaners.email === localStorage.getItem("cleanerEmail"))
+  //     cleaners.email === localStorage.getItem("cleanerEmail"))
 
-  )
+  // )
   
   const getCurrentCleaner = (theCurrentCleaner) => {
 
@@ -47,8 +47,6 @@ const CleanerProfileForm = (props) => {
                     <h4>{localStorage.getItem("cleanerUser")}</h4>
                     <p className="text-secondary mb-1">{getCurrentCleaner(registeredUser).cleanerName}</p>
                     <p className="text-muted font-size-sm">{selectedUser.address}</p>
-                    <button className="btn btn-primary">Hire</button>
-                    {/* <button className="btn btn-outline-primary">Message</button> */}
                     <Link to={'/cleaners/services'}>
                       <button className="btn btn-outline-primary">Add service</button>
                     </Link>

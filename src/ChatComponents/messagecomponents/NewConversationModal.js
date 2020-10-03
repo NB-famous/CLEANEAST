@@ -71,7 +71,7 @@ export default function NewConversationModal({ closeModal }) {
               />
             </Form.Group>
           ))}
-          <Button type="submit">Connect With The Cleanpreneur</Button>
+          <Button type="submit" style={{backgroundColor:"#44B244", borderColor: "unset"}}>Connect With The Cleanpreneur</Button>
         </Form>
       </Modal.Body>
     </>

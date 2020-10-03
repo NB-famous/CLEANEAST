@@ -13,6 +13,7 @@ export default function Conversations() {
           action
           onClick={() => selectConversationIndex(index)}
           active={conversation.selected}
+          style={{backgroundColor: "#44B244",  borderColor: "unset", fontWeight:"bold"}}
         >
           {conversation.recipients.map(r => r.name).join(', ')}
         </ListGroup.Item>

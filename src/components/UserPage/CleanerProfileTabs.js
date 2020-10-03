@@ -2,10 +2,19 @@ import React from "react"
 import {Link} from 'react-router-dom'
 
 
+
+
+
 const CleanerProfileTabs = (props) => {
 
   const {registeredUser} = props
   
+  const sendText = (user) => {
+
+    console.log("THIS IS USER", user)
+    fetch(`http://127.0.0.1:5000/twilio/send-text?recipient=${user}&textmessage="Congrats you got hired!" By ${localStorage.getItem("userUser")}`)
+    .catch(err => console.error(err))
+  }
 
 
   return (
@@ -26,12 +35,18 @@ const CleanerProfileTabs = (props) => {
                 <Link onClick={() => props.setCurrentUser(user)} to={`/users/cleanerProfile/${user.id}`} params={ {theUser: {user} }} >
                   <button type="button" className="btn btn-sm btn-outline-secondary">Profile</button>
                 </Link>
-                  <button type="button" className="btn btn-sm btn-outline-secondary">Hire</button>
+                <Link to={'/twilio/send-text'}>
+                  <button type="button" className="btn btn-sm btn-outline-secondary" onClick={()=> {
+                    localStorage.setItem("hiredCleaner",user.cleanerName)
+                    sendText(user.phone)}}>
+                    Hire
+                    </button>
+                </Link>
                 <Link to={'/cleaners/chatroom'}>
                   <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => localStorage.setItem("cleanerData",user.cleanerName)}>Message</button>
                 </Link>
                 </div>
-                <small className="text-muted">9 mins</small>
+              
               </div>
             </div>
           </div>
