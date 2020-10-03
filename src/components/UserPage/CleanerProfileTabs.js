@@ -32,7 +32,7 @@ const CleanerProfileTabs = (props) => {
               </p>
               <div className="d-flex justify-content-between align-items-center">
                 <div className="btn-group">
-                <Link onClick={() => props.setCurrentUser(user)} to={`/users/cleanerProfile/${user.id}`} params={ {theUser: {user} }} >
+                <Link onClick={() => props.setCurrentUser(user)} to={`/users/cleanerProfile/${user.cleanerId}`} params={ {theUser: {user} }} >
                   <button type="button" className="btn btn-sm btn-outline-secondary">Profile</button>
                 </Link>
                 <Link to={'/twilio/send-text'}>
