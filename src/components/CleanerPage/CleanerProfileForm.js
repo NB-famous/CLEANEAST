@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
 import '../CleanerProfileReviews.css'
+import '../CleanerProfileServices.css'
 
 const CleanerProfileForm = (props) => {
   const { id } = useParams();
@@ -39,13 +40,13 @@ const CleanerProfileForm = (props) => {
   //Creates list of services the currently selected seller offers
   const services = getCurrentCleaner(registeredUser).service.map(val => {
     return(
-      <ul>
-        <hr/>
-          <li>Service:{val.service}</li>
-          <li>Price:{val.price/100}$</li>
-          <li>Type Of Service:{val.typeofservice}</li>
-          <li>DEPOSIT: {val.deposit}%</li>
-        <hr/>
+      <ul className="service-container">
+          <li className="service-header">
+            <div>{val.service}</div> 
+            <div>${val.price/100}</div>  
+          </li>
+          <li className="service-type">{val.typeofservice}</li>
+          <li className="service-deposit">Deposit of {val.deposit}%</li>
       </ul>
     )})  
   
@@ -60,7 +61,6 @@ const CleanerProfileForm = (props) => {
 
     return(
       <ul className="review-container">
-       
           <li className="review-header">
             <div>{val.username}</div> 
             <div>{starRating}</div>  
@@ -69,6 +69,9 @@ const CleanerProfileForm = (props) => {
           <li className="review-comment">{val.comment}</li>   
        
       </ul>)})
+
+
+  const { description, email, phone, cleanerName, address } = getCurrentCleaner(registeredUser);
 
 
 
@@ -83,7 +86,7 @@ const CleanerProfileForm = (props) => {
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
                 <div className="mt-3">
                     <h4>{localStorage.getItem("cleanerUser")}</h4>
-                    <p className="text-secondary mb-1">{getCurrentCleaner(registeredUser).cleanerName}</p>
+                    <p className="text-secondary mb-1">{cleanerName}</p>
                     <p className="text-muted font-size-sm">{selectedUser.address}</p>
                     <button className="btn btn-primary">Hire</button>
                     {/* <button className="btn btn-outline-primary">Message</button> */}
@@ -125,57 +128,38 @@ const CleanerProfileForm = (props) => {
               <div className="card mb-3">
                 <div className="card-body">
                   <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Full Name</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                    {getCurrentCleaner(registeredUser).cleanerName}
-                    </div>
+                    <div className="col-sm-3"><h6 className="mb-0">Full Name</h6></div>
+                    <div className="col-sm-9 text-secondary">{cleanerName}</div>
                   </div>
                   <hr />
                   <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Email</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                    {getCurrentCleaner(registeredUser).email}
-                    </div>
+                    <div className="col-sm-3"><h6 className="mb-0">Email</h6></div>
+                    <div className="col-sm-9 text-secondary">{email}</div>
                   </div>
                   <hr />
                   <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Phone</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                    {getCurrentCleaner(registeredUser).phone}
-                    </div>
+                    <div className="col-sm-3"><h6 className="mb-0">Phone</h6></div>
+                    <div className="col-sm-9 text-secondary">{phone}</div>
                   </div>
                   <hr />
                   <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Mobile</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                    {getCurrentCleaner(registeredUser).phone}
-                    </div>
+                    <div className="col-sm-3"><h6 className="mb-0">Mobile</h6></div>
+                    <div className="col-sm-9 text-secondary">{phone}</div>
                   </div>
                   <hr />
                   <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Address</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      {getCurrentCleaner(registeredUser).address}
-                    </div>
+                    <div className="col-sm-3"><h6 className="mb-0">Address</h6></div>
+                    <div className="col-sm-9 text-secondary">{address}</div>
                   </div>
                 </div>
               </div>
+
               <div className="row gutters-sm">
                 <div className="col-sm-6 mb-3" style={{minWidth:"100%"}}>
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Description</i></h6>
-                      {getCurrentCleaner(registeredUser).description}
+                      {description}
                     </div>
                   </div>
                 </div>
