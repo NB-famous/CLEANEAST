@@ -13,6 +13,7 @@ import RegisterService from './CleanerPage/RegisterService'
 import UpdateService from './CleanerPage/UpdateService'
 import axios from 'axios'
 import Chat from '../ChatComponents/messagecomponents/Chat'
+import DashboardCalendar from './CleanerPage/DashboardCalendar'
 
 
 export default function ContentSeller(props){
@@ -102,6 +103,10 @@ export default function ContentSeller(props){
                         <div style={{ marginTop: "5%" }}></div>
                         <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} deleteService={deleteService} updateService={updateService} createService={createService}/>
                     </section>
+                </section>
+
+                <section className="homebox__card-right">
+                    <DashboardCalendar />
                 </section>
             </Route>
             <Switch>
