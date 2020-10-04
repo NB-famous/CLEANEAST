@@ -58,13 +58,13 @@ async function handleSubmit(event){
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" onChange={event => setPassword(event.target.value)}/>
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" style={{backgroundColor: "#44B244", borderColor: "black"}}>
             Login User
         </Button>
     </Form>
 
     <div style={{marginTop: "5%"}}>
-      <h2>If you are not yet a user please click <strong> <Link to={'/users/register'}> here </Link> </strong></h2>
+      <h2>If you are not yet a user please click <strong> <Link to={'/users/register'} style={{color: "#44B244"}}> here </Link> </strong></h2>
     </div>
 
     </>

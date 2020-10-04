@@ -5,6 +5,7 @@
 
 import React, {useState, useEffect} from 'react';
 import "../styles/Content.scss";
+import "../styles/HomePage.scss"
 /* import MapSource from './MapSource' */
 import UserMap from './UserMap'
 import CleanerProfileTabs from './UserPage/CleanerProfileTabs'
@@ -14,6 +15,8 @@ import RegisterRating from './UserPage/RegisterRating'
 import axios from 'axios';
 import Chat from '../ChatComponents/messagecomponents/Chat'
 import TextSent from './TextSent'
+import ListOfAvailableCleaners  from './UserPage/ListOfAvailableCleaners'
+import ListofCleanerContacts from './UserPage/ListofCleanerContacts'
 
 
 
@@ -107,6 +110,10 @@ export default function ContentUser(props){
                         </div>
                         </section>
                     </section>
+
+                    <section className="homebox__card-right">
+                    <ListOfAvailableCleaners registeredUser={registeredUser} setCurrentUser={setChosenProfile}/>
+                    </section>
                 </Route>
                 <Route path={'/cleaners/chatroom'} exact>
                     <section className="appointment__card-left">
@@ -117,6 +124,10 @@ export default function ContentUser(props){
                             <Chat />
                         </div>
                         </section>
+                    </section>
+
+                    <section className="homebox__card-right">
+                    <ListofCleanerContacts registeredUser={registeredUser} setCurrentUser={setChosenProfile}/>
                     </section>
                 </Route>
                 <Route path={'/users/ratings'} exact>
