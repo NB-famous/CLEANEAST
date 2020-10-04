@@ -66,15 +66,29 @@ $appointment-height: 11rem;
 
     }
 
-    &-right {
+    .appointment__card-right {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-end;
+      justify-content: center;
+      align-items: center;
       min-width: 50%;
+      max-width: 50%;
       max-height: 1200px;
-      padding: 1%;
+      background-color: grey;
+      opacity: 50%;
+      border: solid black;
+      border-radius: 5%;
+      padding: 2rem;
       margin-top: 105px;
+      overflow: auto;
+      overflow-wrap: break-word;
+  }
+
+    #slide {
+      display: flex;
+      background-color: green;
+      border-radius: 5%;
+      padding: 2rem;
     }
 
     ::-webkit-scrollbar {
@@ -191,4 +205,9 @@ $appointment-height: 11rem;
     color: $danger-color;
     margin-bottom: 1rem;
   }
+}
+
+.carousel-caption {
+  color: #000;
+  font-weight: bold;
 }

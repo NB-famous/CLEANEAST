@@ -9,27 +9,27 @@ import '../CleanerProfileServices.css'
 const CleanerProfileForm = (props) => {
   //const { id } = useParams();
 
-  
+
   const { selectedUser, registeredUser } = props
 
   // console.log("THIS IS registeredUser", registeredUser)
 
   const getCurrentCleaner = (theCurrentCleaner) => {
-    
+
     let currentCleaner = {};
-    
+
     theCurrentCleaner.map((cleaner) => {
-      
-      if(cleaner.email === localStorage.getItem("cleanerEmail")) {
-        
-        currentCleaner = {...cleaner}
-        
+
+      if (cleaner.email === localStorage.getItem("cleanerEmail")) {
+
+        currentCleaner = { ...cleaner }
+
       }
       return currentCleaner
     })
     return currentCleaner;
   }
-  
+
   console.log('getCurrentCleaner(registeredUser) ---> ', getCurrentCleaner(registeredUser));
   console.log('getCurrentCleaner(registeredUser).service ---> ', getCurrentCleaner(registeredUser).service);
   console.log('getCurrentCleaner(registeredUser).rating ---> ', getCurrentCleaner(registeredUser).rating);
@@ -52,26 +52,28 @@ const CleanerProfileForm = (props) => {
   //         {/* </DeleteServiceDirectly> */}
   //     </ul>
   //   )})  
-  
+
   //Creates list of reviews belonging to the currently selected seller
   const reviews = getCurrentCleaner(registeredUser).rating.map(val => {
-    
+
     const starRating = [...Array(5)].map((star, i) => {
       return (
-        <FaStar className="star" color={i <= val.rating - 1 ? "#ffc107" : "e4e5e9"}  />
-      )});
-      
-    return(
-    <ul className="review-container">
+        <FaStar className="star" color={i <= val.rating - 1 ? "#ffc107" : "e4e5e9"} />
+      )
+    });
+
+    return (
+      <ul className="review-container">
         <li className="review-header">
-          <div>{val.username}</div> 
-          <div>{starRating}</div>  
+          <div>{val.username}</div>
+          <div>{starRating}</div>
         </li>
         <li className="review-servicename">{val.service}</li>
-        <li className="review-comment">{val.comment}</li>   
-      
-    </ul>)});
-    
+        <li className="review-comment">{val.comment}</li>
+
+      </ul>)
+  });
+
 
 
   const { description, email, phone, cleanerName, address } = getCurrentCleaner(registeredUser);
@@ -175,7 +177,7 @@ const CleanerProfileForm = (props) => {
             </div>
           </div>
           <div className="row gutters-sm">
-            
+
             <div className="col-sm-6 mb-3" style={{ minWidth: "100%" }}>
               <div className="card h-100">
                 <div className="card-body">
@@ -184,28 +186,29 @@ const CleanerProfileForm = (props) => {
                 </div>
               </div>
             </div>
-            
+
             <div className="col-sm-6 mb-3" style={{ minWidth: "100%" }}>
               <div className="card h-100">
                 <div className="card-body">
                   <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Services</i></h6>
                   {getCurrentCleaner(registeredUser).service.map(val => {
-                    return(
+                    return (
                       <ul key={val.service_id} className="service-container">
-                          <li className="service-header">
-                            <div>{val.service}<span className="service-type">{val.typeofservice}</span> 
-                            </div>
-                            <div>${val.price/100}</div>  
-                          </li>
-                          <li className="service-deposit">Deposit of {val.deposit}%</li>
-                          <Link to={'/cleaners/services/update'}>
-                                            <button className="btn btn-outline-primary" onClick={() => props.updateService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Update service</button>
-                          </Link>
-                          {/* <DeleteServiceDirectly selectedUserIndex={registeredUser} selectedServiceid={val.service_id}> */}
-                          <button className="btn btn-outline-primary" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Delete service</button>
-                          {/* </DeleteServiceDirectly> */}
+                        <li className="service-header">
+                          <div>{val.service}<span className="service-type">{val.typeofservice}</span>
+                          </div>
+                          <div>${val.price / 100}</div>
+                        </li>
+                        <li className="service-deposit">Deposit of {val.deposit}%</li>
+                        <Link to={'/cleaners/services/update'}>
+                          <button className="btn btn-outline-primary" onClick={() => props.updateService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Update service</button>
+                        </Link>
+                        {/* <DeleteServiceDirectly selectedUserIndex={registeredUser} selectedServiceid={val.service_id}> */}
+                        <button className="btn btn-outline-primary" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Delete service</button>
+                        {/* </DeleteServiceDirectly> */}
                       </ul>
-                    )})}
+                    )
+                  })}
                 </div>
               </div>
             </div>
