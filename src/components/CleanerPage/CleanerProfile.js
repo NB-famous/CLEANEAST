@@ -1,5 +1,9 @@
 import React from "react"
 import { useParams, Link } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
+
+import '../CleanerProfileReviews.css'
+import '../CleanerProfileServices.css'
 
 const CleanerProfile = (props) => {
   const { id } = useParams();
@@ -16,6 +20,40 @@ const CleanerProfile = (props) => {
     .catch(err => console.error(err))
   }
 
+
+  //Creates list of services the currently selected seller offers
+  const services = selectedUser.service.map(val => {
+    return(
+      <ul key="val.service_id" className="service-container">
+          <li className="service-header">
+            <div>{val.service}<span className="service-type">{val.typeofservice}</span> 
+            </div>
+            <div>${val.price/100}</div>  
+          </li>
+          <li className="service-deposit">Deposit of {val.deposit}%</li>
+      </ul>
+    )})
+
+
+  //Creates list of reviews belonging to the currently selected seller
+  const reviews = selectedUser.rating.map(val => {
+    
+    const starRating = [...Array(5)].map((star, i) => {
+      return (
+        <FaStar color={i <= val.rating - 1 ? "#ffc107" : "e4e5e9"}  />
+      )});
+      
+    return(
+    <ul className="review-container">
+        <li className="review-header">
+          <div>{val.username}</div> 
+          <div>{starRating}</div>  
+        </li>
+        <li className="review-servicename">{val.service}</li>
+        <li className="review-comment">{val.comment}</li>   
+      
+    </ul>)});
+
   //console.log(selectedUser.services.map())
   return (
     <>
@@ -28,6 +66,46 @@ const CleanerProfile = (props) => {
                 <div className="mt-3">
                     <h4>{selectedUser.cleanerName}</h4>
                     <p className="text-muted font-size-sm">{selectedUser.address}</p>
+                    {/* {} */}
+                    <div className="card mb-3">
+                      <div className="card-body">
+                        <div className="row">
+                          
+                          <div className="col-sm-9 text-secondary">
+                          {selectedUser.cleanerName}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                          
+                          <div className="col-sm-9 text-secondary">
+                            {selectedUser.email}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                         
+                          <div className="col-sm-9 text-secondary">
+                          {selectedUser.phone}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                          
+                          <div className="col-sm-9 text-secondary">
+                          {selectedUser.phone}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                         
+                          <div className="col-sm-9 text-secondary">
+                            {selectedUser.address}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* {} */}
                 </div>
                 </div>
             </div>
@@ -118,62 +196,24 @@ const CleanerProfile = (props) => {
                     </div>
                   </div>
                 </div>
+                
+                <div className="col-sm-6 mb-3" style={{minWidth:"100%"}}>
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Services</i></h6>
+                      {services} 
+                    </div>
+                  </div>
+                </div>
 
                 <div className="col-sm-6 mb-3" style={{minWidth:"100%"}}>
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Customer Ratings</i></h6>
-                      <small>Web Design</small>
-                      <div className="progress mb-3" style={{height: "5px"}}>
-                        <div className="progress-bar bg-primary" role="progressbar" style={{width: " 80%"}} aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Website Markup</small>
-                      <div className="progress mb-3" style={{height: "5px"}}>
-                        <div className="progress-bar bg-primary" role="progressbar" style={{width: " 72%"}} aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>One Page</small>
-                      <div className="progress mb-3" style={{height: "5px"}}>
-                        <div className="progress-bar bg-primary" role="progressbar" style={{width: " 89%"}} aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Mobile Template</small>
-                      <div className="progress mb-3" style={{height: "5px"}}>
-                        <div className="progress-bar bg-primary" role="progressbar" style={{width: " 55%"}} aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Backend API</small>
-                      <div className="progress mb-3" style={{height: "5px"}}>
-                        <div className="progress-bar bg-primary" role="progressbar" style={{width: " 66%"}} aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
+                      {reviews}
                     </div>
                   </div>
                 </div>
-
-                <div className="col-sm-6 mb-3" style={{minWidth:"100%"}}>
-                  <div className="card h-100">
-                    <div className="card-body">
-                      <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Services</i></h6>
-                      {selectedUser.service.map(val => {
-                                  return(
-                                    <ul key={val.service}>
-                                    <hr/>
-                                      <li>
-                                        Service:{val.service}
-                                      </li>
-                                      <li>
-                                      Price:{val.price/100}$
-                                      </li>
-                                      <li>
-                                      Type Of Service:{val.typeofservice}
-                                      </li>
-                                      <li>
-                                      Deposit: {val.deposit}%
-                                      </li>
-                                      <hr/>
-                                    </ul>
-                                  )})} 
-                    </div>
-                  </div>
-                </div>
-
 
             </div>
             </div>
