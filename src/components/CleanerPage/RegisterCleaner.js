@@ -1,10 +1,10 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 
-export default class RegisterCleaner extends Component{
+export default class RegisterCleaner extends Component {
 
     constructor(props) {
         super(props);
@@ -18,18 +18,18 @@ export default class RegisterCleaner extends Component{
         this.onChangePictureUrl = this.onChangePictureUrl.bind(this);
         this.onChangePhone = this.onChangePhone.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-    
+
         this.state = {
-          username: '',
-          email:'',
-          password:'',
-          description:'',
-          address:'',
-          latitude: '',
-          longitude: '',
-          pictureUrl:'',
-          phone:'',
-          isRegistered: false,
+            username: '',
+            email: '',
+            password: '',
+            description: '',
+            address: '',
+            latitude: '',
+            longitude: '',
+            pictureUrl: '',
+            phone: '',
+            isRegistered: false,
         }
 
         this.getMyLocation = this.getMyLocation.bind(this)
@@ -83,41 +83,41 @@ export default class RegisterCleaner extends Component{
 
     onSubmit(e) {
         e.preventDefault();
-    
+
         const user = {
-          username: this.state.username,
-          email: this.state.email,
-          password: this.state.password,
-          description: this.state.description,
-          address: this.state.address,
-          latitude: this.state.latitude,
-          longitude: this.state.longitude,
-          pictureUrl: this.state.pictureUrl,
-          phone: this.state.phone
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password,
+            description: this.state.description,
+            address: this.state.address,
+            latitude: this.state.latitude,
+            longitude: this.state.longitude,
+            pictureUrl: this.state.pictureUrl,
+            phone: this.state.phone
         }
-    
+
         console.log(user);
-    
+
         axios.post('http://localhost:5000/cleaners/register', user)
             .then(res => {
                 localStorage.setItem("cleanerToken", res.data.token) // Then object is from response we made through url attach to MongoDB
                 localStorage.setItem("cleanerEmail", res.data.cleaner.email)
                 localStorage.setItem("cleanerUser", res.data.cleaner.username)
                 console.log("This is the responese from then", res.data)
-            
+
                 this.setState({
                     username: '',
                     email: '',
                     password: '',
-                    isRegistered:true,
-          
+                    isRegistered: true,
+
                 })
             })
-           .catch(err => {
+            .catch(err => {
                 console.log("This is the responese from catch", err);
             });
-    
-       
+
+
         //this.props.history.push('/cleaners/login')
 
     }
@@ -125,29 +125,29 @@ export default class RegisterCleaner extends Component{
 
     getMyLocation() {
         const location = window.navigator && window.navigator.geolocation
-        
-        if (location) {
-          location.getCurrentPosition((position) => {
-            this.setState({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-            })
-          }, (error) => {
-            this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
-          })
-        }
-    
-      }
 
-    
-    render(){
+        if (location) {
+            location.getCurrentPosition((position) => {
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                })
+            }, (error) => {
+                this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
+            })
+        }
+
+    }
+
+
+    render() {
 
         const { latitude, longitude } = this.state
         const isRegistered = this.state.isRegistered;
-    
-        if(isRegistered === true) {
+
+        if (isRegistered === true) {
             this.setCleanerLogin(true)
-            return <Redirect to="/"/>
+            return <Redirect to="/" />
         }
 
         return (
@@ -159,15 +159,15 @@ export default class RegisterCleaner extends Component{
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={this.onChangeEmail}/>
+                    <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={this.onChangeEmail} />
                     <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
+                        We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
+                    <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword} />
                 </Form.Group>
 
                 <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -177,17 +177,17 @@ export default class RegisterCleaner extends Component{
 
                 <Form.Group controlId="formBasicAddress">
                     <Form.Label>Address</Form.Label>
-                    <Form.Control type="text" placeholder="Address" value={this.state.address} onChange={this.onChangeAddress}/>
+                    <Form.Control type="text" placeholder="Address" value={this.state.address} onChange={this.onChangeAddress} />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPicture">
                     <Form.Label>Picture url</Form.Label>
-                    <Form.Control type="text" placeholder="Picture_url" value={this.state.pictureUrl} onChange={this.onChangePictureUrl}/>
+                    <Form.Control type="text" placeholder="Picture_url" value={this.state.pictureUrl} onChange={this.onChangePictureUrl} />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPhone">
                     <Form.Label>Phone</Form.Label>
-                    <Form.Control type="text" placeholder="Phone" value={this.state.phone} onChange={this.onChangePhone}/>
+                    <Form.Control type="text" placeholder="Phone" value={this.state.phone} onChange={this.onChangePhone} />
                 </Form.Group>
 
                 <Form.Group controlId="formLatitude">
@@ -198,7 +198,7 @@ export default class RegisterCleaner extends Component{
                     <Form.Control type="hidden" value={longitude} />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                            Register 
+                    Register
                 </Button>
             </Form>
         )

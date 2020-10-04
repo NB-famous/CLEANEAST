@@ -10,17 +10,13 @@ export default class RegisterService extends Component {
         super(props);
         this.targetCleaner = props.targetCleaner;
         this.registeredUser = props.registeredUser;
-        // this.cleanerLogin = props.cleanerLogin;
-        // this.setCleanerLogin = props.setCleanerLogin;
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangePrice = this.onChangePrice.bind(this);
         this.onChangeTypeOfService = this.onChangeTypeOfService.bind(this);
         this.onChangeDeposit = this.onChangeDeposit.bind(this);
-        //this.onSubmit = this.onSubmit.bind(this);
-        //this.listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry", "Window cleaning", "Interior vacuum", "Mats cleaning" ]
         this.listOfServicesCarWash = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry", "Window cleaning", "Interior vacuum", "Mats cleaning"]
         this.listOfServicesHomeCleaning = ["Brooming", "Vacuuming", "Mopping", "Dusting", "Floor Waxing", "Window cleaning", "Carpet cleaning"]
-        this.listOfServicesLandScaping = ["Lawn Mowing ", "Watering", "Planting", "Weeds Removal"]
+        this.listOfServicesLandScaping = ["Lawn Mowing ", "Watering", "Gardening", "Weeds Removal"]
         this.listOfJobs = ["CarWash", "Home Cleaning", "Land Scaping"]
 
 
@@ -54,7 +50,7 @@ export default class RegisterService extends Component {
         this.state = {
             name: this.listOfJobs[0],
             price: '',
-            typeofservice: this.listOfServicesCarWash[0], //this.listOfServices[0],
+            typeofservice: this.listOfServicesCarWash[0],
             deposit: '',
             isRegistered: false,
         }
@@ -108,14 +104,7 @@ export default class RegisterService extends Component {
                 const tempUsers = [...this.props.registeredUser]
                 const index = tempUsers.map(user => user.cleanerId).indexOf(this.props.targetCleaner.cleanerId)
                 console.log("Index", index) //return the index of the cleaner eg. 19
-                //const serviceIndex = tempUsers[index].service.map(s => s.service_id === this.props.targetValue.serviceId) //original
-                // const serviceIndex = tempUsers[index].service.map((s, i) => {
-                //     console.log("S",s)
-                //     if (s.service_id === this.props.targetValue.serviceId){
-                //         console.log("index of S", i)
-                //         return i
-                //      }})
-                // console.log("serviceIndex", serviceIndex)
+
                 tempUsers[index].service = [
                     ...tempUsers[index].service, {
                         service_id: res.data.service.id,  //update this line to fix bug
@@ -123,7 +112,7 @@ export default class RegisterService extends Component {
                         price: this.state.price * 100,
                         typeofservice: this.state.typeofservice,
                         deposit: this.state.deposit,
-                        
+
                     }
                 ]
                 console.log("tempUsers", tempUsers)
@@ -137,19 +126,7 @@ export default class RegisterService extends Component {
                     deposit: '',
                     isRegistered: true,
                 })
-
-
-
             });
-
-        // this.setState({
-        //     name: '',
-        //     price:'',
-        //     typeofservice:'',
-        //     deposit:'',
-        //     isRegistered: false,
-        // })
-
     }
 
     render() {
@@ -158,8 +135,6 @@ export default class RegisterService extends Component {
 
         console.log("this.registeredUser", this.registeredUser)
 
-        //const listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry"]
-
         if (isRegistered === true) {
             //this.setCleanerLogin(true)
             return <Redirect to="/" />
@@ -167,11 +142,6 @@ export default class RegisterService extends Component {
 
         return (
             <Form onSubmit={this.onSubmit} >
-
-                {/* <Form.Group controlId="formBasicName">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter service name" value={this.state.name} onChange={this.onChangeName} />
-                </Form.Group> */}
 
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Type of Jobs</Form.Label>
@@ -191,10 +161,6 @@ export default class RegisterService extends Component {
                     </Form.Text>
                 </Form.Group>
 
-                {/* <Form.Group controlId="formBasicTypeOfService">
-                    <Form.Label>Type Of Service</Form.Label>
-                    <Form.Control type="text" placeholder="Type of service" value={this.state.typeofservice} onChange={this.onChangeTypeOfService}/>
-                </Form.Group> */}
 
                 {this.state.name === "CarWash" ?
                     <Form.Group controlId="exampleForm.ControlSelect1">
@@ -235,8 +201,6 @@ export default class RegisterService extends Component {
                                 <Form.Control type="number" min="0" max="100" placeholder="Please Pick A Service To Provide" />
                             </Form.Group>
                 }
-
-
 
                 <Form.Group controlId="formBasicDeposit">
                     <Form.Label>Deposit in percentage</Form.Label>

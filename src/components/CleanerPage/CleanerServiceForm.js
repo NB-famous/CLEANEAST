@@ -7,12 +7,12 @@ const CleanerServiceForm = (props) => {
   const { id } = useParams();
   //console.log('props', id)
   //console.log("cleaners") /// Passing this will search the specifi 
-  const {selectedUser} = props
+  const { selectedUser } = props
 
   //console.log(selectedUser.services.map())
 
   return (
-    
+
     <div>
       <div className="row gutters-sm">
         <div className="col-md-4 mb-3">
@@ -30,7 +30,7 @@ const CleanerServiceForm = (props) => {
         </div>
       </div>
       <div>
-      <RegisterService />
+        <RegisterService />
       </div>
     </div>
   )

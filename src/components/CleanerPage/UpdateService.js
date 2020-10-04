@@ -12,18 +12,13 @@ export default class UpdateService extends Component {
         super(props);
         this.targetValue = props.targetValue;
         this.registeredUser = props.registeredUser;
-
-        //this.cleanerLogin = props.cleanerLogin;
-        //this.setCleanerLogin = props.setCleanerLogin;
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangePrice = this.onChangePrice.bind(this);
         this.onChangeTypeOfService = this.onChangeTypeOfService.bind(this);
         this.onChangeDeposit = this.onChangeDeposit.bind(this);
-        //this.onSubmit = this.onSubmit.bind(this);
-        //this.listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry", "Window cleaning", "Interior vacuum", "Mats cleaning" ]
         this.listOfServicesCarWash = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry", "Window cleaning", "Interior vacuum", "Mats cleaning"]
         this.listOfServicesHomeCleaning = ["Brooming", "Vacuuming", "Mopping", "Dusting", "Floor Waxing", "Window cleaning", "Carpet cleaning"]
-        this.listOfServicesLandScaping = ["Lawn Mowing ", "Watering", "Planting", "Weeds Removal"]
+        this.listOfServicesLandScaping = ["Lawn Mowing ", "Watering", "Gardening", "Weeds Removal"]
         this.listOfJobs = ["CarWash", "Home Cleaning", "Land Scaping"]
         //get the index of the deleted service in the array of services
         this.indexServiceId = (this.registeredUser[this.targetValue.cleanerId - 1].service.map(function (e) { return e.service_id; }).indexOf(this.targetValue.serviceId))
@@ -124,7 +119,7 @@ export default class UpdateService extends Component {
 
                 const tempUsers = [...this.props.registeredUser]
                 const index = tempUsers.map(user => user.cleanerId).indexOf(this.props.targetValue.cleanerId)
-                //console.log("Index", index) //return the index of the cleaner eg. 19
+
                 //const serviceIndex = tempUsers[index].service.map(s => s.service_id === this.props.targetValue.serviceId) //original from Vasily
                 const serviceIndex = tempUsers[index].service.map(s => s.service_id).indexOf(this.props.targetValue.serviceId)
 
@@ -148,9 +143,6 @@ export default class UpdateService extends Component {
         console.log("this.registeredUser", this.registeredUser)
         console.log(" indexServiceId", this.indexServiceId)
 
-
-        //const listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry"]
-
         if (isRegistered === true) {
             //this.setCleanerLogin(true)
             return <Redirect to="/" />
@@ -158,11 +150,6 @@ export default class UpdateService extends Component {
 
         return (
             <Form onSubmit={this.onSubmit} >
-
-                {/* <Form.Group controlId="formBasicName">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter service name" value={this.state.name} onChange={this.onChangeName} />
-                </Form.Group> */}
 
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Type of Jobs</Form.Label>
@@ -182,10 +169,6 @@ export default class UpdateService extends Component {
                     </Form.Text>
                 </Form.Group>
 
-                {/* <Form.Group controlId="formBasicTypeOfService">
-                    <Form.Label>Type Of Service</Form.Label>
-                    <Form.Control type="text" placeholder="Type of service" value={this.state.typeofservice} onChange={this.onChangeTypeOfService}/>
-                </Form.Group> */}
                 {this.state.name === "CarWash" ?
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Type of Service</Form.Label>
@@ -225,17 +208,6 @@ export default class UpdateService extends Component {
                                 <Form.Control type="number" min="0" max="100" placeholder="Please Pick A Service To Provide" />
                             </Form.Group>
                 }
-
-                {/* <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Type of Service</Form.Label>
-                    <Form.Control as="select" value={this.state.typeofservice} onChange={this.onChangeTypeOfService}>
-                        {this.listOfServices.map(item => {
-                            return (
-                                <option key={item}>{item}</option>
-                            )
-                        })}
-                    </Form.Control>
-                </Form.Group> */}
 
                 <Form.Group controlId="formBasicDeposit">
                     <Form.Label>Deposit in percentage</Form.Label>
