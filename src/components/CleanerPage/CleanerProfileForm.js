@@ -1,6 +1,9 @@
 import React from "react"
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
+import { FiMoreHorizontal } from "react-icons/fi";
 
 import '../CleanerProfileReviews.css'
 import '../CleanerProfileServices.css'
@@ -94,7 +97,7 @@ const CleanerProfileForm = (props) => {
                   {/* <button className="btn btn-primary">Hire</button> */}
                   {/* <button className="btn btn-outline-primary">Message</button> */}
                   <Link to={'/cleaners/services'}>
-                    <button className="btn btn-outline-primary" onClick={() => props.createService(getCurrentCleaner(registeredUser).cleanerId)}>Add service</button>
+                    <button className="btn btn-outline-success" onClick={() => props.createService(getCurrentCleaner(registeredUser).cleanerId)}>Add service</button>
                   </Link>
                 </div>
               </div>
@@ -167,12 +170,26 @@ const CleanerProfileForm = (props) => {
                             <div>${val.price/100}</div>  
                           </li>
                           <li className="service-deposit">Deposit of {val.deposit}%</li>
-                          <Link to={'/cleaners/services/update'}>
-                                            <button className="btn btn-outline-primary" onClick={() => props.updateService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Update service</button>
-                          </Link>
-                          {/* <DeleteServiceDirectly selectedUserIndex={registeredUser} selectedServiceid={val.service_id}> */}
-                          <button className="btn btn-outline-primary" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Delete service</button>
-                          {/* </DeleteServiceDirectly> */}
+                          <li className="service-dropdown">
+                            <div className="dropdown-icon">
+                              <FiMoreHorizontal value={{ className: "edit-icon" }} />
+                          </div>
+                          <div className="service-dropdown-content">
+                            <Link to={'/cleaners/services/update'}>
+                                <button className="btn btn-outline-success" onClick={() => props.updateService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)} style={{borderColor: "black"}}>
+                                  Update service
+                                  <FaEdit value={{ className: "edit-icon" }} />
+                                </button>
+                            </Link>
+                            <span>{" "}</span>
+                            {/* <DeleteServiceDirectly selectedUserIndex={registeredUser} selectedServiceid={val.service_id}> */}
+                            <button className="btn btn-outline-success" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)} style={{borderColor: "black"}}>
+                              Delete service
+                              <AiFillDelete value={{ className: "edit-icon" }}/>
+                            </button>
+                            {/* </DeleteServiceDirectly> */}
+                          </div>
+                          </li>
                       </ul>
                     )})}
                 </div>
