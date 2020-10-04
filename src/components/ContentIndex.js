@@ -11,6 +11,7 @@ import LoginUser from "./UserPage/LoginUser"
 import RegisterUser from "./UserPage/RegisterUser"
 import LoginCleaner from "./CleanerPage/LoginCleaner"
 import RegisterCleaner from "./CleanerPage/RegisterCleaner"
+import CarouselSlide from "./CarouselSlide"
 import {Route, useHistory} from 'react-router-dom'
 import axios from 'axios'
 
@@ -47,12 +48,17 @@ export default function ContentIndex(props){
 
     return(
         <main className="appointment__card appointment__card--show">
-        <>
+        
             <section className="appointment__card-left">
                 <section className="content-container">
                 <Route path="/"  registeredUser={registeredUser} exact>
-                <h1 className="text--regular" style={{textAlign: "center"}}>Welcome To The Home Page</h1>
-                <div style={{marginTop: "5%"}}></div>
+                <h1 className="text--regular" style={{textAlign: "center"}}>Welcome To Cleaneast</h1>
+                {/* <div style={{marginTop: "5%"}}></div> */}
+                <hr/>
+                <div>
+                    <CarouselSlide />
+                </div>
+                <hr/>
                 <p> 
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis debitis, quas totam soluta blanditiis 
                     laboriosam repudiandae amet possimus id quibusdam explicabo itaque rerum odit adipisci facere veritatis perspiciatis in tenetur!
@@ -67,6 +73,7 @@ export default function ContentIndex(props){
                     Quidem, labore suscipit vel quibusdam eum provident totam voluptas doloribus, necessitatibus similique nemo quaerat 
                     commodi cupiditate recusandae minus asperiores quis, reprehenderit unde facere quam! Temporibus consequatur repudiandae libero labore aspernatur.
                 </p>
+                
                 </Route>
                 <Route path="/users/register" exact>
                 <h1 className="text--regular" style={{textAlign: "center"}}>User Registration Page</h1>
@@ -84,7 +91,6 @@ export default function ContentIndex(props){
                 </Route>   
                 </section>
             </section>
-        </>
         </main>
     )
 } 
