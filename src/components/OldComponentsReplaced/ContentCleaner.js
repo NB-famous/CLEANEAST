@@ -31,9 +31,6 @@ export default function ContentCleaner(props){
                     <Route path="/" exact>
                     <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("cleanerUser")} !!!</strong></h1>
                     <div style={{marginTop: "5%"}}></div>
-                    <div className="row">
-                        <h1> I am cleaner Dashboard profile </h1>
-                    </div>
                     </Route>
                     </section>
                 </section>

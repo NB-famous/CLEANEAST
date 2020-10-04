@@ -8,7 +8,7 @@ $appointment-height: 11rem;
   min-width: 50%;
 }
 
-.appointment {
+.homebox {
   &__add {
     min-height: $appointment-height;
     padding: 2rem 0;
@@ -42,7 +42,7 @@ $appointment-height: 11rem;
     min-width: 100%;
     padding: 1.2rem 1.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-flow: row wrap;
     color: $white;
 
@@ -69,12 +69,19 @@ $appointment-height: 11rem;
     &-right {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
       align-items: flex-end;
-      min-width: 50%;
+      max-width: 30%;
+      background-color: grey;
+      opacity: 90%;
+      border: solid black;
+      min-width: 30%;
       max-height: 1200px;
-      padding: 1%;
+      border-radius: 5%;
+      padding: 2rem;
       margin-top: 105px;
+      margin-right: 15%;
+      overflow: auto;
+      overflow-wrap: break-word;
     }
 
     ::-webkit-scrollbar {
@@ -87,62 +94,7 @@ $appointment-height: 11rem;
       display: flex;
     }
 
-    &--show {
-
-      // &:hover {
-      //   color: darken(black, 5%);
-        
-      // }
-      color: darken(black, 5%);  
-      width: 100%;
-      height: 100vh;
-      background-position: center center;
-      background-size: cover;
-      background-repeat: no-reapeat;
-      backface-visibility: hidden;
-      animation: slidePic 40s linear infinite 0s;
-      background-image: url("../docs/carwash1.jpg");
-    }
-
-    @keyframes slidePic {
-
-      0% {
-        background-image: url("../docs/carwash1.jpg");
-      }
-
-      10% {
-        background-image: url("../docs/carwash2.jpg");
-      }
-
-      20% {
-        background-image: url("../docs/brooming.jpg");
-      }
-
-      30% {
-        background-image: url("../docs/windowcleaner.jpg");
-      }
-
-      40% {
-        background-image: url("../docs/windowclean.jpg");
-      }
-
-      50% {
-        background-image: url("../docs/windowcleaning.jpg");
-      }
-
-      60% {
-        background-image: url("../docs/gardening.jpg");
-      }
-
-      80% {
-        background-image: url("../docs/lawnmowing.jpg");
-      }
-
-      100% {
-        background-image: url("../docs/carwash1.jpg");
-      }
-
-    }
+  
 
     &--status {
       background-color: $dark-background;

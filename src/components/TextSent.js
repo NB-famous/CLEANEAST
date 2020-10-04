@@ -9,7 +9,7 @@ const TextSent = () => {
     <h1>Thank You! For Using Cleaneast!</h1>
     <br/>
     <div style={{marginTop: "5%"}}>
-        <h2>Please Click <strong> <Link to={'/'}> here </Link> </strong> To Continue To The Home Page ....</h2>
+        <h2>Please Click <strong> <Link to={'/'} style={{color: "#44B244"}}> here </Link> </strong> To Continue To The Home Page ....</h2>
     </div>
 
     </div>

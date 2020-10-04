@@ -13,6 +13,7 @@ import RegisterService from './CleanerPage/RegisterService'
 import UpdateService from './CleanerPage/UpdateService'
 import axios from 'axios'
 import Chat from '../ChatComponents/messagecomponents/Chat'
+import DashboardCalendar from './CleanerPage/DashboardCalendar'
 
 
 export default function ContentSeller(props){
@@ -101,10 +102,11 @@ export default function ContentSeller(props){
                         <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Welcome {localStorage.getItem("cleanerUser")} !!!</strong></h1>
                         <div style={{ marginTop: "5%" }}></div>
                         <CleanerProfileForm selectedUser={chosenProfile} setCurrentUser={setChosenProfile} registeredUser={registeredUser} deleteService={deleteService} updateService={updateService} createService={createService}/>
-                        <div className="row">
-                            <h1> I am cleaner Dashboard profile </h1>
-                        </div>
                     </section>
+                </section>
+
+                <section className="homebox__card-right">
+                    <DashboardCalendar />
                 </section>
             </Route>
             <Switch>

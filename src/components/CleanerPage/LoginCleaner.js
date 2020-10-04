@@ -55,13 +55,13 @@ const LoginCleaner = (props) => {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" onChange={event => setPassword(event.target.value)}/>
         </Form.Group>
-        <Button variant="primary" type="submit" >
+        <Button variant="primary" type="submit" style={{backgroundColor: "#44B244", borderColor: "black"}}>
             Login CleanPreneur
         </Button>
     </Form>
 
     <div style={{marginTop: "5%"}}>
-        <h2>If you are not yet a cleaner please click <strong> <Link to={'/cleaners/register'}> here </Link> </strong></h2>
+        <h2>If you are not yet a cleaner please click <strong> <Link to={'/cleaners/register'} style={{color: "#44B244"}}> here </Link> </strong></h2>
     </div>
 
     </>
