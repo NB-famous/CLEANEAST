@@ -16,6 +16,7 @@ import axios from 'axios';
 import Chat from '../ChatComponents/messagecomponents/Chat'
 import TextSent from './TextSent'
 import ListOfAvailableCleaners  from './UserPage/ListOfAvailableCleaners'
+import ListofCleanerContacts from './UserPage/ListofCleanerContacts'
 
 
 
@@ -123,6 +124,10 @@ export default function ContentUser(props){
                             <Chat />
                         </div>
                         </section>
+                    </section>
+
+                    <section className="homebox__card-right">
+                    <ListofCleanerContacts registeredUser={registeredUser} setCurrentUser={setChosenProfile}/>
                     </section>
                 </Route>
                 <Route path={'/users/ratings'} exact>
