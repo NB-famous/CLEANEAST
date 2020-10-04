@@ -66,6 +66,46 @@ const CleanerProfile = (props) => {
                 <div className="mt-3">
                     <h4>{selectedUser.cleanerName}</h4>
                     <p className="text-muted font-size-sm">{selectedUser.address}</p>
+                    {/* {} */}
+                    <div className="card mb-3">
+                      <div className="card-body">
+                        <div className="row">
+                          
+                          <div className="col-sm-9 text-secondary">
+                          {selectedUser.cleanerName}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                          
+                          <div className="col-sm-9 text-secondary">
+                            {selectedUser.email}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                         
+                          <div className="col-sm-9 text-secondary">
+                          {selectedUser.phone}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                          
+                          <div className="col-sm-9 text-secondary">
+                          {selectedUser.phone}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                         
+                          <div className="col-sm-9 text-secondary">
+                            {selectedUser.address}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* {} */}
                 </div>
                 </div>
             </div>
