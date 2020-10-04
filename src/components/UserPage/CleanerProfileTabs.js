@@ -33,12 +33,12 @@ const CleanerProfileTabs = (props) => {
               <div className="d-flex justify-content-between align-items-center">
                 <div className="btn-group">
                 <Link onClick={() => props.setCurrentUser(user)} to={`/users/cleanerProfile/${user.cleanerId}`} params={ {theUser: {user} }} >
-                  <button type="button" className="btn btn-sm btn-outline-secondary">Profile</button>
+                  <button type="button" className="btn btn-sm btn-outline-secondary"style={{marginRight: "10px"}}>Profile</button>
                 </Link>
                 <Link to={'/twilio/send-text'}>
                   <button type="button" className="btn btn-sm btn-outline-secondary" onClick={()=> {
                     localStorage.setItem("hiredCleaner",user.cleanerName)
-                    sendText(user.phone)}}>
+                    sendText(user.phone)}} style={{marginRight: "10px"}}>
                     Hire
                     </button>
                 </Link>
