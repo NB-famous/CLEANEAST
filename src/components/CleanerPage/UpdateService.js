@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import axios from 'axios';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 
@@ -37,6 +37,7 @@ export default class UpdateService extends Component {
                 typeofservice: this.listOfServicesCarWash[0],
                 deposit: '',
                 isRegistered: false,
+                error: false
             }
         } else if (this.onChangeName === "Home Cleaning") {
             this.state = {
@@ -45,6 +46,7 @@ export default class UpdateService extends Component {
                 typeofservice: this.listOfServicesHomeCleaning[0],
                 deposit: '',
                 isRegistered: false,
+                error: false
             }
         } else if (this.onChangeName === "Land Scaping") {
             this.state = {
@@ -53,6 +55,7 @@ export default class UpdateService extends Component {
                 typeofservice: this.listOfServicesLandScaping[0],
                 deposit: '',
                 isRegistered: false,
+                error: false
             }
         }
 
@@ -62,6 +65,7 @@ export default class UpdateService extends Component {
             typeofservice: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].typeofservice,
             deposit: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].deposit,
             isRegistered: false,
+            error: false
         }
 
     }
@@ -138,12 +142,24 @@ export default class UpdateService extends Component {
                     service_id: this.serviceId
                 }
                 this.props.setRegisteredUser(tempUsers)
+            })
+            .catch(err => {
+                console.log("This is the responese from catch", err);
+                this.setState({
+                    name: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].service,
+                    price: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].price / 100,
+                    typeofservice: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].typeofservice,
+                    deposit: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].deposit,
+                    isRegistered: false,
+                    error: true
+
+                })
             });
     }
     render() {
 
         const isRegistered = this.state.isRegistered;
-
+        const error = this.state.error
         console.log("this.targetValue", this.targetValue)
         console.log("this.registeredUser", this.registeredUser)
         console.log(" indexServiceId", this.indexServiceId)
@@ -241,7 +257,15 @@ export default class UpdateService extends Component {
                     <Form.Label>Deposit in percentage</Form.Label>
                     <Form.Control type="number" min="0" max="100" placeholder="Deposit" value={this.state.deposit} onChange={this.onChangeDeposit} />
                 </Form.Group>
-
+                {error === true ?
+                   <Alert variant="danger" onClose={() => this.setState({error: false})} dismissible>
+                   <p>
+                   Service not updated. Please try again!!
+                   </p>
+                 </Alert>
+                    :
+                    <p></p>
+                }
                 <Button variant="primary" type="submit">
                     Update
                 </Button>
