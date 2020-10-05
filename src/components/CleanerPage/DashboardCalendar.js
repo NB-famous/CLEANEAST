@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+//import 'react-calendar/dist/Calendar.css';
 import Calendar from "react-calendar";
+//import "../../styles/HomePage.scss"
+import "../../styles/Calendar.scss"
 
 
 
@@ -9,6 +12,7 @@ export default function DashboardCalendar(){
   const onChange = date => {
     setDate(date);
   };
+
 
   return (
     <div>
