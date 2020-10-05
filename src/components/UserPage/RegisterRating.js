@@ -128,7 +128,7 @@ export default class RegisterRating extends Component {
         //console.log("selected user:", this.props.selectedUser);
 
         return (
-            <Form onSubmit={this.onSubmit} >
+            <Form onSubmit={this.onSubmit}  style={{display:"flex", flexDirection: "column", width: "500px", marginLeft: "200px", fontSize: "20px"}}>
                 <Form.Group controlId="formBasicComment">
                     <Form.Label>Comment</Form.Label>
                     <Form.Control as="textarea" rows="3" placeholder="Enter your comment" value={this.state.comment} onChange={this.onChangeComment} />
@@ -167,7 +167,7 @@ export default class RegisterRating extends Component {
                     :
                     <p></p>
                 }
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Rate Me
                 </Button>
             </Form>

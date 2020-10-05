@@ -37,13 +37,13 @@ const ListOfAvailableCleaners = (props) => {
                                     
                                 </td>
                                 <td>
-                                    <span className="text-muted">{cleaner.phone} </span><br/>
+                                    <span className="text-muted"><strong>cleaner.phone}</strong></span><br/>
                                 </td>
                                 <td>
-                                    <span className="text-muted">{cleaner.email}</span><br/>
+                                    <span className="text-muted"><strong>{cleaner.email}</strong></span><br/>
                                 </td>
                                 <td>
-                                    <span className="text-muted">{cleaner.address}</span><br/>
+                                    <span className="text-muted"><strong>{cleaner.address}</strong></span><br/>
                                 </td>
                                 <td>
                                 <Link onClick={() => setCurrentUser(cleaner)} to={`/users/cleanerProfile/${cleaner.cleanerId}`} params={ {theUser: {cleaner} }}>
