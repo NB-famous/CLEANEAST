@@ -10,6 +10,8 @@ export default class RegisterRating extends Component {
     constructor(props) {
         super(props);
         console.log("this is the props inside constructor", props)
+        this.registeredUser = props.registeredUser;
+        this.selectedCleaner = props.selectedUser;
         this.loggedIn = props.loggedIn;
         this.setLoggedIn = props.setLoggedIn;
         this.onChangeRating = this.onChangeRating.bind(this);
@@ -92,23 +94,30 @@ export default class RegisterRating extends Component {
             .then(res => {
                 console.log(res.data)
 
-                // const tempUsers = [...this.props.registeredUser]
-                // const index = tempUsers.map(user => user.cleanerId).indexOf(this.props.targetCleaner.cleanerId)
-                // console.log("Index", index) //return the index of the cleaner eg. 19
+                const tempCleaners = [...this.props.registeredUser]
+                const index = tempCleaners.map(cleaner => cleaner.cleanerId).indexOf(this.props.selectedUser.cleanerId)
+                console.log("Index", index) //return the index of the cleaner eg. 19
+                console.log("tempCleaners[index].service", tempCleaners[index].service)
+                console.log("this.state.service", this.state.service)
+                const indexServiceBin = tempCleaners[index].service.map(s => s.service.indexOf(this.state.service))
+                const indexService = indexServiceBin.indexOf(0);
+                console.log("IndexService", indexService)
+                const tempServiceId = tempCleaners[index].service[indexService].service_id
+                console.log("tempServiceId", tempServiceId)
 
-                // tempUsers[index].service = [
-                //     ...tempUsers[index].service, {
-                //         service_id: res.data.service.id,  //update this line to fix bug
-                //         service: this.state.name,
-                //         price: this.state.price * 100,
-                //         typeofservice: this.state.typeofservice,
-                //         deposit: this.state.deposit,
-                        
-                //     }
-                // ]
-                // console.log("tempUsers", tempUsers)
-                // this.props.setRegisteredUser(tempUsers)
-                // console.log("res.data.id", res.data.service.id)
+                tempCleaners[index].rating = [
+                    ...tempCleaners[index].rating, {
+                        cleaner_id: this.props.selectedUser.cleanerId,  //update this line to fix bug
+                        services_id: tempServiceId,
+                        service: this.state.service,
+                        rating: this.state.rating,
+                        comment: this.state.comment,
+                        username: localStorage.getItem('userUser') 
+                    }
+                ]
+                console.log("tempCleaners", tempCleaners)
+                this.props.setRegisteredUser(tempCleaners)
+                //console.log("res.data.id", res.data.service.id)
 
                 this.setState({
                     comment: '',
