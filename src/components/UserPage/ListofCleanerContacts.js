@@ -52,15 +52,17 @@ const ListofCleanerContacts = (props) => {
                                 <td>
                                     <span className="text-muted">{cleaner.address}</span><br/>
                                 </td>
-                                <td>
+                                <td style={{display:"flex"}}>
                                 <Link to={'/cleaners/chatroom'}>
-                                <button className="btn btn-outline-success btn-circle btn-lg btn-circle" onClick={() => localStorage.setItem("cleanerData",cleaner.cleanerName)}> Message Me</button>
+                                <button className="btn btn-outline-success btn-circle btn-lg btn-circle" onClick={() => localStorage.setItem("cleanerData",cleaner.cleanerName)} style={{marginRight: "10px"}}> Message Me</button>
                                 </Link>
-                                <span>{" "}</span>
+                                
                                 <Link to={'/twilio/send-text'}>
                                 <button type="button" className="btn btn-outline-success btn-circle btn-lg btn-circle" onClick={()=> {
                                     localStorage.setItem("hiredCleaner",cleaner.cleanerName)
-                                    sendText(cleaner.phone)}} >Hire Me</button>
+                                    sendText(cleaner.phone)}} >
+                                    Hire Me
+                                    </button>
                                 </Link>
                                 </td>
                             </tr>
