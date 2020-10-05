@@ -210,7 +210,7 @@ export default class RegisterCleaner extends Component{
                 {error === true ?
                    <Alert variant="danger" onClose={() => this.setState({error: false})} dismissible>
                    <p>
-                   Not registered. Please try again!!
+                   Something went wrong and cannot register <strong>CleanPreneur</strong>. Please try again...
                    </p>
                  </Alert>
                     :
