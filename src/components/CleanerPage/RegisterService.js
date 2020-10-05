@@ -164,7 +164,7 @@ export default class RegisterService extends Component {
         }
 
         return (
-            <Form onSubmit={this.onSubmit} >
+            <Form onSubmit={this.onSubmit} style={{display:"flex", flexDirection: "column", width: "500px", marginLeft: "200px", fontSize: "20px"}}>
 
                 {/* <Form.Group controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
@@ -249,8 +249,8 @@ export default class RegisterService extends Component {
                     :
                     <p></p>
                 }
-                <Button variant="primary" type="submit">
-                    Add
+                <Button variant="success" type="submit">
+                    Add New Service
                 </Button>
             </Form>
         )

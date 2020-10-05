@@ -9,12 +9,12 @@ const CleanerProfileTabs = (props) => {
 
   const {registeredUser} = props
   
-  const sendText = (user) => {
+  // const sendText = (user) => {
 
-    console.log("THIS IS USER", user)
-    fetch(`http://127.0.0.1:5000/twilio/send-text?recipient=${user}&textmessage="Congrats you got hired!" By ${localStorage.getItem("userUser")}`)
-    .catch(err => console.error(err))
-  }
+  //   console.log("THIS IS USER", user)
+  //   fetch(`http://127.0.0.1:5000/twilio/send-text?recipient=${user}&textmessage="Congrats you got hired!" By ${localStorage.getItem("userUser")}`)
+  //   .catch(err => console.error(err))
+  // }
 
 
   return (
@@ -33,13 +33,13 @@ const CleanerProfileTabs = (props) => {
                 <Link onClick={() => props.setCurrentUser(user)} to={`/users/cleanerProfile/${user.cleanerId}`} params={ {theUser: {user} }} >
                   <button type="button" className="btn btn-sm btn-outline-success"style={{marginRight: "10px"}}>Profile</button>
                 </Link>
-                <Link to={'/twilio/send-text'}>
+                {/* <Link to={'/twilio/send-text'}>
                   <button type="button" className="btn btn-sm btn-outline-success" onClick={()=> {
                     localStorage.setItem("hiredCleaner",user.cleanerName)
                     sendText(user.phone)}} style={{marginRight: "10px"}}>
                     Hire
                     </button>
-                </Link>
+                </Link> */}
                 <Link to={'/cleaners/chatroom'}>
                   <button type="button" className="btn btn-sm btn-outline-success" onClick={() => localStorage.setItem("cleanerData",user.cleanerName)}>Message</button>
                 </Link>
