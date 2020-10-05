@@ -150,7 +150,9 @@ export default class RegisterRating extends Component {
         if (isRegistered === true) {
             //this.setLoggedIn(true)
             //this.setCleanerLogin(true)
-            return <Redirect to="/" />
+            //return <Redirect to="/" />
+           // to={`/users/cleanerProfile/${user.cleanerId}`}
+            return <Redirect to={`/users/cleanerProfile/${this.state.cleaner_id}`} />
         }
         //console.log("selected user:", this.props.selectedUser);
 
