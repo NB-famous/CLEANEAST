@@ -92,6 +92,24 @@ export default class RegisterRating extends Component {
             .then(res => {
                 console.log(res.data)
 
+                // const tempUsers = [...this.props.registeredUser]
+                // const index = tempUsers.map(user => user.cleanerId).indexOf(this.props.targetCleaner.cleanerId)
+                // console.log("Index", index) //return the index of the cleaner eg. 19
+
+                // tempUsers[index].service = [
+                //     ...tempUsers[index].service, {
+                //         service_id: res.data.service.id,  //update this line to fix bug
+                //         service: this.state.name,
+                //         price: this.state.price * 100,
+                //         typeofservice: this.state.typeofservice,
+                //         deposit: this.state.deposit,
+                        
+                //     }
+                // ]
+                // console.log("tempUsers", tempUsers)
+                // this.props.setRegisteredUser(tempUsers)
+                // console.log("res.data.id", res.data.service.id)
+
                 this.setState({
                     comment: '',
                     rating: '',
@@ -140,7 +158,7 @@ export default class RegisterRating extends Component {
                     <Form.Control as="select" value={this.state.service} onChange={this.onChangeService}>
                         {this.props.selectedUser.service.map(item => {
                             return (
-                                <option >{item.service}</option>
+                                <option key={item.service_id}>{item.service}</option>
                             )
                         })}
                     </Form.Control>

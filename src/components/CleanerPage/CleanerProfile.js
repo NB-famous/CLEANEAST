@@ -24,7 +24,7 @@ const CleanerProfile = (props) => {
   //Creates list of services the currently selected seller offers
   const services = selectedUser.service.map(val => {
     return(
-      <ul key="val.service_id" className="service-container">
+      <ul key={val.service_id} className="service-container">
           <li className="service-header">
             <div>{val.service}<span className="service-type">{val.typeofservice}</span> 
             </div>
@@ -36,15 +36,15 @@ const CleanerProfile = (props) => {
 
 
   //Creates list of reviews belonging to the currently selected seller
-  const reviews = selectedUser.rating.map(val => {
+  const reviews = selectedUser.rating.map((val, index) => {
     
     const starRating = [...Array(5)].map((star, i) => {
       return (
-        <FaStar color={i <= val.rating - 1 ? "#ffc107" : "e4e5e9"}  />
+        <FaStar key={i} color={i <= val.rating - 1 ? "#ffc107" : "e4e5e9"}  />
       )});
       
     return(
-    <ul className="review-container">
+    <ul key={index} className="review-container">
         <li className="review-header">
           <div>{val.username}</div> 
           <div>{starRating}</div>  

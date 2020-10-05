@@ -29,15 +29,14 @@ const ListOfAvailableCleaners = (props) => {
                             </tr>
                             </thead>
                             {registeredUser.map(cleaner => ( 
-                            <tbody>
+                            <tbody key={cleaner.cleanerId}>
                             <tr>
                                 <td className="pl-4">{cleaner.cleanerId}</td>
                                 <td>
-                                    <h5 className="font-medium mb-0">{cleaner.cleanerName} </h5>
-                                    
+                                    <h5 className="font-medium mb-0">{cleaner.cleanerName}</h5>
                                 </td>
                                 <td>
-                                    <span className="text-muted">{cleaner.phone} </span><br/>
+                                    <span className="text-muted">{cleaner.phone}</span><br/>
                                 </td>
                                 <td>
                                     <span className="text-muted">{cleaner.email}</span><br/>
@@ -52,13 +51,12 @@ const ListOfAvailableCleaners = (props) => {
                                 </td>
                             </tr>
                             </tbody>
-                            ))}     {/* end of map */}
+                            ))}
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        
     </div>
   )
 }
