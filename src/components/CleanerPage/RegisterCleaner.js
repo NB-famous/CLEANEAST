@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import axios from 'axios';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 
@@ -30,6 +30,7 @@ export default class RegisterCleaner extends Component{
           pictureUrl:'',
           phone:'',
           isRegistered: false,
+          error: false
         }
 
         this.getMyLocation = this.getMyLocation.bind(this)
@@ -115,6 +116,13 @@ export default class RegisterCleaner extends Component{
             })
            .catch(err => {
                 console.log("This is the responese from catch", err);
+                this.setState({
+                    username: '',
+                    email: '',
+                    password: '',
+                    isRegistered:false,
+                    error: true
+                })
             });
     
        
@@ -144,6 +152,8 @@ export default class RegisterCleaner extends Component{
 
         const { latitude, longitude } = this.state
         const isRegistered = this.state.isRegistered;
+        const error = this.state.error
+        console.log("errr", error)
     
         if(isRegistered === true) {
             this.setCleanerLogin(true)
@@ -197,6 +207,15 @@ export default class RegisterCleaner extends Component{
                 <Form.Group controlId="formLongitude">
                     <Form.Control type="hidden" value={longitude} />
                 </Form.Group>
+                {error === true ?
+                   <Alert variant="danger" onClose={() => this.setState({error: false})} dismissible>
+                   <p>
+                   Not registered. Please try again!!
+                   </p>
+                 </Alert>
+                    :
+                    <p></p>
+                }
                 <Button variant="primary" type="submit">
                             Register 
                 </Button>

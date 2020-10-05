@@ -69,7 +69,7 @@ $appointment-height: 11rem;
     &-right {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      align-items: center;
       max-width: 30%;
       background-color: grey;
       opacity: 90%;
@@ -189,3 +189,4 @@ $appointment-height: 11rem;
     margin-bottom: 1rem;
   }
 }
+

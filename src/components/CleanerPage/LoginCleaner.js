@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 //import {ILogin, ITarget, login } from './helperUser/interfaces'
 import axios from 'axios'
 import {Link } from 'react-router-dom'
@@ -10,6 +10,7 @@ const LoginCleaner = (props) => {
     
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [errLogin, setErrLogin] = useState(false);
    
     async function handleSubmit(event){
 
@@ -25,14 +26,15 @@ const LoginCleaner = (props) => {
                 localStorage.setItem("cleanerToken", response.data.token) // Then object is from response we made through url attach to MongoDB
                 localStorage.setItem("cleanerEmail", response.data.cleaner.email)
                 localStorage.setItem("cleanerUser", response.data.cleaner.username)
-                
                 props.setCleanerLogin(true)
+                setErrLogin(false)
             } else {
                 console.log("incorrect something")
             }
         }
         catch(err){
             console.log("ERROR", err)
+            setErrLogin(true)
         }
 
     }
@@ -55,6 +57,15 @@ const LoginCleaner = (props) => {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" onChange={event => setPassword(event.target.value)}/>
         </Form.Group>
+        {errLogin === true ?
+                   <Alert variant="danger" onClose={() => setErrLogin(false)} dismissible>
+                   <p>
+                   Not logged-in. Please try again!!
+                   </p>
+                 </Alert>
+                    :
+                    <p></p>
+                }
         <Button variant="primary" type="submit" style={{backgroundColor: "#44B244", borderColor: "black"}}>
             Login CleanPreneur
         </Button>

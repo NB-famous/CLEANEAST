@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import axios from 'axios';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 import StarRating from './StarRating'
 
@@ -16,6 +16,7 @@ export default class RegisterRating extends Component {
         this.onChangeComment = this.onChangeComment.bind(this);
         this.onChangeService = this.onChangeService.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.error = false
 
         //if the service array is empty set service initial state as empty string
         //if there are already services set the state with the element zero
@@ -32,7 +33,8 @@ export default class RegisterRating extends Component {
             comment: '',
             service: initialService,
             cleanerId: '',
-            isRegistered: false
+            isRegistered: false,
+            error: false
         }
     }
     //original
@@ -96,10 +98,19 @@ export default class RegisterRating extends Component {
                     service: '',
                     cleanerId: '',
                     isRegistered: true,
+                    error: false
                 })
             })
             .catch(err => {
                 console.log("This is the responese from catch", err);
+                this.setState({
+                    comment: '',
+                    rating: '',
+                    service: this.state.service,
+                    cleanerId: '',
+                    isRegistered: false,
+                    error: true
+                })
             });
 
 
@@ -108,6 +119,7 @@ export default class RegisterRating extends Component {
 
     render() {
         const isRegistered = this.state.isRegistered;
+        const error = this.state.error
         if (isRegistered === true) {
             //this.setLoggedIn(true)
             //this.setCleanerLogin(true)
@@ -146,6 +158,15 @@ export default class RegisterRating extends Component {
                 <Form.Group controlId="formCleanerId">
                     <Form.Control type="hidden" value={this.props.selectedUser.cleanerId} />
                 </Form.Group>
+                {error === true ?
+                   <Alert variant="danger" onClose={() => this.setState({error: false})} dismissible>
+                   <p>
+                   Pleasefill in all field and try again!!
+                   </p>
+                 </Alert>
+                    :
+                    <p></p>
+                }
                 <Button variant="primary" type="submit">
                     Rate Me
                 </Button>

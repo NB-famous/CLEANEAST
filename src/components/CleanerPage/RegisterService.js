@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import axios from 'axios';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 
@@ -57,6 +57,7 @@ export default class RegisterService extends Component {
             typeofservice: this.listOfServicesCarWash[0], //this.listOfServices[0],
             deposit: '',
             isRegistered: false,
+            error: false
         }
 
     }
@@ -108,14 +109,7 @@ export default class RegisterService extends Component {
                 const tempUsers = [...this.props.registeredUser]
                 const index = tempUsers.map(user => user.cleanerId).indexOf(this.props.targetCleaner.cleanerId)
                 console.log("Index", index) //return the index of the cleaner eg. 19
-                //const serviceIndex = tempUsers[index].service.map(s => s.service_id === this.props.targetValue.serviceId) //original
-                // const serviceIndex = tempUsers[index].service.map((s, i) => {
-                //     console.log("S",s)
-                //     if (s.service_id === this.props.targetValue.serviceId){
-                //         console.log("index of S", i)
-                //         return i
-                //      }})
-                // console.log("serviceIndex", serviceIndex)
+
                 tempUsers[index].service = [
                     ...tempUsers[index].service, {
                         service_id: res.data.service.id,  //update this line to fix bug
@@ -136,26 +130,30 @@ export default class RegisterService extends Component {
                     typeofservice: '',
                     deposit: '',
                     isRegistered: true,
+                    error: false
                 })
+            })
+            .catch(err => {
+                console.log("This is the responese from catch", err);
+                this.setState({
+                    name: this.listOfJobs[0],
+                    price: '',
+                    typeofservice: this.listOfServicesCarWash[0],
+                    deposit: '',
+                    isRegistered: false,
+                    error: true
 
-
-
+                })
             });
 
-        // this.setState({
-        //     name: '',
-        //     price:'',
-        //     typeofservice:'',
-        //     deposit:'',
-        //     isRegistered: false,
-        // })
+
 
     }
 
     render() {
 
         const isRegistered = this.state.isRegistered;
-
+        const error = this.state.error
         console.log("this.registeredUser", this.registeredUser)
 
         //const listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry"]
@@ -242,7 +240,15 @@ export default class RegisterService extends Component {
                     <Form.Label>Deposit in percentage</Form.Label>
                     <Form.Control type="number" min="0" max="100" placeholder="Deposit" value={this.state.deposit} onChange={this.onChangeDeposit} />
                 </Form.Group>
-
+                {error === true ?
+                   <Alert variant="danger" onClose={() => this.setState({error: false})} dismissible>
+                   <p>
+                   Service not added. Please fill up all fields and try again!!
+                   </p>
+                 </Alert>
+                    :
+                    <p></p>
+                }
                 <Button variant="primary" type="submit">
                     Add
                 </Button>

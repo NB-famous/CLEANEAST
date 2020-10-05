@@ -95,7 +95,7 @@ $appointment-height: 11rem;
       // }
       color: darken(black, 5%);  
       width: 100%;
-      height: 100vh;
+      // height: 100vh;
       background-position: center center;
       background-size: cover;
       background-repeat: no-reapeat;
@@ -236,4 +236,8 @@ $appointment-height: 11rem;
     color: $danger-color;
     margin-bottom: 1rem;
   }
+}
+
+.serviceForm {
+  width: -webkit-fill-available;
 }

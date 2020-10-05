@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 //import {ILogin, ITarget, login } from './helperUser/interfaces'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
@@ -12,6 +12,7 @@ const LoginUser = (props) => {
 
 const [email, setEmail] = useState();
 const [password, setPassword] = useState();
+const [errLogin, setErrLogin] = useState(false);
 
 
 async function handleSubmit(event){
@@ -28,6 +29,7 @@ async function handleSubmit(event){
             localStorage.setItem("userEmail", response.data.user.email)
             localStorage.setItem("userUser", response.data.user.username)
             props.setLoggedIn(true)
+            setErrLogin(false)
 
         } else {
             console.log("incorrect something")
@@ -35,6 +37,7 @@ async function handleSubmit(event){
     }
     catch(err){
         console.log("ERROR", err)
+        setErrLogin(true)
     }
 
 }
@@ -58,6 +61,15 @@ async function handleSubmit(event){
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" onChange={event => setPassword(event.target.value)}/>
         </Form.Group>
+        {errLogin === true ?
+                   <Alert variant="danger" onClose={() => setErrLogin(false)} dismissible>
+                   <p>
+                   Not logged-in. Please try again!!
+                   </p>
+                 </Alert>
+                    :
+                    <p></p>
+                }
         <Button variant="primary" type="submit" style={{backgroundColor: "#44B244", borderColor: "black"}}>
             Login User
         </Button>

@@ -14,6 +14,7 @@ import UpdateService from './CleanerPage/UpdateService'
 import axios from 'axios'
 import Chat from '../ChatComponents/messagecomponents/Chat'
 import DashboardCalendar from './CleanerPage/DashboardCalendar'
+import DigitalClock from './CleanerPage/DigitalClock'
 
 
 export default function ContentSeller(props){
@@ -107,6 +108,9 @@ export default function ContentSeller(props){
 
                 <section className="homebox__card-right">
                     <DashboardCalendar />
+                    <div>
+                        <DigitalClock />
+                    </div>
                 </section>
             </Route>
             <Switch>
@@ -119,6 +123,13 @@ export default function ContentSeller(props){
                                 <Chat />
                             </div>
                         </section>
+                    </section>
+
+                    <section className="homebox__card-right">
+                        <DashboardCalendar />
+                        <div>
+                            <DigitalClock />
+                        </div>
                     </section>
                 </Route>
                 <Route path={'/cleaners/services'} exact>
