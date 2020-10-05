@@ -164,23 +164,6 @@ const CleanerProfileForm = (props) => {
               <div className="card h-100">
                 <div className="card-body">
                   <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Services</i></h6>
-                  {getCurrentCleaner(registeredUser).service.map(val => {
-                    return(
-                      <ul key={val.service_id} className="service-container">
-                          <li className="service-header">
-                            <div>{val.service}<span className="service-type">{val.typeofservice}</span> 
-                            </div>
-                            <div>${val.price/100}</div>  
-                          </li>
-                          <li className="service-deposit">Deposit of {val.deposit}%</li>
-                          <Link to={'/cleaners/services/update'}>
-                                            <button className="btn btn-outline-primary" onClick={() => props.updateService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Update service</button>
-                          </Link>
-                          {/* <DeleteServiceDirectly selectedUserIndex={registeredUser} selectedServiceid={val.service_id}> */}
-                          <button className="btn btn-outline-primary" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Delete service</button>
-                          {/* </DeleteServiceDirectly> */}
-                      </ul>
-                    )})}
                   {services}
                 </div>
               </div>
