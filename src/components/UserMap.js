@@ -21,7 +21,7 @@ const cleaner = new Icon({
 
 const userLocationIcon = new Icon({
     iconUrl: "/images/greenhome3.png",
-    iconSize: [50, 50]
+    iconSize: [25, 25]
 });
 
 export default function UserMap(props){
@@ -61,7 +61,8 @@ export default function UserMap(props){
                     icon={userLocationIcon}
                     >
                     <Popup>
-                        <h3> Your Current Position</h3>
+                        <h4>User's current position</h4>
+                        <small>{currentUser.latitude}, {currentUser.longitude}</small>
                     </Popup>
                  </Marker>   
                 {registeredUser.map(user => (

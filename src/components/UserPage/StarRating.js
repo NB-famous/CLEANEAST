@@ -7,7 +7,7 @@ const StarRating = (props) => {
   //const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
 
-  return <h3>
+  return <h1>
     {[...Array(5)].map((star, i) => {
       const ratingValue = i + 1;
       return (<label key={i}>
@@ -20,7 +20,7 @@ const StarRating = (props) => {
         <FaStar 
         className="star" 
         color={ratingValue <= (hover || props.stateRating) ? "#ffc107" : "e4e5e9"} 
-        size={20}
+        size={40}
         onMouseEnter={() => setHover(ratingValue)}
         onMouseLeave={() => setHover(null)}
         />
@@ -29,11 +29,7 @@ const StarRating = (props) => {
 
     })}
 
-
-
-
-
-  </h3>
+  </h1>
 
 }
 
