@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import axios from 'axios';
 import { Button, Form, Alert } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
+import "../../styles/Content.scss";
 
 
 export default class RegisterUser extends Component {
@@ -126,7 +127,7 @@ export default class RegisterUser extends Component {
         }
 
         return (
-            <Form onSubmit={this.onSubmit} >
+            <Form onSubmit={this.onSubmit} className="serviceForm">
                 <Form.Group controlId="formBasicUsername">
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="text" placeholder="Enter username" value={this.state.username} onChange={this.onChangeUsername} />
