@@ -190,7 +190,7 @@ export default class RegisterRating extends Component {
                 {error === true ?
                    <Alert variant="danger" onClose={() => this.setState({error: false})} dismissible>
                    <p>
-                   Pleasefill in all field and try again!!
+                   Please fill in all fields and try again!!
                    </p>
                  </Alert>
                     :
