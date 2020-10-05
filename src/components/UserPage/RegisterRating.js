@@ -10,6 +10,8 @@ export default class RegisterRating extends Component {
     constructor(props) {
         super(props);
         console.log("this is the props inside constructor", props)
+        this.registeredUser = props.registeredUser;
+        this.selectedCleaner = props.selectedUser;
         this.loggedIn = props.loggedIn;
         this.setLoggedIn = props.setLoggedIn;
         this.onChangeRating = this.onChangeRating.bind(this);
@@ -92,6 +94,31 @@ export default class RegisterRating extends Component {
             .then(res => {
                 console.log(res.data)
 
+                const tempCleaners = [...this.props.registeredUser]
+                const index = tempCleaners.map(cleaner => cleaner.cleanerId).indexOf(this.props.selectedUser.cleanerId)
+                console.log("Index", index) //return the index of the cleaner eg. 19
+                console.log("tempCleaners[index].service", tempCleaners[index].service)
+                console.log("this.state.service", this.state.service)
+                const indexServiceBin = tempCleaners[index].service.map(s => s.service.indexOf(this.state.service))
+                const indexService = indexServiceBin.indexOf(0);
+                console.log("IndexService", indexService)
+                const tempServiceId = tempCleaners[index].service[indexService].service_id
+                console.log("tempServiceId", tempServiceId)
+
+                tempCleaners[index].rating = [
+                    ...tempCleaners[index].rating, {
+                        cleaner_id: this.props.selectedUser.cleanerId,  //update this line to fix bug
+                        services_id: tempServiceId,
+                        service: this.state.service,
+                        rating: this.state.rating,
+                        comment: this.state.comment,
+                        username: localStorage.getItem('userUser') 
+                    }
+                ]
+                console.log("tempCleaners", tempCleaners)
+                this.props.setRegisteredUser(tempCleaners)
+                //console.log("res.data.id", res.data.service.id)
+
                 this.setState({
                     comment: '',
                     rating: '',
@@ -123,7 +150,9 @@ export default class RegisterRating extends Component {
         if (isRegistered === true) {
             //this.setLoggedIn(true)
             //this.setCleanerLogin(true)
-            return <Redirect to="/" />
+            //return <Redirect to="/" />
+           // to={`/users/cleanerProfile/${user.cleanerId}`}
+            return <Redirect to={`/users/cleanerProfile/${this.state.cleaner_id}`} />
         }
         //console.log("selected user:", this.props.selectedUser);
 
@@ -140,7 +169,7 @@ export default class RegisterRating extends Component {
                     <Form.Control as="select" value={this.state.service} onChange={this.onChangeService}>
                         {this.props.selectedUser.service.map(item => {
                             return (
-                                <option >{item.service}</option>
+                                <option key={item.service_id}>{item.service}</option>
                             )
                         })}
                     </Form.Control>
@@ -161,7 +190,7 @@ export default class RegisterRating extends Component {
                 {error === true ?
                    <Alert variant="danger" onClose={() => this.setState({error: false})} dismissible>
                    <p>
-                   Pleasefill in all field and try again!!
+                   Please fill in all fields and try again!!
                    </p>
                  </Alert>
                     :

@@ -117,7 +117,7 @@ export default class RegisterService extends Component {
                         price: this.state.price * 100,
                         typeofservice: this.state.typeofservice,
                         deposit: this.state.deposit,
-                        
+
                     }
                 ]
                 console.log("tempUsers", tempUsers)
@@ -165,12 +165,6 @@ export default class RegisterService extends Component {
 
         return (
             <Form onSubmit={this.onSubmit} >
-
-                {/* <Form.Group controlId="formBasicName">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter service name" value={this.state.name} onChange={this.onChangeName} />
-                </Form.Group> */}
-
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Type of Jobs</Form.Label>
                     <Form.Control as="select" value={this.state.name} onChange={this.onChangeName}>
@@ -181,18 +175,6 @@ export default class RegisterService extends Component {
                         })}
                     </Form.Control>
                 </Form.Group>
-
-                <Form.Group controlId="formBasicPrice">
-                    <Form.Label>Price</Form.Label>
-                    <Form.Control type="number" min="0" placeholder="Enter price" value={this.state.price} onChange={this.onChangePrice} />
-                    <Form.Text className="text-muted">
-                    </Form.Text>
-                </Form.Group>
-
-                {/* <Form.Group controlId="formBasicTypeOfService">
-                    <Form.Label>Type Of Service</Form.Label>
-                    <Form.Control type="text" placeholder="Type of service" value={this.state.typeofservice} onChange={this.onChangeTypeOfService}/>
-                </Form.Group> */}
 
                 {this.state.name === "CarWash" ?
                     <Form.Group controlId="exampleForm.ControlSelect1">
@@ -234,6 +216,12 @@ export default class RegisterService extends Component {
                             </Form.Group>
                 }
 
+                <Form.Group controlId="formBasicPrice">
+                    <Form.Label>Price</Form.Label>
+                    <Form.Control type="number" min="0" placeholder="Enter price" value={this.state.price} onChange={this.onChangePrice} />
+                    <Form.Text className="text-muted">
+                    </Form.Text>
+                </Form.Group>
 
 
                 <Form.Group controlId="formBasicDeposit">
@@ -241,11 +229,11 @@ export default class RegisterService extends Component {
                     <Form.Control type="number" min="0" max="100" placeholder="Deposit" value={this.state.deposit} onChange={this.onChangeDeposit} />
                 </Form.Group>
                 {error === true ?
-                   <Alert variant="danger" onClose={() => this.setState({error: false})} dismissible>
-                   <p>
-                   Service not added. Please fill up all fields and try again!!
+                    <Alert variant="danger" onClose={() => this.setState({ error: false })} dismissible>
+                        <p>
+                            Service not added. Please fill up all fields and try again!!
                    </p>
-                 </Alert>
+                    </Alert>
                     :
                     <p></p>
                 }
