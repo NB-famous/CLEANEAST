@@ -31,7 +31,8 @@ export default function UserMap(props){
         setActiveUser,
         isLoading,
         registeredUser,
-        theLoggedInUser
+        theLoggedInUser,
+        filteredCleaner
       } = props
 
 
@@ -65,7 +66,7 @@ export default function UserMap(props){
                         <small>{currentUser.latitude}, {currentUser.longitude}</small>
                     </Popup>
                  </Marker>   
-                {registeredUser.map(user => (
+                {filteredCleaner.map(user => (
                     <Marker
                     key={user.cleanerName}
                     position={[

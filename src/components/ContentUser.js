@@ -107,6 +107,7 @@ export default function ContentUser(props){
                         setRegisteredUser={setRegisteredUser}
                         theLoggedInUser={theLoggedInUser}
                         setCurrentUser={setChosenProfile}
+                        filteredCleaner={filteredCleaner}
                     />
                 </section>
             </Route>
