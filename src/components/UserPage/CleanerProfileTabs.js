@@ -7,8 +7,12 @@ import {Link} from 'react-router-dom'
 
 const CleanerProfileTabs = (props) => {
 
-  const {registeredUser} = props
+  const {filteredCleaner} = props
+
+  //const {registeredUser} = props
   
+  //const [search, setSearch] = useState('')
+
   // const sendText = (user) => {
 
   //   console.log("THIS IS USER", user)
@@ -16,11 +20,20 @@ const CleanerProfileTabs = (props) => {
   //   .catch(err => console.error(err))
   // }
 
+  /// create a variable that filters the array
+  // const filteredCleaner = registeredUser.filter(cleaner => {
+
+  //   return cleaner.cleanerName.toLowerCase().includes(search.toLowerCase())
+  // })
 
   return (
-    
+
     <>
-    {registeredUser.map(user => (
+    {/* <div className="search-bar">
+      <input type="text" placeholder="Search" onChange={e => setSearch(e.target.value)} />
+    </div> */}
+    
+    {filteredCleaner.map(user => (
         <div className="col-md-4" key={user.cleanerName}>
           <div className="card mb-4 shadow-sm" style={{borderRadius:"20px"}}>
           <img className="bd-placeholder-img card-img-top" width="100%" height="225" src={user.picture_url} alt="building" preserveAspectRatio="xMidYMid slice" focusable="false" aria-label="Placeholder: Thumbnail" style={{borderTopRightRadius:"20px", borderTopLeftRadius:"20px"}}></img>

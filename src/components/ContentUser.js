@@ -30,6 +30,7 @@ export default function ContentUser(props){
     const [isLoading, setLoading] = useState(true)
     const [registeredUser, setRegisteredUser] = useState([])
     const [theLoggedInUser, setTheLoggedInUser] = useState([])
+    const [search, setSearch] = useState('')
 
     let history = useHistory()
 
@@ -60,6 +61,10 @@ export default function ContentUser(props){
     }, [])
 
 
+    const filteredCleaner = registeredUser.filter(cleaner => {
+
+        return cleaner.cleanerName.toLowerCase().includes(search.toLowerCase())
+      })
 
     if (isLoading) {
         history.push('/');
@@ -71,13 +76,21 @@ export default function ContentUser(props){
         <main className="appointment__card appointment__card--show">
             <Route path="/" exact>
                 <section className="appointment__card-left">
-                    <section className="content-container">
-                    <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome {localStorage.getItem("userUser")} !!!</strong></h1>
+                    <section className="home-content-container">
+                    <h1 className="text--regular" style={{textAlign: "center"}}> Welcome To Cleaneast <strong>{localStorage.getItem("userUser")} </strong></h1>
+                    <div style={{marginTop: "5%"}}></div>
+                        <div class="col-lg-8 col-md-6 col-sm-12 p-0" style={{display:"flex", marginLeft: "10%", minWidth:"80%", maxWidth:"80%", border:"solid black", borderRadius:"10px"}}>
+                            <input type="text" placeholder="Type To Search For Your Favourite CleanPreneur..." class="form-control" id="search" name="search" onChange={e => setSearch(e.target.value)} style={{fontSize: "40px"}}/>
+                            <button class="btn btn-base" style={{borderLeft: "solid black"}}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            </button>
+                        </div>
                     <div style={{marginTop: "5%"}}></div>
                     <div className="row">
                         <CleanerProfileTabs 
                             registeredUser={registeredUser} 
                             setCurrentUser={setChosenProfile}
+                            filteredCleaner={filteredCleaner}
                         />
                     </div>
                     </section>
@@ -94,6 +107,7 @@ export default function ContentUser(props){
                         setRegisteredUser={setRegisteredUser}
                         theLoggedInUser={theLoggedInUser}
                         setCurrentUser={setChosenProfile}
+                        filteredCleaner={filteredCleaner}
                     />
                 </section>
             </Route>
@@ -101,7 +115,7 @@ export default function ContentUser(props){
                 <Route path={`/users/cleanerProfile/:id`} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome To My Profile {localStorage.getItem("userUser")} !!!</strong></h1>
+                        <h1 className="text--regular" style={{textAlign: "center"}}>Welcome To My Profile <strong>{localStorage.getItem("userUser")}</strong></h1>
                         <div style={{marginTop: "5%"}}></div>
                         <div className="row">
                             <CleanerProfile 
@@ -118,7 +132,7 @@ export default function ContentUser(props){
                 <Route path={'/cleaners/chatroom'} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome To The Chat Room {localStorage.getItem("userUser")} !!!</strong></h1>
+                        <h1 className="text--regular" style={{textAlign: "center"}}> Welcome To The Chat Room <strong>{localStorage.getItem("userUser")}</strong></h1>
                         <div style={{marginTop: "5%"}}></div>
                         <div className="row">
                             <Chat />
@@ -133,7 +147,7 @@ export default function ContentUser(props){
                 <Route path={'/users/ratings'} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add your comments here {localStorage.getItem("userUser")} !!!</strong></h1>
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> Add your comments here <strong>{localStorage.getItem("userUser")}</strong></h1>
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
                             <RegisterRating

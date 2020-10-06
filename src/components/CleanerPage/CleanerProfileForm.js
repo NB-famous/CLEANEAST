@@ -106,7 +106,7 @@ const CleanerProfileForm = (props) => {
         </div>
 
 
-        <div className="col-md-8">
+        <div className="col-md-8" style={{width:"1000px"}}>
           <div className="card mb-3">
             <div className="card-body">
               <div className="row">
