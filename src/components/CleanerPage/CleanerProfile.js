@@ -169,7 +169,7 @@ const CleanerProfile = (props) => {
                 <div className="col-sm-6 mb-3" style={{minWidth:"100%"}}>
                   <div className="card h-100">
                     <div className="card-body">
-                      <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Customer Ratings</i></h6>
+                      <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Customer Reviews<strong>(...{reviews.length})</strong></i></h6>
                       {reviews}
                     </div>
                   </div>

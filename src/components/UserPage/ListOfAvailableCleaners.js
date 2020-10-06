@@ -36,7 +36,7 @@ const ListOfAvailableCleaners = (props) => {
                                     <h5 className="font-medium mb-0">{cleaner.cleanerName}</h5>
                                 </td>
                                 <td>
-                                    <span className="text-muted"><strong>cleaner.phone}</strong></span><br/>
+                                    <span className="text-muted"><strong>{cleaner.phone}</strong></span><br/>
                                 </td>
                                 <td>
                                     <span className="text-muted"><strong>{cleaner.email}</strong></span><br/>
