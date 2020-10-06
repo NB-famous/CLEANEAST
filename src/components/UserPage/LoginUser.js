@@ -64,7 +64,7 @@ async function handleSubmit(event){
         {errLogin === true ?
                    <Alert variant="danger" onClose={() => setErrLogin(false)} dismissible>
                    <p>
-                   Not logged-in. Please try again!!
+                   Something went wrong and cannot log-in. Please try again!!
                    </p>
                  </Alert>
                     :
