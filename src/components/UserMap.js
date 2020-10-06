@@ -30,7 +30,7 @@ export default function UserMap(props){
         activeUser,
         setActiveUser,
         isLoading,
-        registeredUser,
+        //registeredUser,
         theLoggedInUser,
         filteredCleaner
       } = props
