@@ -6,6 +6,8 @@
 
 import React, {useState, useEffect} from 'react';
 import "../styles/Content.scss";
+import "../styles/HomePageIndex.scss";
+
 /* import MapSource from './MapSource' */
 import LoginUser from "./UserPage/LoginUser"
 import RegisterUser from "./UserPage/RegisterUser"
@@ -107,7 +109,7 @@ export default function ContentIndex(props){
                 </div>
                 <div className="about-section">
                     <div className="about-header">
-                        <h3>Looking to be a cleaner? It's easy!</h3>
+                        <h3>Looking to be a cleanpreneur? It's easy!</h3>
                         <p>Simply follow these steps and you'll be ready in no time</p>
                     </div>
                     <div className="about-content">
