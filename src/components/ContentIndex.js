@@ -6,6 +6,8 @@
 
 import React, {useState, useEffect} from 'react';
 import "../styles/Content.scss";
+import "../styles/HomePageIndex.scss";
+
 /* import MapSource from './MapSource' */
 import LoginUser from "./UserPage/LoginUser"
 import RegisterUser from "./UserPage/RegisterUser"
@@ -15,7 +17,16 @@ import CarouselSlide from "./CarouselSlide"
 import {Route, useHistory} from 'react-router-dom'
 import axios from 'axios'
 
-
+import { FaCheckCircle } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import { FaMapPin } from "react-icons/fa";
+import { RiQuestionAnswerFill } from "react-icons/ri";
+import { MdAccountCircle } from "react-icons/md";
+import { MdWork } from "react-icons/md";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { TiSocialInstagram } from "react-icons/ti";
+import { TiSocialFacebook } from "react-icons/ti";
+import { TiSocialTwitter } from "react-icons/ti";
 
 export default function ContentIndex(props){
 
@@ -59,20 +70,82 @@ export default function ContentIndex(props){
                     <CarouselSlide />
                 </div>
                 <hr/>
-                <p> 
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis debitis, quas totam soluta blanditiis 
-                    laboriosam repudiandae amet possimus id quibusdam explicabo itaque rerum odit adipisci facere veritatis perspiciatis in tenetur!
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa maiores autem consectetur, consequuntur nam reprehenderit voluptates 
-                    temporibus deserunt. Sint impedit quidem ab quos eos amet magni? Excepturi asperiores commodi deserunt!
-                    Iure at, libero dolores necessitatibus laudantium id saepe officiis ducimus sequi repellat possimus nihil odio dolorum obcaecati 
-                    explicabo facilis doloribus ad voluptatibus adipisci. Repellendus voluptas exercitationem rem incidunt perferendis maxime!
-                    Repudiandae ipsum eum itaque quos aliquam perspiciatis nostrum hic sit accusamus excepturi. Voluptatum magni ipsa amet fugiat 
-                    voluptas perspiciatis enim, voluptatibus itaque iure iusto dolores dolorem sunt, minus deleniti in.
-                    Vero error ducimus repudiandae animi perferendis non, maiores ea, libero exercitationem saepe, ipsam sunt ipsum atque commodi. 
-                    Hic tenetur dolor impedit, incidunt, officia, cupiditate placeat quos soluta error nisi quisquam.
-                    Quidem, labore suscipit vel quibusdam eum provident totam voluptas doloribus, necessitatibus similique nemo quaerat 
-                    commodi cupiditate recusandae minus asperiores quis, reprehenderit unde facere quam! Temporibus consequatur repudiandae libero labore aspernatur.
-                </p>
+                <div className="mid-section">
+                    <div className="mid-section-message">
+                        <h2>Get to know Cleaneast</h2>
+                        <ul className="check-list">
+                            <li><FaCheckCircle value={{ className: "check" }}/>   Find the right person for the job</li>
+                            <li><FaCheckCircle value={{ className: "check" }}/>   Support local business owners</li>
+                            <li><FaCheckCircle value={{ className: "check" }}/>   Help improve services in your community</li>
+                        </ul>    
+                    </div>
+                    <div className="convo-sample">
+                    </div>
+                </div>
+                <div className="qna-section" >
+                    <h4>At Cleaneast we connect local services with the people who need them</h4>
+                    <p>___________________________________________</p>
+                    <ul className="qna-section-list">
+                        <li>
+                            <h5>Have questions?</h5>
+                            <p>Easily message any service provider to discuss in detail in our chat system</p>
+                            <div><RiQuestionAnswerFill size={30} color={"#44B244"} /></div>
+                        </li>
+                        <li>
+                            <h5>Looking for the closest service to you?</h5>
+                            <p>An accessible map allows you to browse the people closest to you, so you can get help fast!</p>
+                            <div><FaMapPin size={30} color={"#44B244"} /></div>
+                        </li>
+                        <li>
+                            <h5>Not sure if it's the right fit?</h5>
+                            <p>Check out what other members of your community think of their work, and if you decide to hire them, feel free to leave a review for others to see!</p>
+                            <div><FaStar color={"#ffc107"}/><FaStar color={"#ffc107"}/><FaStar color={"#ffc107"}/><FaStar color={"#ffc107"}/><FaStar color={"#ffc107"}/></div>
+                        </li>
+                        <li>
+                            <p>___________________________________________</p>
+                            <h4>A platform for the community by the community</h4>
+                        </li>
+                    </ul>
+                </div>
+                <div className="about-section">
+                    <div className="about-header">
+                        <h3>Looking to be a cleanpreneur? It's easy!</h3>
+                        <p>Simply follow these steps and you'll be ready in no time</p>
+                    </div>
+                    <div className="about-content">
+                        <div className="about-item">
+                            <MdAccountCircle size={80} color={"#44B244"} />
+                            <h4>Create an account</h4>
+                            <p>Simply register and find your community</p>
+                        </div>
+                        <div className="about-item">
+                            <MdWork size={80} color={"#44B244"}/>
+                            <h4>Add a service</h4>
+                            <p>Pick how you'd like to make money. Don't worry you can always add more!</p>
+                        </div>
+                        <div className="about-item">
+                            <GiTakeMyMoney size={80} color={"#44B244"}/>
+                            <h4>Make money!</h4>
+                            <p>Stay in touch with your clients and build strong relationships to keep business booming!</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="footer">
+                    <div className="footer-divider"></div>
+                    <div className="footer-divider"></div>
+                    <div className="footer-links">
+                        <h6>©2020 Cleaneast, Inc. All rights reserved.</h6>
+                        <div className="footer-links-disclaimers">
+                            <h6>Privacy</h6>
+                            <h6>Accessibility</h6>
+                            <h6>Terms</h6>
+                            <TiSocialInstagram size={15} color={"#525252"} />
+                            <TiSocialFacebook size={15} color={"#525252"}/>
+                            <TiSocialTwitter  size={15}color={"#525252"}/>
+                        </div>
+                    </div>
+                </div>
+              
                 
                 </Route>
                 <Route path="/users/register" exact>

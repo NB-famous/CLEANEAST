@@ -56,7 +56,7 @@ const NavBar = (props) => {
             </Link>
             </li>
             <li>
-            <Link to={'/cleaners/chatroom'}>
+            <Link className="link" to={'/cleaners/chatroom'}>
             <button className="list-group-item list-group-item-action" >
             <h1><strong>Chat Room</strong></h1>
             </button>
