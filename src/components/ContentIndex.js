@@ -12,9 +12,9 @@ import RegisterUser from "./UserPage/RegisterUser"
 import LoginCleaner from "./CleanerPage/LoginCleaner"
 import RegisterCleaner from "./CleanerPage/RegisterCleaner"
 import CarouselSlide from "./CarouselSlide"
-import FrontPageContent from "./FrontPageContent"
 import {Route, useHistory} from 'react-router-dom'
 import axios from 'axios'
+import FrontPageContent from './FrontPageContent';
 
 
 
@@ -56,10 +56,12 @@ export default function ContentIndex(props){
                 <h1 className="text--regular" style={{textAlign: "center"}}>Welcome To Cleaneast</h1>
                 {/* <div style={{marginTop: "5%"}}></div> */}
                 <hr/>
-                <div>
+                <div className="Carousel">
                     <CarouselSlide />
                 </div>
                 <hr/>
+                
+                
                 <FrontPageContent />
                 
                 </Route>

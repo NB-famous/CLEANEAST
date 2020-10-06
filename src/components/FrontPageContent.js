@@ -16,6 +16,7 @@ import { TiSocialTwitter } from "react-icons/ti";
 
 const FrontPageContent = () => {
   return (
+      <div className="Front-container" style={{display:"flex", flexDirection:"column"}}>
     <>
         <div className="mid-section">
         <div className="mid-section-message">
@@ -93,6 +94,7 @@ const FrontPageContent = () => {
             </div>
         </div>
     </>
+    </div>
   )
 }
 

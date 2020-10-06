@@ -45,3 +45,17 @@
   }
 
 }
+
+.button-list {
+  &__item {
+    
+    button.btn-users:hover{
+      background-size: 100%;
+    }
+ 
+    button.btn-cleaner:hover{
+      background-size: 100%;    
+    }
+  }
+
+}
