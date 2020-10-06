@@ -1,41 +1,42 @@
 
 .button-list {
   &__item {
-    height: 40rem;
     padding-left: 10%;
     padding-right: 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 30px;
 
     button.btn-users{
-      height: 150px;
+      height: 100px;
       cursor: pointer;
       border-radius: 10px;
       outline: none;
       font-size: 2rem;
       background-image: url("../docs/userlogo.png");
-      background-size: 375px;
+      background-size: 98%;
       background-repeat: no-repeat;
       background-position: center;
       background-color: #44B244;
       border-style: none;
-      width: 400px
+      width: 100%;
+      text-decoration: none;
     }
  
     button.btn-cleaner{
-      height: 130px;
+      height: 100px;
       cursor: pointer;
       border-radius: 10px;
       outline: none;
       font-size: 2rem;
       background-image: url("../docs/cleanrlogo.png");
-      background-size: 375px;
+      background-size: 98%;
       background-repeat: no-repeat;
       background-position: center;
       background-color: #44B244;
       border-style: none;
-      width: 400px
+      width: 100%;
     }
 
     div.spacer-gap{
@@ -44,4 +45,101 @@
 
   }
 
+}
+
+.button-list {
+  &__item {
+    
+    button.btn-users:hover{
+      background-size: 100%;
+    }
+ 
+    button.btn-cleaner:hover{
+      background-size: 100%;    
+    }
+  }
+
+}
+
+@media screen and (max-width: 960px) {
+
+  .button-list {
+    &__item {
+      padding-left: 10%;
+      padding-right: 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+  
+      button.btn-users{
+        height: 120px;
+        background-size: 45%;
+        width: 100%;
+      }
+    
+      button.btn-cleaner{
+        height: 120px;
+        background-size: 45%;
+        width: 100%;
+      }
+
+    }
+  
+  }
+
+  .button-list {
+    &__item {
+      
+      button.btn-users:hover{
+        background-size: 47%;
+      }
+   
+      button.btn-cleaner:hover{
+        background-size: 47%;    
+      }
+    }
+  
+  }
+    
+}
+
+@media screen and (max-width: 600px) {
+
+  .button-list {
+    &__item {
+      padding-left: 10%;
+      padding-right: 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+  
+      button.btn-users{
+        height: 120px;
+        background-size: 65%;
+        width: 100%;
+      }
+    
+      button.btn-cleaner{
+        height: 120px;
+        background-size: 65%;
+        width: 100%;
+      }
+
+    }
+  
+  }
+  .button-list {
+    &__item {
+      
+      button.btn-users:hover{
+        background-size: 67%;
+      }
+   
+      button.btn-cleaner:hover{
+        background-size: 67%;    
+      }
+    }
+  
+  }
+    
 }
