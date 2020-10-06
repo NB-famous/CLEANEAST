@@ -12,6 +12,7 @@ import RegisterUser from "./UserPage/RegisterUser"
 import LoginCleaner from "./CleanerPage/LoginCleaner"
 import RegisterCleaner from "./CleanerPage/RegisterCleaner"
 import CarouselSlide from "./CarouselSlide"
+import FrontPageContent from "./FrontPageContent"
 import {Route, useHistory} from 'react-router-dom'
 import axios from 'axios'
 
@@ -59,20 +60,7 @@ export default function ContentIndex(props){
                     <CarouselSlide />
                 </div>
                 <hr/>
-                <p> 
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis debitis, quas totam soluta blanditiis 
-                    laboriosam repudiandae amet possimus id quibusdam explicabo itaque rerum odit adipisci facere veritatis perspiciatis in tenetur!
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa maiores autem consectetur, consequuntur nam reprehenderit voluptates 
-                    temporibus deserunt. Sint impedit quidem ab quos eos amet magni? Excepturi asperiores commodi deserunt!
-                    Iure at, libero dolores necessitatibus laudantium id saepe officiis ducimus sequi repellat possimus nihil odio dolorum obcaecati 
-                    explicabo facilis doloribus ad voluptatibus adipisci. Repellendus voluptas exercitationem rem incidunt perferendis maxime!
-                    Repudiandae ipsum eum itaque quos aliquam perspiciatis nostrum hic sit accusamus excepturi. Voluptatum magni ipsa amet fugiat 
-                    voluptas perspiciatis enim, voluptatibus itaque iure iusto dolores dolorem sunt, minus deleniti in.
-                    Vero error ducimus repudiandae animi perferendis non, maiores ea, libero exercitationem saepe, ipsam sunt ipsum atque commodi. 
-                    Hic tenetur dolor impedit, incidunt, officia, cupiditate placeat quos soluta error nisi quisquam.
-                    Quidem, labore suscipit vel quibusdam eum provident totam voluptas doloribus, necessitatibus similique nemo quaerat 
-                    commodi cupiditate recusandae minus asperiores quis, reprehenderit unde facere quam! Temporibus consequatur repudiandae libero labore aspernatur.
-                </p>
+                <FrontPageContent />
                 
                 </Route>
                 <Route path="/users/register" exact>
