@@ -16,7 +16,7 @@ const CarouselSlide = () => {
         />
         <Carousel.Caption style={{backgroundColor: "grey", border:"solid black", borderRadius: "15px"}}>
           <h3>CarWash</h3>
-          <p>Exterior wash -Rinse -Poly Shine - Underbody Sparay - Hand dry - Window cleaning - Interior vacuum - Mats cleaning</p>
+          <p><strong>Exterior wash -Rinse -Poly Shine - Underbody Sparay - Hand dry - Window cleaning - Interior vacuum - Mats cleaning</strong></p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -42,7 +42,7 @@ const CarouselSlide = () => {
 
         <Carousel.Caption style={{backgroundColor: "grey", border:"solid black", borderRadius: "15px"}}>
           <h3>Land Scaping</h3>
-          <p>Lawn Mowing - Watering - Gardening - Weeds Removal</p>
+          <p><strong>Lawn Mowing - Watering - Gardening - Weeds Removal</strong></p>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -56,7 +56,7 @@ const CarouselSlide = () => {
 
         <Carousel.Caption style={{backgroundColor: "grey", border:"solid black", borderRadius: "15px"}}>
           <h3>Join now</h3>
-          <p>Create your own profile and join our comunity. Get the right service for you! </p>
+          <p><strong>Create your own profile and join our comunity. Get the right service for you! </strong></p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

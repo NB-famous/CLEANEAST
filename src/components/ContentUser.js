@@ -77,7 +77,7 @@ export default function ContentUser(props){
             <Route path="/" exact>
                 <section className="appointment__card-left">
                     <section className="home-content-container">
-                    <h1 className="text--regular" style={{textAlign: "center"}}> Welcome To Cleaneast {localStorage.getItem("userUser")} </h1>
+                    <h1 className="text--regular" style={{textAlign: "center"}}> Welcome To Cleaneast <strong>{localStorage.getItem("userUser")} </strong></h1>
                     <div style={{marginTop: "5%"}}></div>
                         <div class="col-lg-8 col-md-6 col-sm-12 p-0" style={{display:"flex", marginLeft: "10%", minWidth:"80%", maxWidth:"80%", border:"solid black", borderRadius:"10px"}}>
                             <input type="text" placeholder="Type To Search For Your Favourite CleanPreneur..." class="form-control" id="search" name="search" onChange={e => setSearch(e.target.value)} style={{fontSize: "40px"}}/>
@@ -115,7 +115,7 @@ export default function ContentUser(props){
                 <Route path={`/users/cleanerProfile/:id`} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                        <h1 className="text--regular" style={{textAlign: "center"}}> <strong> Welcome To My Profile {localStorage.getItem("userUser")} !!!</strong></h1>
+                        <h1 className="text--regular" style={{textAlign: "center"}}>Welcome To My Profile <strong>{localStorage.getItem("userUser")}</strong></h1>
                         <div style={{marginTop: "5%"}}></div>
                         <div className="row">
                             <CleanerProfile 
@@ -147,7 +147,7 @@ export default function ContentUser(props){
                 <Route path={'/users/ratings'} exact>
                     <section className="appointment__card-left">
                         <section className="content-container">
-                            <h1 className="text--regular" style={{ textAlign: "center" }}> <strong> Add your comments here {localStorage.getItem("userUser")} !!!</strong></h1>
+                            <h1 className="text--regular" style={{ textAlign: "center" }}> Add your comments here <strong>{localStorage.getItem("userUser")}</strong></h1>
                             <div style={{ marginTop: "5%" }}></div>
                             <div className="row">
                             <RegisterRating
