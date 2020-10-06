@@ -1,9 +1,16 @@
-import React from "react"
+import React, {useState} from "react"
 import {Link} from 'react-router-dom'
 
 const ListOfAvailableCleaners = (props) => {
 
     const {registeredUser, setCurrentUser} = props
+
+    const [search, setSearch] = useState('')
+
+    const filteredCleaner = registeredUser.filter(cleaner => {
+
+        return cleaner.cleanerName.toLowerCase().includes(search.toLowerCase())
+      })
 
   return (
       
@@ -13,7 +20,8 @@ const ListOfAvailableCleaners = (props) => {
             <div className="col-md-12">
                 <div className="card">
                     <div className="card-body">
-                                <h5 className="card-title text-uppercase mb-0">List Of Available CleanerPreneurs</h5>
+                        <h5 className="card-title text-uppercase mb-0">List Of Available CleanerPreneurs</h5>
+                        <input type="text" placeholder="Search For Your Favourite CleanPreneur..." class="form-control" id="search" name="search" onChange={e => setSearch(e.target.value)} style={{fontSize: "20px", width:"50%", border:"solid black", borderRadius:"10px"}}/>
                     </div>
                     
                     <div className="table-responsive">
@@ -28,7 +36,7 @@ const ListOfAvailableCleaners = (props) => {
                                 <th scope="col" className="border-0 text-uppercase font-medium">View Profile</th>
                             </tr>
                             </thead>
-                            {registeredUser.map(cleaner => ( 
+                            {filteredCleaner.map(cleaner => ( 
                             <tbody key={cleaner.cleanerId}>
                             <tr>
                                 <td className="pl-4">{cleaner.cleanerId}</td>

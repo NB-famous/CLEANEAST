@@ -1,9 +1,17 @@
-import React from "react"
+import React, {useState} from "react"
 import {Link} from 'react-router-dom'
 
 const ListofCleanerContacts = (props) => {
 
     const {registeredUser, setCurrentUser} = props
+
+    const [search, setSearch] = useState('')
+
+    /// This is the filter function meant to replace registereUser from map
+    const filteredCleaner = registeredUser.filter(cleaner => {
+
+        return cleaner.cleanerName.toLowerCase().includes(search.toLowerCase())
+      })
 
     // const sendText = (user) => {
 
@@ -18,7 +26,8 @@ const ListofCleanerContacts = (props) => {
             <div className="col-md-12">
                 <div className="card">
                     <div className="card-body">
-                                <h5 className="card-title text-uppercase mb-0">CleanPreneur Contact Directory</h5>
+                        <h5 className="card-title text-uppercase mb-0">CleanPreneur Contact Directory</h5>
+                        <input type="text" placeholder="Search For Your Favourite CleanPreneur..." class="form-control" id="search" name="search" onChange={e => setSearch(e.target.value)} style={{fontSize: "20px", width:"50%", border:"solid black", borderRadius:"10px"}}/>
                     </div>
                     <div className="table-responsive">
                         <table className="table no-wrap user-table mb-0">
@@ -32,7 +41,7 @@ const ListofCleanerContacts = (props) => {
                                 <th scope="col" className="border-0 text-uppercase font-medium">Message CleanPreneur</th>
                             </tr>
                             </thead>
-                            {registeredUser.map(cleaner => ( 
+                            {filteredCleaner.map(cleaner => ( 
                             <tbody key={cleaner.cleanerId}>
                             <tr>
                                 <td className="pl-4">{cleaner.cleanerId}</td>
