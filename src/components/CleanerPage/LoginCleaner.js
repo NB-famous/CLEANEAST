@@ -72,7 +72,7 @@ const LoginCleaner = (props) => {
     </Form>
 
     <div style={{marginTop: "5%"}}>
-        <h2>If you are not yet a cleaner please click <strong> <Link to={'/cleaners/register'} style={{color: "#44B244"}}> here </Link> </strong></h2>
+        <h2>If you're not yet a <strong>CleanPreneur</strong> please click <strong> <Link to={'/cleaners/register'} style={{color: "#44B244"}}> here </Link> </strong> to register...</h2>
     </div>
 
     </>

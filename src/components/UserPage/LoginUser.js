@@ -76,7 +76,7 @@ async function handleSubmit(event){
     </Form>
 
     <div style={{marginTop: "5%"}}>
-      <h2>If you are not yet a user please click <strong> <Link to={'/users/register'} style={{color: "#44B244"}}> here </Link> </strong></h2>
+      <h2>If you're not yet a <strong>User</strong> please click <strong> <Link to={'/users/register'} style={{color: "#44B244"}}> here </Link> </strong> to register...</h2>
     </div>
 
     </>

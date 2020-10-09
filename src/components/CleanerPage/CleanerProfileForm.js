@@ -92,7 +92,7 @@ const CleanerProfileForm = (props) => {
                 <img src={picture_url} alt="Admin" className="rounded-circle" width="150" />
                 <div className="mt-3">
                   <h4 style={{color: "black"}}>{localStorage.getItem("cleanerUser")}</h4>
-                  <p className="text-secondary mb-1">{cleanerName}</p>
+                  {/* <p className="text-secondary mb-1">{cleanerName}</p> */}
                   <p className="text-muted font-size-sm">{address}</p>
                   {/* <button className="btn btn-primary">Hire</button> */}
                   {/* <button className="btn btn-outline-primary">Message</button> */}

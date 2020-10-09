@@ -16,12 +16,12 @@ const DEFUALT_LONGITUDE = -73.636540; */
 
 const cleaner = new Icon({
     iconUrl: "/images/cleanerlogo.png",
-    iconSize: [25, 25]
+    iconSize: [40, 40]
 });
 
 const userLocationIcon = new Icon({
     iconUrl: "/images/greenhome3.png",
-    iconSize: [25, 25]
+    iconSize: [40, 40]
 });
 
 export default function UserMap(props){
@@ -52,7 +52,7 @@ export default function UserMap(props){
         return (
             <>
             {isLoading && <div>Loading...</div>}
-            {!isLoading && currentUser && <Map className="map" center={position} zoom={15}>
+            {!isLoading && currentUser && <Map className="map" center={position} zoom={14}>
                 <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
