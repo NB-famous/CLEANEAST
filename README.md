@@ -19,6 +19,10 @@
 !["search function"](https://github.com/NB-famous/CLEANEAST/blob/master/docs/cleaneast_filter.png?raw=true)
 ## ChatRoom Page
 !["Chatroom Page"](https://github.com/NB-famous/CLEANEAST/blob/master/docs/cleaneast_user_chatroom.png?raw=true)
+## Communication between user and CleanPreneur
+!["Chatroom Page2"](https://github.com/NB-famous/CLEANEAST/blob/master/docs/cleaneast_communication.png?raw=true)
+
+
 
 
 # Dependencies
