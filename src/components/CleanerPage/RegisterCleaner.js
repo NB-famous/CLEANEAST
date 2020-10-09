@@ -216,7 +216,7 @@ export default class RegisterCleaner extends Component{
                     :
                     <p></p>
                 }
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                             Register 
                 </Button>
             </Form>

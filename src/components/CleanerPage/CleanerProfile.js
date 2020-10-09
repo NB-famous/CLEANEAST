@@ -16,7 +16,7 @@ const CleanerProfile = (props) => {
   const sendText = (user) => {
 
     console.log("THIS IS USER", user)
-    fetch(`http://127.0.0.1:5000/twilio/send-text?recipient=${user}&textmessage="Congrats you got hired!" By ${localStorage.getItem("userUser")}`)
+    fetch(`http://127.0.0.1:5000/twilio/send-text?recipient=${user}&textmessage=Congrats ${localStorage.getItem("hiredCleaner")} you got hired! By ${localStorage.getItem("userUser")} 👍 or 👎 `)
     .catch(err => console.error(err))
   }
 
@@ -83,14 +83,14 @@ const CleanerProfile = (props) => {
                 </li>
                 <li className="list-group-item d-flex align-items-center flex-wrap">
                   <Link to={'/cleaners/chatroom'}>
-                        <button className="btn btn-outline-success" onClick={() => localStorage.setItem("cleanerData",selectedUser.cleanerName)} style={{width:"150px", borderColor: "black"}}>
+                        <button className="btn btn-outline-success" onClick={() => localStorage.setItem("cleanerData",selectedUser.cleanerName)} style={{width:"150px", borderColor: "black", color:"black"}}>
                         Message
                         </button>
                   </Link>
                 </li>
                 <li className="list-group-item d-flex align-items-center flex-wrap">
                   <Link to={'/users/ratings'}>
-                        <button className="btn btn-outline-success" style={{width:"150px", borderColor: "black"}}>Add comment</button>
+                        <button className="btn btn-outline-success" style={{width:"150px", borderColor: "black", color:"black"}}>Add comment</button>
                   </Link>
                 </li>
             </ul>

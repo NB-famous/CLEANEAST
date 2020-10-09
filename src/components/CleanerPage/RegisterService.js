@@ -90,9 +90,9 @@ export default class RegisterService extends Component {
         e.preventDefault();
 
         const service = {
-            name: this.state.name,
+            name: this.state.typeofservice, // this.state.name
             price: this.state.price,
-            typeofservice: this.state.typeofservice,
+            typeofservice: this.state.name, //this.state.typeofservice
             deposit: this.state.deposit,
         }
 
