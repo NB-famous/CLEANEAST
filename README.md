@@ -15,6 +15,12 @@
 !["Registration Page"](https://github.com/NB-famous/CLEANEAST/blob/master/docs/cleaneast_registration.png?raw=true)
 ## User Dashboard
 !["User Dashboard"](https://github.com/NB-famous/CLEANEAST/blob/master/docs/cleaneast_user_front.png?raw=true)
+## CleanPreneur Dashboard
+!["cleaner Dashboard"](https://github.com/NB-famous/CLEANEAST/blob/master/docs/cleaneast_cleaner_dashboard.png?raw=true)
+## Add Service
+!["Add Service"](https://github.com/NB-famous/CLEANEAST/blob/master/docs/cleaneast_add_service_page.png?raw=true)
+## Add Ratings
+!["Add Ratings"](https://github.com/NB-famous/CLEANEAST/blob/master/docs/ratings_page.png?raw=true)
 ## Search Function
 !["search function"](https://github.com/NB-famous/CLEANEAST/blob/master/docs/cleaneast_filter.png?raw=true)
 ## ChatRoom Page
