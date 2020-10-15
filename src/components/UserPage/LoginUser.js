@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Form, Alert } from 'react-bootstrap';
-//import {ILogin, ITarget, login } from './helperUser/interfaces'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 

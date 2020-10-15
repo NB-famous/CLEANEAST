@@ -1,14 +1,12 @@
 //Using leaflet maps by functional build
 
-
 import React from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import "../styles/MapSource.scss"
 import {Icon} from 'leaflet'
 import {Link} from 'react-router-dom'
-//import userData from "../data/mock-users.json";
-//import axios from 'axios'
+
 
 
 /* const DEFAULT_LATITUDE = 45.476770;
@@ -42,13 +40,9 @@ export default function UserMap(props){
         const email = localStorage.getItem("userEmail");
         return users.find(user => user.email === email)
       }
-    
-      const currentUser = getTheCurrentUser(theLoggedInUser)
-
+        const currentUser = getTheCurrentUser(theLoggedInUser)
         //const position = [45.501690, -73.567253]
-
         const position = currentUser && [currentUser.latitude, currentUser.longitude]
-        
         return (
             <>
             {isLoading && <div>Loading...</div>}
@@ -90,10 +84,6 @@ export default function UserMap(props){
                         setActiveUser(null);
                     }}
                     >
-                    {/* <div>
-                        <h2>{activeUser.cleanerName}</h2>
-                        <p>{activeUser.email}</p>
-                    </div> */}
                 
                     <div class="col mb-3">
                         <div className="card">
@@ -115,7 +105,6 @@ export default function UserMap(props){
                     </div>
                     </Popup>
                 )}
-
             </Map>
             }
             </>

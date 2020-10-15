@@ -5,10 +5,8 @@
 
 import React, {useState, useEffect} from 'react';
 import "../styles/Content.scss";
-/* import MapSource from './MapSource' */
 import {Route, useHistory, Switch} from 'react-router-dom'
 import CleanerProfileForm from './CleanerPage/CleanerProfileForm'
-
 import RegisterService from './CleanerPage/RegisterService'
 import UpdateService from './CleanerPage/UpdateService'
 import axios from 'axios'
@@ -18,8 +16,6 @@ import DigitalClock from './CleanerPage/DigitalClock'
 
 
 export default function ContentSeller(props){
-
-    //const {loggedIn, setLoggedIn, cleanerLogin, setCleanerLogin} = props; // This is to be used later to set the state of if logged in or not 
 
     const [chosenProfile, setChosenProfile] = useState({})
     const [isLoading, setLoading] = useState(true)
@@ -37,8 +33,6 @@ export default function ContentSeller(props){
          })
          .catch(err => console.log(err))
      }, [])
-
-
 
     let history = useHistory()
 
@@ -63,12 +57,6 @@ export default function ContentSeller(props){
             }
         })
             .then(res => { 
-                //let services = {}
-                //get the index of the deleted service in the array of services
-                //let indexServiceId = (registeredUser[cleanerId-1].service.map(function(e) { return e.service_id; }).indexOf(serviceId))
-                //console.log(" indexServiceId",  indexServiceId)
-                
-                //make copy of the array service
                 const tempUsers = [...registeredUser]
                 const index = tempUsers.map(user => user.cleanerId).indexOf(cleanerId)
                 tempUsers[index].service = tempUsers[index].service.filter(s => s.service_id === serviceId ? false : true)
@@ -94,7 +82,6 @@ export default function ContentSeller(props){
         return
     }
 
-    //history.push('/'); // this will redirect to home page if user is logged in
     return(
         <main className="appointment__card appointment__card--show">
             <Route path="/" exact>

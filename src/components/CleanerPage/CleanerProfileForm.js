@@ -39,25 +39,7 @@ const CleanerProfileForm = (props) => {
   console.log('getCurrentCleaner(registeredUser).service ---> ', getCurrentCleaner(registeredUser).service);
   console.log('getCurrentCleaner(registeredUser).rating ---> ', getCurrentCleaner(registeredUser).rating);
 
-  //Creates list of services the currently selected seller offers
-  // const services = getCurrentCleaner(registeredUser).service.map(val => {
-  //   return(
-  //     <ul className="service-container">
-  //         <li className="service-header">
-  //           <div>{val.service}<span className="service-type">{val.typeofservice}</span> 
-  //           </div>
-  //           <div>${val.price/100}</div>  
-  //         </li>
-  //         <li className="service-deposit">Deposit of {val.deposit}%</li>
-  //         <Link to={'/cleaners/services/update'}>
-  //                           <button className="btn btn-outline-primary" onClick={() => props.updateService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Update service</button>
-  //         </Link>
-  //         {/* <DeleteServiceDirectly selectedUserIndex={registeredUser} selectedServiceid={val.service_id}> */}
-  //         <button className="btn btn-outline-primary" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)}>Delete service</button>
-  //         {/* </DeleteServiceDirectly> */}
-  //     </ul>
-  //   )})  
-  
+
   //Creates list of reviews belonging to the currently selected seller
   const reviews = getCurrentCleaner(registeredUser).rating.map(val => {
     
@@ -92,10 +74,7 @@ const CleanerProfileForm = (props) => {
                 <img src={picture_url} alt="Admin" className="rounded-circle" width="150" />
                 <div className="mt-3">
                   <h4 style={{color: "black"}}>{localStorage.getItem("cleanerUser")}</h4>
-                  {/* <p className="text-secondary mb-1">{cleanerName}</p> */}
                   <p className="text-muted font-size-sm">{address}</p>
-                  {/* <button className="btn btn-primary">Hire</button> */}
-                  {/* <button className="btn btn-outline-primary">Message</button> */}
                   <Link to={'/cleaners/services'}>
                     <button className="btn btn-outline-success" onClick={() => props.createService(getCurrentCleaner(registeredUser).cleanerId)}>Add service</button>
                   </Link>
@@ -182,12 +161,11 @@ const CleanerProfileForm = (props) => {
                                 </button>
                             </Link>
                             <span>{" "}</span>
-                            {/* <DeleteServiceDirectly selectedUserIndex={registeredUser} selectedServiceid={val.service_id}> */}
+                            
                             <button className="btn btn-outline-success" onClick={() => props.deleteService(getCurrentCleaner(registeredUser).cleanerId, val.service_id)} style={{borderColor: "black"}}>
                               Delete service
                               <AiFillDelete value={{ className: "edit-icon" }}/>
                             </button>
-                            {/* </DeleteServiceDirectly> */}
                           </div>
                           </li>
                       </ul>

@@ -17,8 +17,6 @@ const NavBar = (props) => {
         localStorage.removeItem("message-id");
         localStorage.removeItem("message-conversations");
         localStorage.removeItem("hiredCleaner");
-        // localStorage.removeItem("userLat");
-        // localStorage.removeItem("userLong");
         history.push('/');
     }
 
@@ -29,7 +27,6 @@ const NavBar = (props) => {
         localStorage.removeItem("cleanerEmail");
         localStorage.removeItem("message-id");
         localStorage.removeItem("message-conversations");
-        //localStorage.clear();
         history.push('/');
     }
 

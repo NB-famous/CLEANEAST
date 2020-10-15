@@ -13,12 +13,6 @@ const ListofCleanerContacts = (props) => {
         return cleaner.cleanerName.toLowerCase().includes(search.toLowerCase())
       })
 
-    // const sendText = (user) => {
-
-    //     console.log("THIS IS USER", user)
-    //     fetch(`http://127.0.0.1:5000/twilio/send-text?recipient=${user}&textmessage="Congrats you got hired!" By ${localStorage.getItem("userUser")}`)
-    //     .catch(err => console.error(err))
-    //   }
 
   return (
     <div className="container">
@@ -67,13 +61,6 @@ const ListofCleanerContacts = (props) => {
                                 <Link onClick={() => setCurrentUser(cleaner)} to={`/users/cleanerProfile/${cleaner.cleanerId}`} params={ {theUser: {cleaner} }}>
                                 <button className="btn btn-outline-success btn-circle btn-lg btn-circle"> Go To Profile</button>
                                 </Link>
-                                {/* <Link to={'/twilio/send-text'}>
-                                <button type="button" className="btn btn-outline-success btn-circle btn-lg btn-circle" onClick={()=> {
-                                    localStorage.setItem("hiredCleaner",cleaner.cleanerName)
-                                    sendText(cleaner.phone)}} >
-                                    Hire Me
-                                    </button>
-                                </Link> */}
                                 </td>
                             </tr>
                             </tbody>

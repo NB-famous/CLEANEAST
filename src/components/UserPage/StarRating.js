@@ -4,7 +4,6 @@ import './StarRating.css';
 
 const StarRating = (props) => {
   console.log("Rating props", props)
-  //const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
 
   return <h1>

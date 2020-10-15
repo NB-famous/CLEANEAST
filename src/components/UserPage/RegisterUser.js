@@ -16,7 +16,7 @@ export default class RegisterUser extends Component {
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.error = false //add Oct4
+        this.error = false 
 
 
         this.state = {
@@ -84,7 +84,6 @@ export default class RegisterUser extends Component {
             })
             .catch(err => {
                 console.log("This is the responese from catch", err);
-                //this.error = true
                 this.setState({
                     username: '',
                     email: '',

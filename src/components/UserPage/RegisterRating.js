@@ -20,8 +20,6 @@ export default class RegisterRating extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.error = false
 
-        //if the service array is empty set service initial state as empty string
-        //if there are already services set the state with the element zero
         let initialService;
         if (this.props.selectedUser.service.length >= 1) {
             initialService = this.props.selectedUser.service[0].service
@@ -46,13 +44,6 @@ export default class RegisterRating extends Component {
             rating: rating
         })
     }
-
-    // onChangeRating(e) {
-    //     console.log("e", e)
-    //     this.setState({
-    //         rating: e
-    //     })
-    // }
 
     onChangeComment(e) {
         this.setState({
@@ -139,8 +130,6 @@ export default class RegisterRating extends Component {
                     error: true
                 })
             });
-
-
     }
 
 
@@ -148,10 +137,6 @@ export default class RegisterRating extends Component {
         const isRegistered = this.state.isRegistered;
         const error = this.state.error
         if (isRegistered === true) {
-            //this.setLoggedIn(true)
-            //this.setCleanerLogin(true)
-            //return <Redirect to="/" />
-           // to={`/users/cleanerProfile/${user.cleanerId}`}
             return <Redirect to={`/users/cleanerProfile/${this.state.cleaner_id}`} />
         }
         //console.log("selected user:", this.props.selectedUser);
@@ -174,12 +159,6 @@ export default class RegisterRating extends Component {
                         })}
                     </Form.Control>
                 </Form.Group>
-                {/* <Form.Group controlId="formBasicRating">
-                    <Form.Label>Rating</Form.Label>
-                    <Form.Control type="number" min="0" max="5" placeholder="Rating" value={this.state.rating} onChange={this.onChangeRating} />
-                    <Form.Text className="text-muted">
-                    </Form.Text>
-                </Form.Group> */}
                 <Form.Group controlId="formBasicRating">
                 <Form.Label>Rating</Form.Label>
                 <StarRating setRating={this.onChangeRating} stateRating={this.state.rating}></StarRating>

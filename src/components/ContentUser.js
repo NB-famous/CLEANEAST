@@ -23,8 +23,6 @@ import ListofCleanerContacts from './UserPage/ListofCleanerContacts'
 
 export default function ContentUser(props){
 
-    //const {isLoading, setLoading, registeredUser, setRegisteredUser} = props; // This is to be used later to set the state of if logged in or not 
-
     const [activeUser, setActiveUser] = useState(null);
     const [chosenProfile, setChosenProfile] = useState({})
     const [isLoading, setLoading] = useState(true)
@@ -48,11 +46,6 @@ export default function ContentUser(props){
                 url:'http://localhost:5000/users'})
         })
         .then(res => {
-
-            // localStorage.setItem("userLat", theCurrentLoggedInUser(res.data).latitude)
-            // localStorage.setItem("userLong", theCurrentLoggedInUser(res.data).longitude)
-            // console.log("THIS IS THE SECOND AXIOS GET REQUEST", theCurrentLoggedInUser(res.data).latitude)
-            // console.log("THIS IS RES DATA ", res.data)
             setLoading(false)
             setTheLoggedInUser(res.data)
 
@@ -70,7 +63,6 @@ export default function ContentUser(props){
         history.push('/');
         return <div>Loading...</div>;
     }
-    //history.push('/'); // this will redirect to home page if user is logged in
 
     return(
         <main className="appointment__card appointment__card--show">
@@ -97,7 +89,6 @@ export default function ContentUser(props){
                 </section>
 
                 <section className="appointment__card-right">
-                    {/* <MapSource /> */}
                     <UserMap 
                         activeUser={activeUser}
                         setActiveUser={setActiveUser}

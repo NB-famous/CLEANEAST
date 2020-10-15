@@ -10,14 +10,10 @@ export default class RegisterService extends Component {
         super(props);
         this.targetCleaner = props.targetCleaner;
         this.registeredUser = props.registeredUser;
-        // this.cleanerLogin = props.cleanerLogin;
-        // this.setCleanerLogin = props.setCleanerLogin;
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangePrice = this.onChangePrice.bind(this);
         this.onChangeTypeOfService = this.onChangeTypeOfService.bind(this);
         this.onChangeDeposit = this.onChangeDeposit.bind(this);
-        //this.onSubmit = this.onSubmit.bind(this);
-        //this.listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry", "Window cleaning", "Interior vacuum", "Mats cleaning" ]
         this.listOfServicesCarWash = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry", "Window cleaning", "Interior vacuum", "Mats cleaning"]
         this.listOfServicesHomeCleaning = ["Brooming", "Vacuuming", "Mopping", "Dusting", "Floor Waxing", "Window cleaning", "Carpet cleaning"]
         this.listOfServicesLandScaping = ["Lawn Mowing ", "Watering", "Planting", "Weeds Removal"]
@@ -156,10 +152,8 @@ export default class RegisterService extends Component {
         const error = this.state.error
         console.log("this.registeredUser", this.registeredUser)
 
-        //const listOfServices = ["Exterior wash", "Rinse", "Poly Shine", "Underbody Sparay", "Hand dry"]
 
         if (isRegistered === true) {
-            //this.setCleanerLogin(true)
             return <Redirect to="/" />
         }
 

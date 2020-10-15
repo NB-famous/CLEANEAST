@@ -54,7 +54,6 @@ const CleanerProfile = (props) => {
       
     </ul>)});
 
-  //console.log(selectedUser.services.map())
   return (
     <>
         <div className="row gutters-sm">
