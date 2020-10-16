@@ -17,5 +17,5 @@
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/users/login"
   status = 200
