@@ -16,6 +16,6 @@
 
 
 [[redirects]]
-  from = "/*"
+  from = "/"
   to = "/users/login"
   status = 200
