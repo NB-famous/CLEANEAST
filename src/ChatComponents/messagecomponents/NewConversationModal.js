@@ -15,7 +15,9 @@ export default function NewConversationModal({ closeModal }) {
   const [registeredUser, setRegisteredUser] = useState([])
 
    /////// This is where get user is coming from and pass down to maps
-   useEffect(()=>{
+
+   ///// original before deployment ////////////////
+   /* useEffect(()=>{
       axios({
           method: 'GET',
           url:'http://localhost:5000/cleaners/services'})
@@ -24,9 +26,20 @@ export default function NewConversationModal({ closeModal }) {
            console.log("this is response", res)
        })
        .catch(err => console.log(err))
-   }, [])
+   }, []) */
 
   ///////////
+
+  useEffect(()=>{
+    axios({
+        method: 'GET',
+        url:'https://cleaneast.herokuapp.com/cleaners/services'})
+     .then(res => {
+         setRegisteredUser(res.data)
+         console.log("this is response", res)
+     })
+     .catch(err => console.log(err))
+ }, [])
 
   function handleSubmit(e) {
     e.preventDefault()

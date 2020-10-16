@@ -29,7 +29,9 @@ export default function ContentIndex(props){
     let history = useHistory();
 
     /////// This is where get user is coming from and pass down to maps
-    useEffect(()=>{
+
+    /////// original before deployment /////////////////////
+    /* useEffect(()=>{
        axios({
            method: 'GET',
            url:'http://localhost:5000/cleaners/services'})
@@ -39,7 +41,21 @@ export default function ContentIndex(props){
             console.log("this is response", res)
         })
         .catch(err => console.log(err))
-    }, [])
+    }, []) */
+
+    useEffect(()=>{
+        axios({
+            method: 'GET',
+            url:'https://cleaneast.herokuapp.com/cleaners/services'})
+         .then(res => {
+             setRegisteredUser(res.data)
+             setLoading(false)
+             console.log("this is response", res)
+         })
+         .catch(err => console.log(err))
+     }, []) 
+
+
 
 
     if (isloading) {
