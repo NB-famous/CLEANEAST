@@ -15,7 +15,3 @@
   REACT_APP_API_BASE_URL = "https://cleaneast.herokuapp.com/"
 
 
-[[redirects]]
-  from = "/"
-  to = "/users/login"
-  status = 200
