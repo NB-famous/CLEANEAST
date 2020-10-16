@@ -46,7 +46,14 @@ export default function Application(props) {
             setCleanerLogin={setCleanerLogin}
             />
             <section className="content-body" >
-            {renderContext()}
+            {/* {renderContext()} */}
+
+            <ContentIndex 
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn} 
+                cleanerLogin={cleanerLogin} 
+                setCleanerLogin={setCleanerLogin}
+            />  
             </section>
         </main>
         </Switch>
