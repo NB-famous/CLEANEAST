@@ -1,4 +1,7 @@
 
+You can visit the app using this link: https://cleaneast-frontend.herokuapp.com/
+
+
 # Tech Stack
 ## -> Front-end: HTML, CSS, React, Boot-Strap, Node-SASS
 ## -> Back-end: NodeJS, Express, PSQL
