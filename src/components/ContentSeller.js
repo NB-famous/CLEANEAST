@@ -22,9 +22,7 @@ export default function ContentSeller(props){
     const [registeredUser, setRegisteredUser] = useState([])
 
      /////// This is where get user is coming from and pass down to maps
-
-     ///////// original before deployment
-     /* useEffect(()=>{
+     useEffect(()=>{
         axios({
             method: 'GET',
             url:'http://localhost:5000/cleaners/services'})
@@ -34,20 +32,7 @@ export default function ContentSeller(props){
              console.log("this is response", res)
          })
          .catch(err => console.log(err))
-     }, []) */
-
-
-     useEffect(()=>{
-        axios({
-            method: 'GET',
-            url:'https://cleaneast.herokuapp.com/cleaners/services'})
-         .then(res => {
-             setRegisteredUser(res.data)
-             setLoading(false)
-             console.log("this is response", res)
-         })
-         .catch(err => console.log(err))
-     }, []) 
+     }, [])
 
     let history = useHistory()
 
@@ -65,8 +50,7 @@ export default function ContentSeller(props){
             serviceId: serviceId
         }
 
-        //////// BEFORE DEPLOYMENT //////
-        /* axios.post('http://localhost:5000/cleaners/service/delete', service, {
+        axios.post('http://localhost:5000/cleaners/service/delete', service, {
             headers: {
                 'Content-Type': 'application/json',
                 'cleanerttoken': localStorage.getItem('cleanerToken')
@@ -78,22 +62,7 @@ export default function ContentSeller(props){
                 tempUsers[index].service = tempUsers[index].service.filter(s => s.service_id === serviceId ? false : true)
                 setRegisteredUser(tempUsers)
             })
-            .catch(err => { console.log(err) }) */
-
-
-            axios.post('https://cleaneast.herokuapp.com/cleaners/service/delete', service, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'cleanerttoken': localStorage.getItem('cleanerToken')
-                }
-            })
-                .then(res => { 
-                    const tempUsers = [...registeredUser]
-                    const index = tempUsers.map(user => user.cleanerId).indexOf(cleanerId)
-                    tempUsers[index].service = tempUsers[index].service.filter(s => s.service_id === serviceId ? false : true)
-                    setRegisteredUser(tempUsers)
-                })
-                .catch(err => { console.log(err) }) 
+            .catch(err => { console.log(err) })
     }
 
     let targetValue = {};

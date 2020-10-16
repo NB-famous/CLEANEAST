@@ -34,9 +34,7 @@ export default function ContentUser(props){
 
 
     /////// This is where get user is coming from and pass down to maps
-
-    ////////////////////////// BEFORE DEPLOYMENT ////////////////////
-    /* useEffect(()=>{
+    useEffect(()=>{
        axios({
            method: 'GET',
            url:'http://localhost:5000/cleaners/services'})
@@ -53,28 +51,7 @@ export default function ContentUser(props){
 
         })
         .catch(err => console.log(err))
-    }, []) */
-
-    ////////////////////////////
-
-    useEffect(()=>{
-        axios({
-            method: 'GET',
-            url:'https://cleaneast.herokuapp.com/cleaners/services'})
-         .then(res => {
-             console.log("THIS IS THE FIRST AXIOS GET REQUEST", res.data)
-             setRegisteredUser(res.data)
-             return axios({
-                 method: 'GET',
-                 url:'https://cleaneast.herokuapp.com/users'})
-         })
-         .then(res => {
-             setLoading(false)
-             setTheLoggedInUser(res.data)
- 
-         })
-         .catch(err => console.log(err))
-     }, [])
+    }, [])
 
 
     const filteredCleaner = registeredUser.filter(cleaner => {

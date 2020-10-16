@@ -23,9 +23,7 @@ export default function Content(props){
     const [registeredUser, setRegisteredUser] = useState([])
 
     /////// This is where get user is coming from and pass down to maps
-
-    ////////////////////////BEFORE DEPLOYMENT
-    /* useEffect(()=>{
+    useEffect(()=>{
        axios({
            method: 'GET',
            url:'http://localhost:5000/cleaners'})
@@ -35,19 +33,7 @@ export default function Content(props){
             console.log("this is response", res)
         })
         .catch(err => console.log(err))
-    }, []) */
-
-    useEffect(()=>{
-        axios({
-            method: 'GET',
-            url:'https://cleaneast.herokuapp.com/cleaners'})
-         .then(res => {
-             setRegisteredUser(res.data)
-             setLoading(false)
-             console.log("this is response", res)
-         })
-         .catch(err => console.log(err))
-     }, [])
+    }, [])
 
 
 

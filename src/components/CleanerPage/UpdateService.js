@@ -103,56 +103,7 @@ export default class UpdateService extends Component {
 
         console.log("Service", service)
         //axios(config)
-
-        ///////////////////////// BEFORE DEPLOYMENT/////////////////////////
-        /* axios.post('http://localhost:5000/cleaners/service/update', service, {
-            headers: {
-                'Content-Type': 'application/json',
-                'cleanerttoken': localStorage.getItem('cleanerToken')
-            }
-        })
-            .then(res => {
-                console.log(res.data)
-
-                this.setState({
-                    name: this.state.name,
-                    price: this.state.price,
-                    typeofservice: this.state.typeofservice,
-                    deposit: this.state.deposit,
-                    isRegistered: true,
-                })
-
-                const tempUsers = [...this.props.registeredUser]
-                const index = tempUsers.map(user => user.cleanerId).indexOf(this.props.targetValue.cleanerId)
-                const serviceIndex = tempUsers[index].service.map(s => s.service_id).indexOf(this.props.targetValue.serviceId)
-
-                console.log("Service Index", serviceIndex)
-                tempUsers[index].service[serviceIndex] = {
-                    ...tempUsers[index].service[serviceIndex],
-                    service: this.state.name,
-                    price: this.state.price * 100,
-                    typeofservice: this.state.typeofservice,
-                    deposit: this.state.deposit,
-                    service_id: this.serviceId
-                }
-                this.props.setRegisteredUser(tempUsers)
-            })
-            .catch(err => {
-                console.log("This is the responese from catch", err);
-                this.setState({
-                    name: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].service,
-                    price: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].price / 100,
-                    typeofservice: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].typeofservice,
-                    deposit: this.registeredUser[this.targetValue.cleanerId - 1].service[this.indexServiceId].deposit,
-                    isRegistered: false,
-                    error: true
-
-                })
-            }); */
-            
-            ////////////////////////////////////////////////
-
-            axios.post('https://cleaneast.herokuapp.com/cleaners/service/update', service, {
+        axios.post('http://localhost:5000/cleaners/service/update', service, {
             headers: {
                 'Content-Type': 'application/json',
                 'cleanerttoken': localStorage.getItem('cleanerToken')
@@ -196,8 +147,6 @@ export default class UpdateService extends Component {
 
                 })
             });
-
-
     }
     render() {
 

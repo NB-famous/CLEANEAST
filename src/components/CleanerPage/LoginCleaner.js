@@ -15,31 +15,8 @@ const LoginCleaner = (props) => {
 
         event.preventDefault()
 
-        //////////////////////////////////////// BEFORE DEPLOYMENT///////////////
-
-        /* try{
-            const response = await axios.post('http://localhost:5000/cleaners/login', {
-                email,
-                password
-            });
-            if(response.data) {
-                console.log("this is response", response)
-                localStorage.setItem("cleanerToken", response.data.token) // Then object is from response we made through url attach to MongoDB
-                localStorage.setItem("cleanerEmail", response.data.cleaner.email)
-                localStorage.setItem("cleanerUser", response.data.cleaner.username)
-                props.setCleanerLogin(true)
-                setErrLogin(false)
-            } else {
-                console.log("incorrect something")
-            }
-        }
-        catch(err){
-            console.log("ERROR", err)
-            setErrLogin(true)
-        } */
-
         try{
-            const response = await axios.post('https://cleaneast.herokuapp.com/cleaners/login', {
+            const response = await axios.post('http://localhost:5000/cleaners/login', {
                 email,
                 password
             });

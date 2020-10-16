@@ -76,65 +76,7 @@ export default class RegisterRating extends Component {
 
         console.log(rating);
 
-        /////////////////////////// BEFORE DEPLOYMENT
-
-        /* axios.post('http://localhost:5000/users/rating', rating, {
-            headers: {
-                'Content-Type': 'application/json',
-                'userttoken': localStorage.getItem('userToken')
-            }
-        })
-            .then(res => {
-                console.log(res.data)
-
-                const tempCleaners = [...this.props.registeredUser]
-                const index = tempCleaners.map(cleaner => cleaner.cleanerId).indexOf(this.props.selectedUser.cleanerId)
-                console.log("Index", index) //return the index of the cleaner eg. 19
-                console.log("tempCleaners[index].service", tempCleaners[index].service)
-                console.log("this.state.service", this.state.service)
-                const indexServiceBin = tempCleaners[index].service.map(s => s.service.indexOf(this.state.service))
-                const indexService = indexServiceBin.indexOf(0);
-                console.log("IndexService", indexService)
-                const tempServiceId = tempCleaners[index].service[indexService].service_id
-                console.log("tempServiceId", tempServiceId)
-
-                tempCleaners[index].rating = [
-                    ...tempCleaners[index].rating, {
-                        cleaner_id: this.props.selectedUser.cleanerId,  //update this line to fix bug
-                        services_id: tempServiceId,
-                        service: this.state.service,
-                        rating: this.state.rating,
-                        comment: this.state.comment,
-                        username: localStorage.getItem('userUser') 
-                    }
-                ]
-                console.log("tempCleaners", tempCleaners)
-                this.props.setRegisteredUser(tempCleaners)
-                //console.log("res.data.id", res.data.service.id)
-
-                this.setState({
-                    comment: '',
-                    rating: '',
-                    service: '',
-                    cleanerId: '',
-                    isRegistered: true,
-                    error: false
-                })
-            })
-            .catch(err => {
-                console.log("This is the responese from catch", err);
-                this.setState({
-                    comment: '',
-                    rating: '',
-                    service: this.state.service,
-                    cleanerId: '',
-                    isRegistered: false,
-                    error: true
-                })
-            }); */
-
-
-            axios.post('https://cleaneast.herokuapp.com//users/rating', rating, {
+        axios.post('http://localhost:5000/users/rating', rating, {
             headers: {
                 'Content-Type': 'application/json',
                 'userttoken': localStorage.getItem('userToken')

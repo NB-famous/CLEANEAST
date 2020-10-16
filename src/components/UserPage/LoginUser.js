@@ -17,32 +17,8 @@ const [errLogin, setErrLogin] = useState(false);
 async function handleSubmit(event){
     event.preventDefault()
 
-    /////////////////////// BEFORE DEPLOYMENT
-
-    /* try{
-        const response = await axios.post("http://localhost:5000/users/login", {
-            email,
-            password
-        });
-        if(response.data) {
-            console.log("this is response", response)
-            localStorage.setItem("userToken", response.data.token) // Then object is from response we made through url attach to MongoDB
-            localStorage.setItem("userEmail", response.data.user.email)
-            localStorage.setItem("userUser", response.data.user.username)
-            props.setLoggedIn(true)
-            setErrLogin(false)
-
-        } else {
-            console.log("incorrect something")
-        }
-    }
-    catch(err){
-        console.log("ERROR", err)
-        setErrLogin(true)
-    } */
-
     try{
-        const response = await axios.post("https://cleaneast.herokuapp.com/users/login", {
+        const response = await axios.post("http://localhost:5000/users/login", {
             email,
             password
         });
