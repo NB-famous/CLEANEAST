@@ -98,8 +98,37 @@ export default class RegisterCleaner extends Component{
         }
     
         console.log(user);
+
+        ///////////////////////////// BEFORE DEPLOY
     
-        axios.post('http://localhost:5000/cleaners/register', user)
+        /* axios.post('http://localhost:5000/cleaners/register', user)
+            .then(res => {
+                localStorage.setItem("cleanerToken", res.data.token) // Then object is from response we made through url attach to MongoDB
+                localStorage.setItem("cleanerEmail", res.data.cleaner.email)
+                localStorage.setItem("cleanerUser", res.data.cleaner.username)
+                console.log("This is the responese from then", res.data)
+            
+                this.setState({
+                    username: '',
+                    email: '',
+                    password: '',
+                    isRegistered:true,
+          
+                })
+            })
+           .catch(err => {
+                console.log("This is the responese from catch", err);
+                this.setState({
+                    username: '',
+                    email: '',
+                    password: '',
+                    isRegistered:false,
+                    error: true
+                })
+            }); */
+
+
+            axios.post('https://cleaneast.herokuapp.com/cleaners/register', user)
             .then(res => {
                 localStorage.setItem("cleanerToken", res.data.token) // Then object is from response we made through url attach to MongoDB
                 localStorage.setItem("cleanerEmail", res.data.cleaner.email)
