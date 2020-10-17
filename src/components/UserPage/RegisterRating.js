@@ -134,7 +134,7 @@ export default class RegisterRating extends Component {
             }); */
 
 
-            axios.post('https://cleaneast.herokuapp.com//users/rating', rating, {
+            axios.post('https://cleaneast.herokuapp.com/users/rating', rating, {
             headers: {
                 'Content-Type': 'application/json',
                 'userttoken': localStorage.getItem('userToken')
