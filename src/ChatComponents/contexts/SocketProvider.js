@@ -26,7 +26,7 @@ export function SocketProvider({ id, children }) {
 
   useEffect(() => {
     const newSocket = io(
-      'https://cleaneast-socket-io.herokuapp.com',
+      'https://cleaneast-socket-io.herokuapp.com/',
       { query: { id } }
     )
     setSocket(newSocket)
