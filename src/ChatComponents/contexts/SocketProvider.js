@@ -10,9 +10,23 @@ export function useSocket() {
 export function SocketProvider({ id, children }) {
   const [socket, setSocket] = useState()
 
-  useEffect(() => {
+  ////////////////////// BEFORE DEPLOYMENT ////////////
+
+  /* useEffect(() => {
     const newSocket = io(
       'http://localhost:5001',
+      { query: { id } }
+    )
+    setSocket(newSocket)
+
+    return () => newSocket.close()
+  }, [id]) */
+
+  ////////////////////////////////////
+
+  useEffect(() => {
+    const newSocket = io(
+      'https://cleaneast-socket-io.herokuapp.com',
       { query: { id } }
     )
     setSocket(newSocket)
