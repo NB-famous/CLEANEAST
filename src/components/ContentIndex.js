@@ -5,7 +5,7 @@
 
 
 import React, {useState, useEffect} from 'react';
-import "../styles/ContentIndex.scss";
+import "../styles/Content.scss";
 /* import MapSource from './MapSource' */
 import LoginUser from "./UserPage/LoginUser"
 import RegisterUser from "./UserPage/RegisterUser"
@@ -64,9 +64,9 @@ export default function ContentIndex(props){
     }
 
     return(
-        <main className="app__card app__card--show">
+        <main className="appointment__card appointment__card--show">
         
-            <section className="app__card-left">
+            <section className="appointment__card-left">
                 <section className="content-container">
                 <Route path="/"  registeredUser={registeredUser} exact>
                 <h1 className="text--regular" style={{textAlign: "center"}}>Welcome To Cleaneast</h1>

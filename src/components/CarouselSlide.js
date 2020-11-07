@@ -6,12 +6,11 @@ const CarouselSlide = () => {
 
   return (
 
-    // <Carousel style={{width: "80%", height: "50%", left: "10%", rigth: "10%"}}>
-    <Carousel >
+    <Carousel style={{width: "80%", height: "50%", left: "10%", rigth: "10%"}}>
       <Carousel.Item>
         <img
           className="d-block"
-          src="https://myfirstuk.com/wp-content/uploads/2018/05/carcare_660X440.jpg"
+          src="https://yata-apix-a72b4a59-7ac6-45ca-a6d3-20de15dc2dba.lss.locawebcorp.com.br/8aa5faa656ca4ce68eec5a614df5d60d.png"
           alt="First slide"
           style={{width: "45vw", height: "50vh"}}
         />
