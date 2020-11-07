@@ -6,7 +6,8 @@ const CarouselSlide = () => {
 
   return (
 
-    <Carousel style={{width: "80%", height: "50%", left: "10%", rigth: "10%"}}>
+    // <Carousel style={{width: "80%", height: "50%", left: "10%", rigth: "10%"}}>
+    <Carousel >
       <Carousel.Item>
         <img
           className="d-block"
